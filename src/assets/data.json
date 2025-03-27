@@ -1,0 +1,12 @@
+{
+  "home": {
+    "title": "Lead the Future",
+    "mission": {
+      "banner": "https://picsum.photos/500/100",
+      "image": "https://picsum.photos/500/500"
+    }
+  },
+  "about": {
+    "title": "About Us"
+  }
+}
