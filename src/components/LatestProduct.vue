@@ -1,30 +1,37 @@
 <template>
-  <div class="wrapper">
-    <h1 class="title">Latest Products</h1>
+  <div class="banner">
+    <div class="wrapper">
+      <h1 class="title">Latest Products</h1>
 
-    <div class="content">
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae
-        vestibulum vestibulum. Cras venenatis euismod malesuada. Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras
-        venenatis euismod malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Lorem
-        ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
-        vestibulum. Cras venenatis euismod malesuada. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod
-        malesuada.
-      </div>
-      <div style="justify-content: end; display: flex">
-        <RouterLink class="routeBtn" to="/about">More(TODO)</RouterLink>
+      <div class="content">
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae
+          vestibulum vestibulum. Cras venenatis euismod malesuada. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras
+          venenatis euismod malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Lorem
+          ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+          vestibulum. Cras venenatis euismod malesuada. Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod
+          malesuada.
+        </div>
+        <div style="justify-content: end; display: flex">
+          <RouterLink class="routeBtn" to="/about">More(TODO)</RouterLink>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.banner {
+  background-color: var(--vt-c-brand-color);
+  display: flex;
+  justify-content: center;
+}
+
 .wrapper {
   display: flex;
-  background-color: var(--vt-c-indigo);
   color: var(--vt-c-white);
   gap: 2rem;
 }

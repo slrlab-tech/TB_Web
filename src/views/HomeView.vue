@@ -14,8 +14,16 @@ export default {
 
 <template>
   <main>
-    <Mission :data="data[$route.name]" />
-    <div style="height: 1rem"></div>
-    <LatestProduct />
+    <Mission :data="data[$route.name ?? 'default']" />
+    <LatestProduct /> <Mission :data="data[$route.name ?? 'default']" />
+    <Mission :data="data[$route.name ?? 'default']" />
+    <Mission :data="data[$route.name ?? 'default']" />
+    <Mission :data="data[$route.name ?? 'default']" />
   </main>
 </template>
+
+<style scoped>
+main {
+  gap: 1rem;
+}
+</style>

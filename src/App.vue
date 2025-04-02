@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import { ref } from 'vue'
-
-const isMenuOpen = ref(false)
-
-function toggle() {
-  isMenuOpen = !isMenuOpen
-}
+import { RouterView } from 'vue-router'
+import TopBar from './components/TopBar.vue'
+import Banner from './components/Banner.vue'
 </script>
 
 <script lang="ts">
@@ -14,121 +9,81 @@ import json from './assets/data.json'
 export default {
   data() {
     return {
-      data: json,
+      data: json as {
+        [key: string]: { title: string; mission?: { banner: string; image: string } } | any
+      },
     }
   },
 }
 </script>
 
 <template>
-  <header>
-    <button class="menuButton" @click="isMenuOpen = true">Menu</button>
+  <div style="height: 5rem"></div>
+  <TopBar
+    class="topBar"
+    :title="data[$route.name as string]?.title || data.brand"
+    :brand="data.brand"
+  ></TopBar>
 
-    <div class="menuMask" @click="isMenuOpen = false" v-show="isMenuOpen"></div>
+  <Banner :title="data[$route.name as string]?.title || data.brand" :brand="data.brand"></Banner>
 
-    <div
-      class="drawer"
-      :style="{
-        width: isMenuOpen ? '10vw' : '0',
-        padding: isMenuOpen ? '0 1rem' : '0',
-      }"
-    >
-      <nav>
-        <RouterLink @click="isMenuOpen = false" to="/">Home</RouterLink>
-        <RouterLink @click="isMenuOpen = false" to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-  <div>{{ data[$route.name].title }}</div>
-  <RouterView :data="data" />
+  <video
+    class="background"
+    ref="videoRef"
+    src="https://videos.pexels.com/video-files/857134/857134-hd_1280_720_24fps.mp4"
+    autoplay
+    loop
+    muted
+    width="100%"
+    height="100%"
+    style="object-fit: cover"
+  ></video>
+
+  <div style="height: 100vh"></div>
+
+  <div class="container">
+    <RouterView :data="data" />
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-header {
-  display: flex;
-  justify-content: right;
-}
-
-.menuMask {
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.5);
+.topBar {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
-}
-
-.drawer {
-  background-color: var(--color-background);
-  width: 0;
-  height: 100vh;
-  position: absolute;
   right: 0;
+  z-index: 10;
+}
+
+.background {
+  position: fixed;
   top: 0;
-  z-index: 100;
-  transition: all 0.2s;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  object-fit: cover;
 }
 
-nav {
-  width: min-content;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
+/* .container::before {
+  content: '';
+  position: absolute;
+  top: -12vh;
+  z-index: -1;
+  background-color: var(--vt-c-white);
+  border-radius: 50% 50% 0 0;
+  height: 60vh;
+  width: 120vw;
+  min-width: 120vw;
+  margin: 0 -10vw 0 -10vw;
+} */
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  padding: 0 1rem 0 1rem;
-  border-top: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.container {
+  padding-top: 25%;
+  background-color: var(--vt-c-white);
+  position: relative;
+  clip-path: ellipse(150% 120% at 50% 120%);
 }
 </style>
 
-<!-- For sending data to child -->
-<!-- <script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
-</script> -->
+<!-- TODO: replace picsum images -->

@@ -1,6 +1,8 @@
 {
+  "brand": "Tomorrow's Brain",
   "home": {
-    "title": "Lead the Future",
+    "/title": "Lead the Future",
+    "title": "Tomorrow's Brain",
     "mission": {
       "banner": "https://picsum.photos/500/100",
       "image": "https://picsum.photos/500/500"
