@@ -7,6 +7,7 @@ import Banner from './components/Banner.vue'
 <script lang="ts">
 import json from './assets/data.json'
 import Footer from './components/Footer.vue'
+import { Icon } from '@iconify/vue/dist/iconify.js'
 export default {
   data() {
     return {
@@ -16,10 +17,16 @@ export default {
     }
   },
 }
+
+const toTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  })
+}
 </script>
 
 <template>
-  <div style="height: 5rem"></div>
   <TopBar
     class="topBar"
     :title="data[$route.name as string]?.title || data.brand"
@@ -43,10 +50,23 @@ export default {
   <div class="container">
     <RouterView :data="data" />
   </div>
+  <Icon icon="mingcute:up-line" class="upBtn" @click="toTop()"></Icon>
   <Footer :data="data.contacts"></Footer>
 </template>
 
 <style scoped>
+.upBtn {
+  width: 4rem;
+  height: 4rem;
+  color: var(--vt-c-white);
+  background-color: var(--vt-c-brand-color);
+  border-radius: 1rem;
+
+  position: fixed;
+  bottom: 4rem;
+  right: 4rem;
+}
+
 .topBar {
   position: fixed;
   top: 0;
@@ -85,15 +105,15 @@ export default {
     linear-gradient(
       transparent 10vh,
       var(--vt-c-white) 10vh,
-      var(--vt-c-white) 50%,
-      transparent 50%
+      var(--vt-c-white) 51%,
+      transparent 51%
     ),
     linear-gradient(
       to top,
       transparent 10vh,
       var(--vt-c-white) 10vh,
-      var(--vt-c-white) 50%,
-      transparent 50%
+      var(--vt-c-white) 51%,
+      transparent 51%
     );
   position: relative;
 }

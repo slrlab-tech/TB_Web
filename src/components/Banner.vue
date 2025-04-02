@@ -1,10 +1,6 @@
 <script lang="ts">
 export default {
   props: ['title', 'brand'],
-  mounted() {
-    console.log('title', this.title)
-    console.log('title', this.brand)
-  },
 }
 </script>
 
@@ -46,7 +42,7 @@ export default {
 }
 
 .banner {
-  padding: 3rem 0 1rem 0;
+  padding: 8rem 0 1rem 0;
   color: var(--vt-c-white);
   display: flex;
   align-items: center;
