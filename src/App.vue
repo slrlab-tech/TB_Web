@@ -6,6 +6,7 @@ import Banner from './components/Banner.vue'
 
 <script lang="ts">
 import json from './assets/data.json'
+import Footer from './components/Footer.vue'
 export default {
   data() {
     return {
@@ -39,11 +40,10 @@ export default {
     style="object-fit: cover"
   ></video>
 
-  <div style="height: 100vh"></div>
-
   <div class="container">
     <RouterView :data="data" />
   </div>
+  <Footer :data="data.contacts"></Footer>
 </template>
 
 <style scoped>
@@ -65,7 +65,7 @@ export default {
   object-fit: cover;
 }
 
-/* .container::before {
+.container::before {
   content: '';
   position: absolute;
   top: -12vh;
@@ -76,13 +76,39 @@ export default {
   width: 120vw;
   min-width: 120vw;
   margin: 0 -10vw 0 -10vw;
-} */
+}
 
 .container {
-  padding-top: 25%;
-  background-color: var(--vt-c-white);
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  background:
+    linear-gradient(
+      transparent 10vh,
+      var(--vt-c-white) 10vh,
+      var(--vt-c-white) 50%,
+      transparent 50%
+    ),
+    linear-gradient(
+      to top,
+      transparent 10vh,
+      var(--vt-c-white) 10vh,
+      var(--vt-c-white) 50%,
+      transparent 50%
+    );
   position: relative;
-  clip-path: ellipse(150% 120% at 50% 120%);
+}
+
+.container::after {
+  content: '';
+  position: absolute;
+  bottom: -12vh;
+  z-index: -1;
+  background-color: var(--vt-c-white);
+  border-radius: 0 0 50% 50%;
+  height: 60vh;
+  width: 120vw;
+  min-width: 120vw;
+  margin: 0 -10vw 0 -10vw;
 }
 </style>
 

@@ -26,8 +26,6 @@
 <style scoped>
 .banner {
   background-color: var(--vt-c-brand-color);
-  display: flex;
-  justify-content: center;
 }
 
 .wrapper {

@@ -36,6 +36,7 @@ a,
     padding: 2rem 8rem;
     max-width: var(--max-width);
     width: var(--max-width);
+    margin: 0 auto;
   }
 
   h1 {

@@ -9,19 +9,15 @@ const isMenuOpen = ref(false)
 <script lang="ts">
 export default {
   props: ['title', 'brand'],
-  mounted() {
-    console.log('title', this.title)
-    console.log('brand', this.brand)
-  },
 }
 
 window.onscroll = function () {
-  if (document.documentElement.scrollTop < 32) {
+  if (document.documentElement.scrollTop < 24) {
     document
       .querySelector('header')
       ?.style.setProperty(
         'padding-top',
-        (24 - document.documentElement.scrollTop || 0).toString() + 'px',
+        (32 - document.documentElement.scrollTop || 0).toString() + 'px',
       )
   } else {
     document.querySelector('header')?.style.setProperty('padding-top', '8px')
@@ -104,6 +100,7 @@ nav {
   height: 3rem;
   width: 3rem;
   color: var(--vt-c-white);
+  mix-blend-mode: difference;
 }
 
 header {
