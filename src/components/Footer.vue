@@ -1,9 +1,6 @@
 <script lang="ts">
 export default {
   props: ['data'],
-  mounted() {
-    console.log('contacts', this.data)
-  },
 }
 </script>
 

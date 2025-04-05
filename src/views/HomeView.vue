@@ -12,10 +12,7 @@ export default {
 <template>
   <main>
     <Mission :data="data[$route.name ?? 'default']" />
-    <LatestProduct /> <Mission :data="data[$route.name ?? 'default']" />
-    <Mission :data="data[$route.name ?? 'default']" />
-    <Mission :data="data[$route.name ?? 'default']" />
-    <Mission :data="data[$route.name ?? 'default']" />
+    <LatestProduct />
   </main>
 </template>
 

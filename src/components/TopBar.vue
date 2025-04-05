@@ -1,9 +1,16 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 
 const isMenuOpen = ref(false)
+
+const closeMenu = () => {
+  isMenuOpen.value = false
+}
+
+defineExpose({
+  closeMenu,
+})
 </script>
 
 <script lang="ts">
@@ -30,17 +37,14 @@ window.onscroll = function () {
     <div class="brand">{{ brand }}</div>
     <Icon @click="isMenuOpen = true" icon="gg:details-more" class="iconButton" />
 
-    <div class="menuMask" @click="isMenuOpen = false" v-show="isMenuOpen"></div>
+    <div class="menuMask" @click="closeMenu()" v-show="isMenuOpen"></div>
     <div
       class="drawer"
       :style="{
         right: isMenuOpen ? '0' : ' -10vw',
       }"
     >
-      <nav>
-        <RouterLink @click="isMenuOpen = false" to="/">Home</RouterLink>
-        <RouterLink @click="isMenuOpen = false" to="/about">About</RouterLink>
-      </nav>
+      <slot></slot>
     </div>
   </header>
 </template>
@@ -54,6 +58,7 @@ window.onscroll = function () {
   border-radius: 1rem;
   display: flex;
   align-items: center;
+  filter: drop-shadow(0.1rem 0.1rem 0.2rem var(--color-text));
 }
 .brand:after {
   content: '';
@@ -73,17 +78,7 @@ window.onscroll = function () {
   top: 0;
   z-index: 100;
   transition: all 0.2s;
-  padding-left: 1rem;
-}
-
-nav {
-  width: min-content;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  padding: 0 1rem;
 }
 
 .menuMask {
@@ -100,7 +95,7 @@ nav {
   height: 3rem;
   width: 3rem;
   color: var(--vt-c-white);
-  mix-blend-mode: difference;
+  filter: drop-shadow(0.1rem 0.1rem 0.2rem var(--color-text));
 }
 
 header {
@@ -109,31 +104,5 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 2rem 4rem 1rem 4rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  padding: 0 1rem 0 1rem;
-  border-top: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-nav {
-  text-align: left;
-  margin-left: -1rem;
-  font-size: 1rem;
-
-  padding: 1rem 0;
-  margin-top: 1rem;
 }
 </style>

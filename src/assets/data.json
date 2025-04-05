@@ -18,5 +18,27 @@
       "Email": "abc@test.com",
       "Address": "1234 Test St, Test City, Test Country"
     }
-  }
+  },
+  "products": [
+    {
+      "name": "product 1",
+      "description": "description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1",
+      "category": "category 1"
+    },
+    { "name": "product 2", "description": "description 2", "category": "category 1" },
+    { "name": "product 3", "description": "description 3", "category": "category 1" },
+    { "name": "product 4", "description": "description 4", "category": "category 2" },
+    { "name": "product 5", "description": "description 5", "category": "category 2" },
+    { "name": "product 6", "description": "description 6", "category": "category 2" },
+    { "name": "product 7", "description": "description 7", "category": "category 2" },
+    { "name": "product 8", "description": "description 8", "category": "category 3" },
+    { "name": "product 9", "description": "description 9", "category": "category 3" },
+    { "name": "product 10", "description": "description 10", "category": "category 4" },
+    { "name": "product 11", "description": "description 11", "category": "category 5" },
+    { "name": "product 12", "description": "description 12", "category": "category 6" },
+    { "name": "product 13", "description": "description 13", "category": "category 7" },
+    { "name": "product 14", "description": "description 14", "category": "category 8" },
+    { "name": "product 15", "description": "description 15", "category": "category 9" },
+    { "name": "product 16", "description": "description 16", "category": "category 10" }
+  ]
 }

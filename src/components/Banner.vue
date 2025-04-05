@@ -7,7 +7,7 @@ export default {
 <template>
   <div class="banner">
     <template v-if="brand !== title">
-      <h1>{{ title }}</h1>
+      <h1 class="title">{{ title }}</h1>
     </template>
     <template v-if="brand == title">
       <div class="brandWrapper">
@@ -16,21 +16,23 @@ export default {
       </div>
     </template>
 
-    <template v-if="brand == title">
-      <div class="line1"></div>
-      <div class="line2"></div>
-      <div class="line3"></div>
-      <div class="line4"></div>
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="line3"></div>
+    <div class="line4"></div>
 
-      <div class="line5"></div>
-      <div class="line6"></div>
-      <div class="line7"></div>
-      <div class="line8"></div>
-    </template>
+    <div class="line5"></div>
+    <div class="line6"></div>
+    <div class="line7"></div>
+    <div class="line8"></div>
   </div>
 </template>
 
 <style scoped>
+.title {
+  padding: 1rem 0 4rem 0;
+}
+
 .brandWrapper {
   display: flex;
   flex-direction: column;

@@ -8,6 +8,7 @@ import Banner from './components/Banner.vue'
 import json from './assets/data.json'
 import Footer from './components/Footer.vue'
 import { Icon } from '@iconify/vue/dist/iconify.js'
+import { ref } from 'vue'
 export default {
   data() {
     return {
@@ -24,6 +25,12 @@ const toTop = () => {
     behavior: 'smooth',
   })
 }
+
+const topBarRef = ref<{ closeMenu: () => void } | null>(null)
+
+const closeMenu = () => {
+  topBarRef.value?.closeMenu()
+}
 </script>
 
 <template>
@@ -31,7 +38,14 @@ const toTop = () => {
     class="topBar"
     :title="data[$route.name as string]?.title || data.brand"
     :brand="data.brand"
-  ></TopBar>
+    ref="topBarRef"
+  >
+    <nav>
+      <RouterLink @click="closeMenu()" to="/">Home</RouterLink>
+      <RouterLink @click="closeMenu()" to="/about">About</RouterLink>
+      <RouterLink @click="closeMenu()" to="/products">Products</RouterLink>
+    </nav>
+  </TopBar>
 
   <Banner :title="data[$route.name as string]?.title || data.brand" :brand="data.brand"></Banner>
 
@@ -92,7 +106,7 @@ const toTop = () => {
   z-index: -1;
   background-color: var(--vt-c-white);
   border-radius: 50% 50% 0 0;
-  height: 60vh;
+  height: 30vw;
   width: 120vw;
   min-width: 120vw;
   margin: 0 -10vw 0 -10vw;
@@ -101,6 +115,7 @@ const toTop = () => {
 .container {
   margin-top: 10vh;
   margin-bottom: 10vh;
+  padding-bottom: 5vh;
   background:
     linear-gradient(
       transparent 10vh,
@@ -125,10 +140,38 @@ const toTop = () => {
   z-index: -1;
   background-color: var(--vt-c-white);
   border-radius: 0 0 50% 50%;
-  height: 60vh;
+  height: 30vw;
   width: 120vw;
   min-width: 120vw;
   margin: 0 -10vw 0 -10vw;
+}
+
+nav a.router-link-exact-active {
+  color: var(--color-text);
+}
+
+nav a.router-link-exact-active:hover {
+  background-color: transparent;
+}
+
+nav a {
+  padding: 0 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+nav a:first-of-type {
+  border: 0;
+}
+
+nav {
+  padding: 1rem 0;
+
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
 }
 </style>
 
