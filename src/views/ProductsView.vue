@@ -58,6 +58,10 @@ export default {
 </template>
 
 <style scoped>
+.none {
+  display: none;
+}
+
 .products {
   min-height: 100vh;
   display: flex;

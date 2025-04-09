@@ -2,7 +2,7 @@
 import { RouterView } from 'vue-router'
 import TopBar from './components/TopBar.vue'
 import Banner from './components/Banner.vue'
-import Model from './components/Model.vue'
+import Model from './components/LogoAnimation.vue'
 import json from './assets/data.json'
 import Footer from './components/Footer.vue'
 import { Icon } from '@iconify/vue/dist/iconify.js'

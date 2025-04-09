@@ -175,5 +175,11 @@
       "category": "category 14",
       "image": "https://picsum.photos/200/200"
     }
+  ],
+  "sponsors": [
+    "https://picsum.photos/200/100",
+    "https://picsum.photos/200/101",
+    "https://picsum.photos/200/102",
+    "https://picsum.photos/200/103"
   ]
 }

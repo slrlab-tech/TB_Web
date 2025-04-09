@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Model from '@/components/Model.vue'
+import LogoAnimation from '@/components/LogoAnimation.vue'
 import LatestProduct from '../components/LatestProduct.vue'
 import Mission from '../components/Mission.vue'
 </script>
@@ -7,14 +7,11 @@ import Mission from '../components/Mission.vue'
 <script lang="ts">
 export default {
   props: ['data'],
-  mounted() {
-    document.documentElement.scrollTop = 0
-  },
 }
 </script>
 
 <template>
-  <Model class="logo-animation" />
+  <LogoAnimation class="logo-animation" />
   <main>
     <Mission :data="data[($route.meta.path as string) ?? 'home']" />
     <LatestProduct />
