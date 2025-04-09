@@ -7,7 +7,7 @@ export default {
 <template>
   <div class="banner">
     <template v-if="brand !== title">
-      <h1 class="title">{{ title }}</h1>
+      <h1 class="title">{{ $t(title) }}</h1>
     </template>
     <template v-if="brand == title">
       <div class="brand-wrapper">

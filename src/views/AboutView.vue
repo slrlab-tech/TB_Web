@@ -9,7 +9,6 @@ export default {
 
 <template>
   <div class="about">
-    <!-- <h1>This is about page</h1> -->
     <Carousel :items="data.sponsors" />
   </div>
 </template>

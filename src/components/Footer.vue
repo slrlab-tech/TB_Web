@@ -7,10 +7,10 @@ export default {
 <template>
   <div class="wrapper">
     <div class="padding">
-      <h2>Contact Us</h2>
+      <h2>{{ $t('Contact Us') }}</h2>
       <div class="contacts">
         <div v-for="(value, key) in data?.items" :key="key">
-          <p>{{ key }}: {{ value }}</p>
+          <p>{{ $t(String(key)) }}: {{ value }}</p>
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@ export default {
     <div class="padding">
       <a href="http://google.com" target="_blank" rel="noopener noreferrer">
         <!-- TODO: change terms and condition to proper one -->
-        Terms and Conditions
+        {{ $t('Terms and Conditions') }}
       </a>
     </div>
   </div>
