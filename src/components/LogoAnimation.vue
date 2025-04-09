@@ -1,24 +1,57 @@
 <script setup lang="ts">
 import * as THREE from 'three'
 import { toRaw } from 'vue'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
+import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js'
 </script>
 
 <script lang="ts">
 const d90 = Math.PI / 2
 const iconSize = 4 * 8 // The width of icon in topBar (4)
 
+let scene = null as THREE.Scene | null
+let composer = null as EffectComposer | null
+let brain = null as THREE.Group | null
+
 export default {
   data() {
     return {
       camera: null as THREE.OrthographicCamera | null,
-      scene: null as THREE.Scene | null,
       renderer: null as THREE.WebGLRenderer | null,
-      brain: null as THREE.Group | null,
       progress: 0 as number,
       container: null as HTMLElement | null,
     }
   },
   methods: {
+    brainDummy: function (iconSize: number) {
+      const material = new THREE.MeshNormalMaterial({ opacity: 0.8, transparent: true })
+
+      const left = new THREE.Mesh(new THREE.SphereGeometry(iconSize, 20, 10), material)
+      left.scale.y = 0.9
+      left.position.y = 0
+      left.scale.z = 0.6
+      left.position.z = -10
+
+      const right = new THREE.Mesh(new THREE.SphereGeometry(iconSize, 20, 10), material)
+      right.scale.y = 0.9
+      right.position.y = 0
+      right.scale.z = 0.6
+      right.position.z = 10
+
+      const bottom = new THREE.Mesh(new THREE.SphereGeometry(iconSize / 2, 20, 10), material)
+      bottom.scale.y = 0.6
+      bottom.position.y = -20
+      bottom.position.x = 10
+
+      const brain = new THREE.Group()
+      brain.add(left)
+      brain.add(right)
+      brain.add(bottom)
+
+      return brain
+    },
     init: function () {
       document.documentElement.scrollTop = 0
 
@@ -43,82 +76,68 @@ export default {
       )
       this.camera.position.z = 1
 
-      this.scene = new THREE.Scene()
+      scene = new THREE.Scene()
 
-      this.brain = this.brainDummy(iconSize)
+      brain = this.brainDummy(iconSize)
       const scale =
         (Math.min(this.container.clientHeight, this.container.clientWidth) - 64) / iconSize / 2
-      this.brain.scale.set(scale, scale, scale)
-      this.scene.add(this.brain)
+      brain.scale.set(scale, scale, scale)
+      scene.add(brain)
+
+      const renderScene = new RenderPass(toRaw(scene), this.camera)
+
+      const bloomPass = new UnrealBloomPass(
+        new THREE.Vector2(window.innerWidth, window.innerHeight),
+        1.5,
+        0.4,
+        0.85,
+      )
+      bloomPass.threshold = 0
+      bloomPass.strength = 0.4
+      bloomPass.radius = 0
+
+      const outputPass = new OutputPass()
 
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
       this.renderer.setSize(this.container.clientWidth, this.container.clientHeight)
       this.container.appendChild(this.renderer.domElement)
+
+      composer = new EffectComposer(this.renderer)
+      composer.addPass(renderScene)
+      composer.addPass(bloomPass)
+      composer.addPass(outputPass)
     },
-    brainDummy: function (iconSize: number) {
-      const left = new THREE.Mesh(
-        new THREE.SphereGeometry(iconSize, 20, 10),
-        new THREE.MeshNormalMaterial(),
-      )
-      left.scale.y = 0.9
-      left.position.y = 0
-      left.scale.z = 0.6
-      left.position.z = 10
 
-      const right = new THREE.Mesh(
-        new THREE.SphereGeometry(iconSize, 20, 10),
-        new THREE.MeshNormalMaterial(),
-      )
-      right.scale.y = 0.9
-      right.position.y = 0
-      right.scale.z = 0.6
-      right.position.z = -10
-
-      const bottom = new THREE.Mesh(
-        new THREE.SphereGeometry(iconSize / 2, 20, 10),
-        new THREE.MeshNormalMaterial(),
-      )
-      bottom.scale.y = 0.6
-      bottom.position.y = -20
-      bottom.position.x = 10
-
-      const brain = new THREE.Group()
-      brain.add(left)
-      brain.add(right)
-      brain.add(bottom)
-
-      return brain
-    },
     animate: function (step = 0) {
-      if (!this.brain || !this.renderer || !this.scene || !this.camera || !this.container) {
+      if (!brain || !this.renderer || !scene || !this.camera || !this.container || !composer) {
         console.error('Error loading three.js components')
         return
       }
 
-      if (this.brain.rotation.x >= 0 || step > 0) {
+      if (brain.rotation.x >= 0 || step > 0) {
         const scale =
           (Math.min(this.container.clientHeight, this.container.clientWidth) - 64) / iconSize / 2
 
         const posX = -this.container.clientWidth / 2 + 64 + iconSize
         const posY = this.container.clientHeight / 2 - 32 - iconSize
 
-        this.brain.rotation.x += 0.01 * step
-        this.brain.rotation.y += 0.01 * step
+        brain.rotation.x += 0.01 * step
+        brain.rotation.y += 0.01 * step
 
-        this.brain.position.x += (posX / (d90 / 0.01)) * step
-        this.brain.position.y += (posY / (d90 / 0.01)) * step
+        brain.position.x += (posX / (d90 / 0.01)) * step
+        brain.position.y += (posY / (d90 / 0.01)) * step
 
         const stepScale =
-          scale - Math.min(Math.max((scale * this.brain.position.x) / posX, 1), scale) + 1
+          scale - Math.min(Math.max((scale * brain.position.x) / posX, 1), scale) + 1
 
-        this.brain.scale.set(stepScale, stepScale, stepScale)
+        brain.scale.set(stepScale, stepScale, stepScale)
 
-        if (this.brain.rotation.x > d90 || this.progress > 0) {
-          this.brain.scale.set(1, 1, 1)
-          this.brain.rotation.x = d90
-          this.brain.rotation.y = d90
-          this.brain.position.x = posX
-          this.brain.position.y = posY
+        if (brain.rotation.x > d90 || this.progress > 0) {
+          brain.scale.set(1, 1, 1)
+          brain.rotation.x = d90
+          brain.rotation.y = d90
+          brain.position.x = posX
+          brain.position.y = posY
 
           this.progress += step
           const maxProgress = 100
@@ -130,19 +149,20 @@ export default {
           if (this.progress >= maxProgress) {
             this.endAnimation()
           }
-        } else if (this.brain.rotation.x < 0) {
-          this.brain.scale.set(scale, scale, scale)
-          this.brain.rotation.x = 0
-          this.brain.rotation.y = 0
-          this.brain.position.x = 0
-          this.brain.position.y = 0
-        } else if (this.brain.rotation.x < d90) this.progress = 0
+        } else if (brain.rotation.x < 0) {
+          brain.scale.set(scale, scale, scale)
+          brain.rotation.x = 0
+          brain.rotation.y = 0
+          brain.position.x = 0
+          brain.position.y = 0
+        } else if (brain.rotation.x < d90) this.progress = 0
 
-        this.renderer.render(toRaw(this.scene), this.camera)
+        composer.render()
+        // renderer.render(toRaw(scene), camera)
       }
     },
     updateThree: function () {
-      if (!this.renderer || !this.camera || !this.scene) {
+      if (!this.renderer || !this.camera || !scene) {
         console.error('Error loading three.js components')
         return
       }
@@ -165,7 +185,8 @@ export default {
       this.camera.bottom = -viewSize / 2
 
       this.camera.updateProjectionMatrix()
-      this.renderer.render(toRaw(this.scene), this.camera)
+      composer?.render()
+      // renderer.render(toRaw(scene), camera)
     },
     showLogo: function () {
       let logo = document.querySelector('.logo') as HTMLImageElement
