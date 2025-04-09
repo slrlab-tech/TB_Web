@@ -45,6 +45,11 @@ window.onscroll = function () {
         right: isMenuOpen ? '0' : ' -10vw',
       }"
     >
+      <select v-model="$i18n.locale">
+        <option v-for="(lang, i) in ['en', 'zh-hk', 'zh-cn']" :key="`Lang${i}`" :value="lang">
+          {{ $t(lang) }}
+        </option>
+      </select>
       <slot></slot>
     </div>
   </header>
