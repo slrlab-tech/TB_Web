@@ -177,9 +177,9 @@
     }
   ],
   "sponsors": [
-    "https://picsum.photos/200/100",
-    "https://picsum.photos/200/101",
-    "https://picsum.photos/200/102",
-    "https://picsum.photos/200/103"
+    { "image": "https://picsum.photos/200/100", "alt": "logo 1" },
+    { "image": "https://picsum.photos/210/100", "alt": "logo 2" },
+    { "image": "https://picsum.photos/220/100" },
+    { "image": "https://picsum.photos/230/100" }
   ]
 }

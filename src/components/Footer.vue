@@ -9,7 +9,7 @@ export default {
     <div class="padding">
       <h2>Contact Us</h2>
       <div class="contacts">
-        <div v-for="(value, key) in data.items" :key="key">
+        <div v-for="(value, key) in data?.items" :key="key">
           <p>{{ key }}: {{ value }}</p>
         </div>
       </div>
@@ -17,6 +17,7 @@ export default {
     <hr />
     <div class="padding">
       <a href="http://google.com" target="_blank" rel="noopener noreferrer">
+        <!-- TODO: change terms and condition to proper one -->
         Terms and Conditions
       </a>
     </div>

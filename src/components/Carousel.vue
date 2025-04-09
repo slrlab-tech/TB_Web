@@ -7,13 +7,8 @@ export default {
 <template>
   <div class="carousel-animation">
     <div class="carousel" v-for="i in 2">
-      <div
-        v-for="(item, index) in items"
-        :key="index"
-        class="carousel-item"
-        :class="{ active: index === 0 }"
-      >
-        <img :src="item" :alt="item.alt" class="carousel-image" />
+      <div v-for="(item, index) in items" :key="index" class="carousel-item">
+        <img :src="item.image" :alt="item.alt ?? 'logo'" class="carousel-image" />
       </div>
     </div>
   </div>
