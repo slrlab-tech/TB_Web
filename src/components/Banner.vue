@@ -10,7 +10,7 @@ export default {
       <h1 class="title">{{ title }}</h1>
     </template>
     <template v-if="brand == title">
-      <div class="brandWrapper">
+      <div class="brand-wrapper">
         <h1>{{ brand.slice(0, brand.indexOf(' ')) }}</h1>
         <h1 class="enlarge">{{ brand.slice(brand.indexOf(' ')) }}</h1>
       </div>
@@ -33,7 +33,7 @@ export default {
   padding: 1rem 0 4rem 0;
 }
 
-.brandWrapper {
+.brand-wrapper {
   display: flex;
   flex-direction: column;
 }

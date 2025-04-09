@@ -34,8 +34,9 @@ window.onscroll = function () {
 
 <template>
   <header>
-    <div class="brand">{{ brand }}</div>
-    <Icon @click="isMenuOpen = true" icon="gg:details-more" class="iconButton" />
+    <!-- <div class="brand">{{ brand }}</div> -->
+    <img src="../assets/logo.svg" alt="Logo" class="logo" />
+    <Icon @click="isMenuOpen = true" icon="gg:details-more" class="icon-button" />
 
     <div class="menuMask" @click="closeMenu()" v-show="isMenuOpen"></div>
     <div
@@ -50,6 +51,9 @@ window.onscroll = function () {
 </template>
 
 <style scoped>
+.logo {
+  width: 4rem;
+}
 .brand {
   height: 2rem;
   font-size: 1rem;
@@ -91,7 +95,7 @@ window.onscroll = function () {
   z-index: 100;
 }
 
-.iconButton {
+.icon-button {
   height: 3rem;
   width: 3rem;
   color: var(--vt-c-white);

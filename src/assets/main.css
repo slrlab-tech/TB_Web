@@ -19,6 +19,30 @@ a,
   padding: 3px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+nav a.router-link-exact-active:hover,
+.tab a:hover {
+  background-color: transparent;
+}
+
+nav a,
+.tab a {
+  padding: 0.5rem 1rem;
+  min-width: fit-content;
+}
+
+nav,
+.tab {
+  padding: 1rem 0;
+  width: min-content;
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+}
+
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);

@@ -16,7 +16,7 @@
           malesuada.
         </div>
         <div style="justify-content: end; display: flex">
-          <RouterLink class="routeBtn" to="/about">More(TODO)</RouterLink>
+          <RouterLink class="route-btn" to="/about">More(TODO)</RouterLink>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
   gap: 1rem;
 }
 
-.routeBtn {
+.route-btn {
   background-color: var(--vt-c-white);
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
