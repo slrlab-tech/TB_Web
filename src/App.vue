@@ -36,9 +36,9 @@ const closeMenu = () => {
 <template>
   <TopBar class="top-bar" :title="$route.name || data.brand" :brand="data.brand" ref="topBarRef">
     <nav>
-      <RouterLink @click="closeMenu()" to="/">Home</RouterLink>
-      <RouterLink @click="closeMenu()" to="/about">About</RouterLink>
-      <RouterLink @click="closeMenu()" to="/products">Products</RouterLink>
+      <RouterLink @click="closeMenu()" to="/">{{ $t('Home') }}</RouterLink>
+      <RouterLink @click="closeMenu()" to="/about">{{ $t('About') }}</RouterLink>
+      <RouterLink @click="closeMenu()" to="/products">{{ $t('Products') }}</RouterLink>
     </nav>
   </TopBar>
 
