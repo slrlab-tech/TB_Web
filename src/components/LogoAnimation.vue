@@ -88,17 +88,14 @@ export default {
 
       const bloomPass = new UnrealBloomPass(
         new THREE.Vector2(window.innerWidth, window.innerHeight),
-        1.5,
-        0.4,
-        0.85,
+        0.15,
+        3,
+        0,
       )
-      bloomPass.threshold = 0
-      bloomPass.strength = 0.4
-      bloomPass.radius = 0
-
       const outputPass = new OutputPass()
 
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+      this.renderer.setClearColor(0x000000, 0)
       this.renderer.setSize(this.container.clientWidth, this.container.clientHeight)
       this.container.appendChild(this.renderer.domElement)
 
