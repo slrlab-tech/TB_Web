@@ -5,6 +5,8 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js'
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js'
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 </script>
 
 <script lang="ts">
@@ -26,7 +28,7 @@ export default {
   },
   methods: {
     brainDummy: function (iconSize: number) {
-      const material = new THREE.MeshNormalMaterial({ opacity: 0.8, transparent: true })
+      const material = new THREE.MeshNormalMaterial({ opacity: 0.5, transparent: true })
 
       const left = new THREE.Mesh(new THREE.SphereGeometry(iconSize, 20, 10), material)
       left.scale.y = 0.9
@@ -78,12 +80,6 @@ export default {
 
       scene = new THREE.Scene()
 
-      brain = this.brainDummy(iconSize)
-      const scale =
-        (Math.min(this.container.clientHeight, this.container.clientWidth) - 64) / iconSize / 2
-      brain.scale.set(scale, scale, scale)
-      scene.add(brain)
-
       const renderScene = new RenderPass(toRaw(scene), this.camera)
 
       const bloomPass = new UnrealBloomPass(
@@ -103,10 +99,44 @@ export default {
       composer.addPass(renderScene)
       composer.addPass(bloomPass)
       composer.addPass(outputPass)
-    },
 
+      const loader = new GLTFLoader()
+      loader.load(
+        'src/assets/brain.glb',
+        (obj) => {
+          if (!scene || !this.renderer || !this.camera) {
+            console.error('Error loading three.js components for GLTF model')
+            return
+          }
+          const material = new THREE.MeshNormalMaterial({
+            opacity: 0.5,
+            transparent: true,
+            side: THREE.DoubleSide,
+          })
+
+          obj.scene.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
+              child.material = material
+            }
+          })
+          obj.scene.scale.set(50, 50, 50)
+          obj.scene.rotation.y = -Math.PI / 2
+
+          brain = new THREE.Group()
+          brain.add(obj.scene)
+
+          scene.add(brain)
+          requestAnimationFrame(() => this.animate())
+        },
+        (xhr) => {
+          console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+        },
+      )
+    },
     animate: function (step = 0) {
-      if (!brain || !this.renderer || !scene || !this.camera || !this.container || !composer) {
+      if (!brain) return
+
+      if (!this.renderer || !scene || !this.camera || !this.container || !composer) {
         console.error('Error loading three.js components')
         return
       }
@@ -119,10 +149,10 @@ export default {
         const posY = this.container.clientHeight / 2 - 32 - iconSize
 
         brain.rotation.x += 0.01 * step
-        brain.rotation.y += 0.01 * step
+        brain.rotation.y -= 0.01 * step
 
-        brain.position.x += (posX / (d90 / 0.01)) * step
-        brain.position.y += (posY / (d90 / 0.01)) * step
+        brain.position.x = posX / (d90 / brain.rotation.x)
+        brain.position.y = posY / (d90 / brain.rotation.x)
 
         const stepScale =
           scale - Math.min(Math.max((scale * brain.position.x) / posX, 1), scale) + 1
@@ -132,7 +162,7 @@ export default {
         if (brain.rotation.x > d90 || this.progress > 0) {
           brain.scale.set(1, 1, 1)
           brain.rotation.x = d90
-          brain.rotation.y = d90
+          brain.rotation.y = -d90
           brain.position.x = posX
           brain.position.y = posY
 
@@ -155,7 +185,6 @@ export default {
         } else if (brain.rotation.x < d90) this.progress = 0
 
         composer.render()
-        // renderer.render(toRaw(scene), camera)
       }
     },
     updateThree: function () {
@@ -182,8 +211,7 @@ export default {
       this.camera.bottom = -viewSize / 2
 
       this.camera.updateProjectionMatrix()
-      composer?.render()
-      // renderer.render(toRaw(scene), camera)
+      requestAnimationFrame(() => this.animate())
     },
     showLogo: function () {
       let logo = document.querySelector('.logo') as HTMLImageElement
@@ -217,7 +245,6 @@ export default {
   },
   mounted() {
     this.init()
-    this.animate()
   },
   created() {
     this.updateThree = this.updateThree.bind(this)
