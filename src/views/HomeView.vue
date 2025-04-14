@@ -7,6 +7,14 @@ import Mission from '../components/Mission.vue'
 <script lang="ts">
 export default {
   props: ['data'],
+  beforeRouteLeave(to, from, next) {
+    const threeScene = document.getElementById('model')
+    if (threeScene) {
+      threeScene.remove()
+    }
+
+    next()
+  },
 }
 </script>
 
