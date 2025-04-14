@@ -73,18 +73,18 @@ export default {
 
 @keyframes move-first {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(-25%);
   }
   100% {
-    transform: translateX(0%);
+    transform: translateX(25%);
   }
 }
 @keyframes move-second {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(25%);
   }
   100% {
-    transform: translateX(0%);
+    transform: translateX(-25%);
   }
 }
 </style>

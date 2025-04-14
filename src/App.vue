@@ -29,7 +29,7 @@ const toTop = () => {
 const topBarRef = ref<{ closeMenu: () => void } | null>(null)
 
 const closeMenu = () => {
-  topBarRef.value?.closeMenu()
+  topBarRef.value?.toggleMenu(false)
 }
 </script>
 

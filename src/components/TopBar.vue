@@ -1,15 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onUpdated } from 'vue'
 import { Icon } from '@iconify/vue'
 
 const isMenuOpen = ref(false)
+const drawer = ref(null)
 
-const closeMenu = () => {
-  isMenuOpen.value = false
+const toggleMenu = (isOpen) => {
+  isMenuOpen.value = isOpen
 }
 
+const setMenuPos = (isOpen) => {
+  drawer.value?.style.setProperty('right', isOpen ? '0' : -drawer.value?.offsetWidth + 'px')
+}
+
+onUpdated(() => setMenuPos(isMenuOpen.value))
+
 defineExpose({
-  closeMenu,
+  toggleMenu,
 })
 </script>
 
@@ -36,15 +43,9 @@ window.onscroll = function () {
   <header>
     <!-- <div class="brand">{{ brand }}</div> -->
     <img src="../assets/logo.svg" alt="Logo" class="logo" />
-    <Icon @click="isMenuOpen = true" icon="gg:details-more" class="icon-button" />
-
-    <div class="menuMask" @click="closeMenu()" v-show="isMenuOpen"></div>
-    <div
-      class="drawer"
-      :style="{
-        right: isMenuOpen ? '0' : ' -10vw',
-      }"
-    >
+    <Icon @click="toggleMenu(true)" icon="gg:details-more" class="icon-button" />
+    <div class="menuMask" @click="toggleMenu(false)" v-show="isMenuOpen"></div>
+    <div class="drawer" ref="drawer">
       <select v-model="$i18n.locale">
         <option v-for="(lang, i) in ['en', 'zh-hk', 'zh-cn']" :key="`Lang${i}`" :value="lang">
           {{ $t(lang) }}
@@ -82,8 +83,7 @@ window.onscroll = function () {
   background-color: var(--color-background);
   position: absolute;
   height: 100vh;
-  width: 10vw;
-  right: -10vw;
+  right: -100vw;
   top: 0;
   z-index: 100;
   transition: all 0.2s;

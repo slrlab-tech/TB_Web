@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Carousel from '@/components/Carousel.vue'
+import Members from '@/components/Members.vue'
 </script>
 <script lang="ts">
 export default {
@@ -9,6 +10,7 @@ export default {
 
 <template>
   <div class="about">
+    <Members :members="data.members" :title="$t('Our Members')" />
     <Carousel :items="data.sponsors" />
   </div>
 </template>
@@ -18,6 +20,7 @@ export default {
   .about {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
   }
 }

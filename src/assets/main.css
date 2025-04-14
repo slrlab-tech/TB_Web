@@ -11,6 +11,16 @@
   font-weight: normal;
 }
 
+h1 {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
 a,
 .green {
   text-decoration: none;
@@ -48,23 +58,14 @@ nav,
     background-color: hsla(160, 100%, 37%, 0.2);
   }
 }
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-    align-items: flex-start;
-  }
-
-  .wrapper {
-    padding: 2rem 8rem;
-    max-width: var(--max-width);
-    width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  h1 {
-    font-size: 3rem;
-    font-weight: bold;
-  }
+body {
+  display: flex;
+  place-items: center;
+  align-items: flex-start;
+}
+.wrapper {
+  padding: 2rem 8rem;
+  max-width: var(--max-width);
+  width: var(--max-width);
+  margin: 0 auto;
 }
