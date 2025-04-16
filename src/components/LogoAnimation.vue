@@ -391,18 +391,17 @@ export default {
   mounted() {
     const isShown = sessionStorage.getItem('TBisShown')
     if (isShown === 'True') return
-
     sessionStorage.setItem('TBisShown', 'True')
-    this.init()
-    this.animate()
-  },
-  created() {
+
     this.updateThree = this.updateThree.bind(this)
     this.animateByStep = this.animateByStep.bind(this)
 
     window.addEventListener('resize', this.updateThree)
     document.addEventListener('wheel', this.animateByStep)
     document.body.style.overflow = 'hidden'
+
+    this.init()
+    this.animate()
   },
   destroyed() {
     window.removeEventListener('resize', this.updateThree)

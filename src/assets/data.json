@@ -207,5 +207,9 @@
       "position": "test position 4",
       "description": "test description 4"
     }
+  ],
+  "typing": [
+    { "text": "abc", "icon": "ci:bell-ring" },
+    { "text": "efg", "icon": "ci:arrow-up-md" }
   ]
 }
