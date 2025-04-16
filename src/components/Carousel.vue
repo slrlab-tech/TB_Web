@@ -1,11 +1,20 @@
 <script lang="ts">
 export default {
-  props: ['items'],
+  props: {
+    items: {
+      type: Array,
+      required: true,
+    },
+    reverse: {
+      type: Boolean,
+      default: false,
+    },
+  },
 }
 </script>
 
 <template>
-  <div class="carousel-animation">
+  <div :class="'carousel-animation' + (reverse ? ' reverse' : '')">
     <div class="carousel" v-for="i in 2" data-test="carousel" :key="i">
       <div v-for="(item, index) in items" :key="index" class="carousel-item">
         <img :src="item.image" :alt="item.alt ?? 'logo'" class="carousel-image" />
@@ -19,6 +28,7 @@ export default {
   flex: 1;
   height: auto;
   object-fit: cover;
+  padding-right: 2rem;
 }
 
 .carousel-image {
@@ -41,14 +51,12 @@ export default {
 
 .carousel {
   display: flex;
-  gap: 2rem;
   width: 100vw;
 }
 
 .carousel-animation {
   display: flex;
   width: auto;
-  gap: 2rem;
 
   animation-play-state: running;
 
@@ -64,6 +72,22 @@ export default {
   -o-animation:
     move-first var(--carousel-time) linear infinite,
     move-second 0s linear infinite;
+  animation-fill-mode: forwards, none;
+}
+
+.reverse {
+  animation:
+    move-second var(--carousel-time) linear infinite,
+    move-first 0s linear infinite;
+  -webkit-animation:
+    move-second var(--carousel-time) linear infinite,
+    move-first 0s linear infinite;
+  -moz-animation:
+    move-second var(--carousel-time) linear infinite,
+    move-first 0s linear infinite;
+  -o-animation:
+    move-second var(--carousel-time) linear infinite,
+    move-first 0s linear infinite;
   animation-fill-mode: forwards, none;
 }
 
