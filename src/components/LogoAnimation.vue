@@ -390,7 +390,7 @@ export default {
   },
   mounted() {
     const isShown = sessionStorage.getItem('TBisShown')
-    if (isShown === 'True' && false) return // TODO: remove this line
+    if (isShown === 'True') return
 
     sessionStorage.setItem('TBisShown', 'True')
     this.init()

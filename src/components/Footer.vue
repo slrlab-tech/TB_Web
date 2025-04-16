@@ -8,7 +8,7 @@ export default {
   <div class="wrapper">
     <div class="padding">
       <h2>{{ $t('Contact Us') }}</h2>
-      <div class="contacts">
+      <div class="contacts" data-test="contacts">
         <div v-for="(value, key) in data?.items" :key="key">
           <p>{{ $t(String(key)) }}: {{ value }}</p>
         </div>

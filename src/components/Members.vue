@@ -10,7 +10,7 @@ export default {
   created() {
     this.observer = new IntersectionObserver(this.onElementObserved, {
       root: this.$el,
-      threshold: 0.8,
+      threshold: 0.6,
     })
   },
   methods: {
@@ -39,11 +39,9 @@ export default {
 }
 </script>
 
-<!-- document.documentElement.scrollTop = 0 -->
-
 <template>
   <h2 style="padding-bottom: 4.5rem">{{ title }}</h2>
-  <div id="scrollArea">
+  <div id="scrollArea" data-test="members">
     <div class="line-background"></div>
     <div class="line-background progress-line"></div>
     <div v-for="(member, index) in members" :key="index" ref="test">
