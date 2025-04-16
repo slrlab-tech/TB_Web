@@ -3,37 +3,29 @@ export default {
   props: ['members', 'title'],
   data() {
     return {
-      observer: null as IntersectionObserver | null,
       lineHeight: 0 as number,
+      memberObj: null as HTMLElement | null,
     }
   },
-  created() {
-    this.observer = new IntersectionObserver(this.onElementObserved, {
-      root: this.$el,
-      threshold: 0.6,
-    })
-  },
   methods: {
-    onElementObserved(entries: IntersectionObserverEntry[]) {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('is-inViewport')
-      })
-    },
-    scroll() {
-      const scrollTop = document.documentElement.scrollTop
+    scroll(e) {
       const progressLine = document.querySelector('.progress-line') as HTMLElement
+
       if (progressLine) {
-        progressLine.style.height = `${scrollTop > this.lineHeight ? this.lineHeight : scrollTop}px`
+        const scroll = document.documentElement.scrollTop - progressLine.parentElement.offsetTop
+        progressLine.style.height = `${scroll > this.lineHeight ? this.lineHeight : Math.max(0, scroll)}px`
+
+        if (this.memberObj && this.memberObj.offsetTop + this.memberObj.offsetHeight / 2 < scroll) {
+          this.memberObj.classList.add('is-inViewport')
+          this.memberObj = document.querySelectorAll('.member:not(.is-inViewport)')[0]
+        }
       }
     },
   },
   mounted() {
-    if (!this.observer) return
-    document.querySelectorAll('[data-inViewport]').forEach((el) => {
-      this.observer?.observe(el)
-    })
-
     this.lineHeight = document.getElementsByClassName('line-background')[0]?.clientHeight || 0
+    this.memberObj = document.querySelectorAll('.member:not(.is-inViewport)')[0]
+
     document.addEventListener('scroll', this.scroll)
   },
 }
@@ -44,11 +36,11 @@ export default {
   <div id="scrollArea" data-test="members">
     <div class="line-background"></div>
     <div class="line-background progress-line"></div>
-    <div v-for="(member, index) in members" :key="index" ref="test">
+    <div v-for="(member, index) in members" :key="index">
       <div :class="index % 2 ? 'memberWrapper' : 'memberWrapper inverted'">
-        <div class="member"></div>
+        <div class="placeHolder"></div>
         <div class="point"></div>
-        <div class="member" data-inviewport="member">
+        <div class="member placeHolder" data-inviewport="member">
           <img :src="member.image" :alt="member.name" class="member-image" />
           <h2 style="margin-block: -1rem">{{ member.name }}</h2>
           <p>{{ member.position }}</p>
@@ -104,14 +96,18 @@ export default {
 .memberWrapper.inverted {
   flex-direction: row-reverse;
 }
+
 .member {
   justify-items: center;
+  opacity: 0;
+}
+
+.placeHolder {
   padding: 1rem 0;
   margin: -3rem 2rem;
 
   max-width: 25vw;
   width: 25vw;
-  opacity: 0;
 }
 
 .point {

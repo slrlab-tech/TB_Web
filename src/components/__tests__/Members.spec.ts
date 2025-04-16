@@ -1,38 +1,9 @@
-import { describe, it, expect, beforeAll } from 'vitest'
+import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
 import Members from '../Members.vue'
-import { exp } from 'three/tsl'
-
-class IntersectionObserver {
-  readonly root: Element | null
-
-  readonly rootMargin: string
-
-  readonly thresholds: ReadonlyArray<number>
-
-  constructor() {
-    this.root = null
-    this.rootMargin = ''
-    this.thresholds = []
-  }
-
-  disconnect() {}
-
-  observe() {}
-
-  takeRecords(): IntersectionObserverEntry[] {
-    return []
-  }
-
-  unobserve() {}
-}
 
 describe('Members', () => {
-  beforeAll(() => {
-    global.IntersectionObserver = IntersectionObserver
-  })
-
   it('renders empty properly', () => {
     const wrapper = mount(Members)
 
