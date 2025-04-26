@@ -6,7 +6,7 @@ import json from './assets/data.json'
 import SiteFooter from './components/SiteFooter.vue'
 import { Icon } from '@iconify/vue/dist/iconify.js'
 import { ref } from 'vue'
-import RouteContainer from './components/RouteContainer.vue'
+import CurvedBg from './components/CurvedBg.vue'
 </script>
 
 <script lang="ts">
@@ -54,9 +54,9 @@ const closeMenu = () => {
     style="object-fit: cover"
     TODO="replace video"
   ></video>
-  <RouteContainer>
+  <CurvedBg>
     <RouterView :data="data" />
-  </RouteContainer>
+  </CurvedBg>
   <Icon icon="mingcute:up-line" class="up-btn" @click="toTop()"></Icon>
   <SiteFooter :data="data.contacts"></SiteFooter>
 </template>

@@ -15,7 +15,7 @@ export default {
     }
   },
   methods: {
-    typeChar(text = '', index = -1) {
+    typeChar(text = '' as string, index = -1) {
       if (text.length === 0) {
         index += 1
         this.text.innerHTML = ''
@@ -26,10 +26,11 @@ export default {
 
         if (index >= this.typing.length) index = 0
 
-        text = [' ', ...this.typing[index].text, '.']
+        text = ' ' + this.typing[index].text + '.'
       }
 
-      const char = text.shift(1)
+      const char = text.charAt(0)
+      text = text.slice(1)
 
       if (char === '.') {
         this.imgs[index].style.display = 'block'
@@ -47,7 +48,7 @@ export default {
         }, 200)
       }
     },
-    deleteChar(index) {
+    deleteChar(index: number) {
       this.timeout = setTimeout(() => {
         this.field.style.backgroundColor = ''
         this.typeChar('', index)
@@ -59,7 +60,7 @@ export default {
   },
   mounted() {
     this.text = document.getElementById('typing-text')
-    this.imgs = document.getElementById('typing-icons').children
+    this.imgs = document.getElementById('typing-icons')?.children
     this.field = document.getElementById('typing-field')
 
     this.typeChar()
@@ -78,6 +79,7 @@ export default {
           :id="word.icon"
           style="color: black"
           class="icon"
+          :key="word.icon"
         />
       </div>
     </div>

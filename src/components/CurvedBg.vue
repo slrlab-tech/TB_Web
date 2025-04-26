@@ -1,13 +1,13 @@
 <template>
   <div class="curve-wrapper">
-    <div class="container-curve"></div>
+    <div class="curve"></div>
   </div>
   <div class="container">
     <slot></slot>
   </div>
 
   <div class="curve-wrapper">
-    <div class="container-curve inverse"></div>
+    <div class="curve inverse"></div>
   </div>
 </template>
 
@@ -17,7 +17,7 @@
   overflow: hidden;
 }
 
-.container-curve {
+.curve {
   background-color: var(--vt-c-white);
   border-radius: 50% 50% 0 0;
   height: 30vw;
@@ -34,7 +34,7 @@
     linear-gradient(var(--vt-c-white) 0, var(--vt-c-white) 51%, transparent 51%),
     linear-gradient(to top, var(--vt-c-white) 0, var(--vt-c-white) 51%, transparent 51%);
   position: relative;
-  z-index: 0;
+  z-index: 1;
 }
 
 .inverse {

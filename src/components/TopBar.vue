@@ -3,14 +3,15 @@ import { ref, onUpdated } from 'vue'
 import { Icon } from '@iconify/vue'
 
 const isMenuOpen = ref(false)
-const drawer = ref(null)
+const drawer = ref(null as HTMLElement | null)
 
-const toggleMenu = (isOpen) => {
+const toggleMenu = (isOpen: boolean) => {
   isMenuOpen.value = isOpen
 }
 
-const setMenuPos = (isOpen) => {
-  drawer.value?.style.setProperty('right', isOpen ? '0' : -drawer.value?.offsetWidth + 'px')
+const setMenuPos = (isOpen: boolean) => {
+  if (!drawer.value) return
+  drawer.value.style.setProperty('right', isOpen ? '0' : -drawer.value.offsetWidth + 'px')
 }
 
 onUpdated(() => setMenuPos(isMenuOpen.value))

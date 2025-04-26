@@ -24,13 +24,8 @@ export default {
     <Members :members="data.members" :title="$t('Our Members')" />
     <ImageCarousel :items="data.sponsors" class="carousel" />
     <ImageCarousel :items="data.sponsors" reverse class="carousel" />
-    <div
-      class="button-section"
-      style="background-color: beige; height: 100vh; width: 100%; position: relative"
-    >
-      testing
-      <div style="background-color: aqua; height: 200px; width: 100%"></div>
-      test 2
+    <div class="button-section">
+      <div style="background-color: gray; height: 500px; width: 100%"></div>
       <PopUpButton @click="() => console.log('Button clicked!')">
         <span>test</span>
       </PopUpButton>

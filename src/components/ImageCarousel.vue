@@ -59,7 +59,7 @@ export default {
 
 .carousel-wrapper {
   width: 100vw;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .carousel-animation {

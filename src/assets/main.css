@@ -18,6 +18,11 @@ h2 {
   font-weight: bold;
 }
 
+.button-section {
+  width: 100%;
+  position: relative;
+}
+
 a,
 .green {
   text-decoration: none;
