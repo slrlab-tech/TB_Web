@@ -70,6 +70,7 @@ const closeMenu = () => {
   border-radius: 1rem;
 
   position: fixed;
+  z-index: 100;
   bottom: 4rem;
   right: 4rem;
 }

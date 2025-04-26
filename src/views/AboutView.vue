@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ImageCarousel from '@/components/ImageCarousel.vue'
-import Members from '@/components/Members.vue'
+import MembersScroll from '@/components/MembersScroll.vue'
 import PopUpButton from '@/components/PopUpButton.vue'
 import TimeLine from '@/components/TimeLine.vue'
 import TypingAnimation from '@/components/TypingAnimation.vue'
@@ -21,7 +21,7 @@ export default {
   <div class="about">
     <TypingAnimation ref="typing" :typing="data.typing" />
     <TimeLine :onChange="(year: string) => console.log(year)" />
-    <Members :members="data.members" :title="$t('Our Members')" />
+    <MembersScroll :members="data.members" :title="$t('Our Members')" />
     <ImageCarousel :items="data.sponsors" class="carousel" />
     <ImageCarousel :items="data.sponsors" reverse class="carousel" />
     <div class="button-section">

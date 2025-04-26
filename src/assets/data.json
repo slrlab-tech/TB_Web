@@ -8,6 +8,26 @@
       "image": "https://picsum.photos/500/500"
     }
   },
+  "functions": [
+    {
+      "title": "Function 1",
+      "icon": "ci:bell-ring",
+      "description": "Function 1 description",
+      "technology": ["Function 1 technology", "Function 1 technology 2"]
+    },
+    {
+      "title": "Function 2",
+      "icon": "ci:arrow-up-md",
+      "description": "Function 2 description",
+      "technology": ["Function 2 technology", "Function 2 technology 2"]
+    },
+    {
+      "title": "Function 3",
+      "icon": "ci:bell",
+      "description": "Function 3 description",
+      "technology": ["Function 3 technology", "Function 3 technology 2", "Function 3 technology 3"]
+    }
+  ],
   "about": {
     "title": "About Us"
   },

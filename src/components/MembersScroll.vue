@@ -8,23 +8,26 @@ export default {
     }
   },
   methods: {
-    scroll(e) {
+    scroll() {
       const progressLine = document.querySelector('.progress-line') as HTMLElement
 
       if (progressLine) {
-        const scroll = document.documentElement.scrollTop - progressLine.parentElement.offsetTop
+        const scroll =
+          document.documentElement.scrollTop - (progressLine.parentElement?.offsetTop || 0)
         progressLine.style.height = `${scroll > this.lineHeight ? this.lineHeight : Math.max(0, scroll)}px`
 
         if (this.memberObj && this.memberObj.offsetTop + this.memberObj.offsetHeight / 2 < scroll) {
           this.memberObj.classList.add('is-inViewport')
-          this.memberObj = document.querySelectorAll('.member:not(.is-inViewport)')[0]
+          this.memberObj = document.querySelectorAll(
+            '.member:not(.is-inViewport)',
+          )[0] as HTMLElement
         }
       }
     },
   },
   mounted() {
     this.lineHeight = document.getElementsByClassName('line-background')[0]?.clientHeight || 0
-    this.memberObj = document.querySelectorAll('.member:not(.is-inViewport)')[0]
+    this.memberObj = document.querySelectorAll('.member:not(.is-inViewport)')[0] as HTMLElement
 
     document.addEventListener('scroll', this.scroll)
   },

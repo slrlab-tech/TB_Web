@@ -8,7 +8,7 @@ export default {
   expose: ['clear'],
   data() {
     return {
-      text: null as HTMLElement | null,
+      textBox: null as HTMLElement | null,
       field: null as HTMLElement | null,
       timeout: null as number | null,
       imgs: [] as HTMLElement[],
@@ -18,7 +18,7 @@ export default {
     typeChar(text = '' as string, index = -1) {
       if (text.length === 0) {
         index += 1
-        this.text.innerHTML = ''
+        this.textBox.innerHTML = ''
 
         for (let i = 0; i < this.imgs.length; i++) {
           this.imgs[i].style.display = 'none'
@@ -41,7 +41,7 @@ export default {
         }, 1000)
       } else {
         this.imgs[index].style.display = 'none'
-        this.text.innerHTML += char
+        this.textBox.innerHTML += char
 
         this.timeout = setTimeout(() => {
           this.typeChar(text, index)
@@ -59,7 +59,7 @@ export default {
     },
   },
   mounted() {
-    this.text = document.getElementById('typing-text')
+    this.textBox = document.getElementById('typing-text')
     this.imgs = document.getElementById('typing-icons')?.children
     this.field = document.getElementById('typing-field')
 

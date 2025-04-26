@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import LogoAnimation from '@/components/LogoAnimation.vue'
 import LatestProduct from '../components/LatestProduct.vue'
-import Mission from '../components/Mission.vue'
+import MissionSection from '../components/MissionSection.vue'
+import FunctionList from '../components/FunctionList.vue'
 </script>
 
 <script lang="ts">
@@ -21,8 +22,9 @@ export default {
 <template>
   <LogoAnimation class="logo-animation" />
   <main>
-    <Mission :data="data[($route.meta.path as string) ?? 'home']" />
+    <MissionSection :data="data[($route.meta.path as string) ?? 'home']" />
     <LatestProduct />
+    <FunctionList :data="data['functions']" />
   </main>
 </template>
 

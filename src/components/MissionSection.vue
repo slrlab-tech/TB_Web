@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="wrapper columns">
     <div class="column left">
       <img :src="data.mission.banner" alt="Left Image" class="image" style="min-height: 100px" />
       <h1>Our Mission</h1>
@@ -28,15 +28,20 @@ export default {
 </template>
 
 <style scoped>
-.wrapper {
+.columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 }
 
+.column {
+  width: 100%;
+}
+
 .image {
-  min-width: 100%;
+  width: 100%;
   background-color: grey;
   border-radius: 0.5rem;
+  object-fit: cover;
 }
 </style>
