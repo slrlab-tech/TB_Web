@@ -36,6 +36,7 @@ export default {
 }
 
 .padding {
+  width: 100%;
   padding: 2rem 1rem;
 }
 </style>

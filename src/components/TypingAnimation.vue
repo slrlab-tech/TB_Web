@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue/dist/iconify.js'
-import { onMounted } from 'vue'
 </script>
 
 <script lang="ts">

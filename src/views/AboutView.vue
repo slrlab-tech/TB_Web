@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import Carousel from '@/components/Carousel.vue'
+import ImageCarousel from '@/components/ImageCarousel.vue'
 import Members from '@/components/Members.vue'
+import PopUpButton from '@/components/PopUpButton.vue'
 import TimeLine from '@/components/TimeLine.vue'
 import TypingAnimation from '@/components/TypingAnimation.vue'
 </script>
@@ -9,7 +10,8 @@ import TypingAnimation from '@/components/TypingAnimation.vue'
 export default {
   props: ['data'],
   beforeRouteLeave(to, from, next) {
-    this.$refs.typing.clear()
+    const typing = this.$refs.typing as { clear: () => void }
+    typing.clear()
     next()
   },
 }
@@ -18,10 +20,21 @@ export default {
 <template>
   <div class="about">
     <TypingAnimation ref="typing" :typing="data.typing" />
-    <TimeLine :onChange="(year) => console.log(year)" />
+    <TimeLine :onChange="(year: string) => console.log(year)" />
     <Members :members="data.members" :title="$t('Our Members')" />
-    <Carousel :items="data.sponsors" class="carousel" />
-    <Carousel :items="data.sponsors" reverse class="carousel" />
+    <ImageCarousel :items="data.sponsors" class="carousel" />
+    <ImageCarousel :items="data.sponsors" reverse class="carousel" />
+    <div
+      class="button-section"
+      style="background-color: beige; height: 100vh; width: 100%; position: relative"
+    >
+      testing
+      <div style="background-color: aqua; height: 200px; width: 100%"></div>
+      test 2
+      <PopUpButton @click="() => console.log('Button clicked!')">
+        <span>test</span>
+      </PopUpButton>
+    </div>
   </div>
 </template>
 

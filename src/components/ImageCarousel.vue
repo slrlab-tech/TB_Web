@@ -2,7 +2,7 @@
 export default {
   props: {
     items: {
-      type: Array,
+      type: Array as () => { image: string; alt?: string }[],
       required: true,
     },
     reverse: {
@@ -14,10 +14,12 @@ export default {
 </script>
 
 <template>
-  <div :class="'carousel-animation' + (reverse ? ' reverse' : '')">
-    <div class="carousel" v-for="i in 2" data-test="carousel" :key="i">
-      <div v-for="(item, index) in items" :key="index" class="carousel-item">
-        <img :src="item.image" :alt="item.alt ?? 'logo'" class="carousel-image" />
+  <div class="carousel-wrapper">
+    <div :class="'carousel-animation' + (reverse ? ' reverse' : '')">
+      <div class="carousel" v-for="i in 2" data-test="carousel" :key="i">
+        <div v-for="(item, index) in items" :key="index" class="carousel-item">
+          <img :src="item.image" :alt="item.alt ?? 'logo'" class="carousel-image" />
+        </div>
       </div>
     </div>
   </div>
@@ -52,12 +54,16 @@ export default {
 .carousel {
   display: flex;
   width: 100vw;
+  min-width: 100vw;
+}
+
+.carousel-wrapper {
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 .carousel-animation {
   display: flex;
-  width: auto;
-
   animation-play-state: running;
 
   animation:
@@ -97,18 +103,18 @@ export default {
 
 @keyframes move-first {
   0% {
-    transform: translateX(-25%);
+    transform: translateX(-50%);
   }
   100% {
-    transform: translateX(25%);
+    transform: translateX(0%);
   }
 }
 @keyframes move-second {
   0% {
-    transform: translateX(25%);
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(-25%);
+    transform: translateX(-50%);
   }
 }
 </style>
