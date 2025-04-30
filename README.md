@@ -43,3 +43,17 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+### To deploy to github [TB_Web](https://slrlab-tech.github.io/TB_Web/)
+
+```sh
+npm run build
+```
+
+Push it to main, then it need to be pushed to `gh-pages`, as the site is hosted on that sub branch
+
+```sh
+git subtree push --prefix dist origin gh-pages
+```
+
+Check Action on github, and until it is ready.
