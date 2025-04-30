@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import SideBar from './components/SideBar.vue'
-import Banner from './components/Banner.vue'
-import json from './assets/data.json'
-import SiteFooter from './components/SiteFooter.vue'
+import SideBar from '@/components/SideBar.vue'
+import Banner from '@/components/Banner.vue'
+import json from '@/assets/data.json'
+import SiteFooter from '@/components/SiteFooter.vue'
 import { Icon } from '@iconify/vue/dist/iconify.js'
 import { ref } from 'vue'
-import CurvedBg from './components/CurvedBg.vue'
+import CurvedBg from '@/components/CurvedBg.vue'
 </script>
 
 <script lang="ts">
