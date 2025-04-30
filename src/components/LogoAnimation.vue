@@ -8,7 +8,7 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 
-import model from './../assets/brain.glb?url'
+import model from '@/assets/brain.glb?url'
 </script>
 
 <script lang="ts">
