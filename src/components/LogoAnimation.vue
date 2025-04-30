@@ -7,6 +7,8 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
+
+import model from './../assets/brain.glb?url'
 </script>
 
 <script lang="ts">
@@ -246,7 +248,7 @@ export default {
       scene.add(light)
 
       const loader = new GLTFLoader()
-      loader.load('src/assets/brain.glb', (obj) => {
+      loader.load(model, (obj) => {
         if (!scene || !this.renderer || !this.camera) {
           console.error('Error loading three.js components for GLTF model')
           return
