@@ -48,22 +48,22 @@ window.onscroll = function () {
     <div class="menuMask" @click="toggleMenu(false)" v-show="isMenuOpen"></div>
     <div class="drawer" ref="drawer">
       <div class="language-switcher">
-        <p @click="$i18n.locale = 'en'" :class="{ green: $i18n.locale == 'en', locale: true }">
+        <p @click="$i18n.locale = 'en'" :class="{ green: $i18n.locale !== 'en', locale: true }">
           EN
         </p>
         |
         <p
           @click="$i18n.locale = 'zh-hk'"
-          :class="{ green: $i18n.locale == 'zh-hk', locale: true }"
+          :class="{ green: $i18n.locale !== 'zh-hk', locale: true }"
         >
-          繁中
+          繁
         </p>
         |
         <p
           @click="$i18n.locale = 'zh-cn'"
-          :class="{ green: $i18n.locale == 'zh-cn', locale: true }"
+          :class="{ green: $i18n.locale !== 'zh-cn', locale: true }"
         >
-          简中
+          简
         </p>
       </div>
       <slot></slot>

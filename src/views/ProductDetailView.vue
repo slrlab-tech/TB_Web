@@ -37,7 +37,7 @@ export default {
     <div class="product-details">
       <img :src="product.detailImage ?? product.image" alt="Product image" class="product-image" />
       <p>{{ product.description }}</p>
-      <div v-for="func in product.functions">
+      <div v-for="func in product.functions" :key="func.name">
         <h2>{{ func.name }}</h2>
         <img
           class="product-image"
