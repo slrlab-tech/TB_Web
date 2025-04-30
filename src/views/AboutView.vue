@@ -28,9 +28,7 @@ export default {
       <div style="background-color: lightgray; height: 110vh; width: 100%; text-align: center">
         Pop up button
       </div>
-      <PopUpButton @click="() => console.log('Button clicked!')">
-        <span>test</span>
-      </PopUpButton>
+      <PopUpButton @click="() => console.log('Button clicked!')"> test button </PopUpButton>
     </div>
     <FunctionList :data="data['functions']" />
   </div>

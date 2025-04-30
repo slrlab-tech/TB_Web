@@ -25,6 +25,11 @@
   --vt-c-highlight-2: #adfcf9;
 
   --scroller-time: 30s;
+
+  --h1: 2.5rem;
+  --h2: 2rem;
+  --h3: 1.75rem;
+  --h4: 1.5rem;
 }
 
 /* semantic color variables for this project */
