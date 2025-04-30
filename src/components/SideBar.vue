@@ -11,7 +11,7 @@ const toggleMenu = (isOpen: boolean) => {
 
 const setMenuPos = (isOpen: boolean) => {
   if (!drawer.value) return
-  drawer.value.style.setProperty('right', isOpen ? '0' : -drawer.value.offsetWidth + 'px')
+  drawer.value.style.setProperty('right', isOpen ? '0' : -drawer.value.offsetWidth - 2 + 'px')
 }
 
 onUpdated(() => setMenuPos(isMenuOpen.value))
@@ -47,11 +47,25 @@ window.onscroll = function () {
     <Icon @click="toggleMenu(true)" icon="gg:details-more" class="icon-button" />
     <div class="menuMask" @click="toggleMenu(false)" v-show="isMenuOpen"></div>
     <div class="drawer" ref="drawer">
-      <select v-model="$i18n.locale">
-        <option v-for="(lang, i) in ['en', 'zh-hk', 'zh-cn']" :key="`Lang${i}`" :value="lang">
-          {{ $t(lang) }}
-        </option>
-      </select>
+      <div class="language-switcher">
+        <p @click="$i18n.locale = 'en'" :class="{ green: $i18n.locale == 'en', locale: true }">
+          EN
+        </p>
+        |
+        <p
+          @click="$i18n.locale = 'zh-hk'"
+          :class="{ green: $i18n.locale == 'zh-hk', locale: true }"
+        >
+          繁中
+        </p>
+        |
+        <p
+          @click="$i18n.locale = 'zh-cn'"
+          :class="{ green: $i18n.locale == 'zh-cn', locale: true }"
+        >
+          简中
+        </p>
+      </div>
       <slot></slot>
     </div>
   </header>
@@ -60,6 +74,15 @@ window.onscroll = function () {
 <style scoped>
 .logo {
   width: 4rem;
+}
+.locale {
+  cursor: pointer;
+  padding: 3px;
+  text-decoration: underline;
+}
+.language-switcher {
+  display: flex;
+  gap: 0.2rem;
 }
 .brand {
   height: 2rem;
@@ -83,7 +106,7 @@ window.onscroll = function () {
 .drawer {
   background-color: var(--color-background);
   position: absolute;
-  height: 100vh;
+  height: 100dvh;
   right: -100vw;
   top: 0;
   z-index: 100;
@@ -92,7 +115,7 @@ window.onscroll = function () {
 }
 
 .menuMask {
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -106,6 +129,7 @@ window.onscroll = function () {
   width: 3rem;
   color: var(--vt-c-white);
   filter: drop-shadow(0.1rem 0.1rem 0.2rem var(--color-text));
+  cursor: pointer;
 }
 
 header {

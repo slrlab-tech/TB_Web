@@ -29,7 +29,7 @@
 
 .container {
   margin-block: -20vw;
-  padding-bottom: 5vh;
+  padding-bottom: 5dvh;
   background:
     linear-gradient(var(--vt-c-white) 0, var(--vt-c-white) 51%, transparent 51%),
     linear-gradient(to top, var(--vt-c-white) 0, var(--vt-c-white) 51%, transparent 51%);

@@ -13,8 +13,10 @@ export default {
 
       if (progressLine) {
         const scroll =
-          document.documentElement.scrollTop - (progressLine.parentElement?.offsetTop || 0)
-        progressLine.style.height = `${scroll > this.lineHeight ? this.lineHeight : Math.max(0, scroll)}px`
+          document.documentElement.scrollTop -
+          (progressLine.parentElement?.offsetTop || 0) +
+          Math.floor(screen.height * 0.2)
+        progressLine.style.height = `${Math.max(0, scroll)}px`
 
         if (this.memberObj && this.memberObj.offsetTop + this.memberObj.offsetHeight / 2 < scroll) {
           this.memberObj.classList.add('is-inViewport')
@@ -44,8 +46,10 @@ export default {
         <div class="placeHolder"></div>
         <div class="point"></div>
         <div class="member placeHolder" data-inviewport="member">
-          <img :src="member.image" :alt="member.name" class="member-image" />
-          <h2 style="margin-block: -1rem">{{ member.name }}</h2>
+          <div class="image-wrapper">
+            <img :src="member.image" :alt="member.name" class="member-image" />
+          </div>
+          <h2 style="margin-top: -1rem">{{ member.name }}</h2>
           <p>{{ member.position }}</p>
           <p class="member-description">{{ member.description }}</p>
         </div>
@@ -72,24 +76,38 @@ export default {
 .progress-line {
   height: 0;
   background-color: #000;
+  max-height: 100%;
 }
 
 .is-inViewport {
-  transition: all 1s;
+  transition:
+    opacity 1s,
+    transform 1s;
   animation-play-state: running;
   transform: translateY(-50px);
   opacity: 1 !important;
 }
 
-.member-image {
+.image-wrapper {
   width: 200px;
   aspect-ratio: 1;
   border-radius: 50%;
   margin: 10px;
+  overflow: hidden;
+}
+
+.member-image {
+  width: 200px;
+  transition: all 0.5s;
+}
+
+.member-image:hover {
+  transform: scale(1.1);
 }
 
 .member-description {
   padding-top: 1rem;
+  text-align: center;
 }
 
 .memberWrapper {

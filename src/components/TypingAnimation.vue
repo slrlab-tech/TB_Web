@@ -54,9 +54,6 @@ export default {
         this.typeChar('', index)
       }, 800)
     },
-    clear() {
-      clearTimeout(this.timeout)
-    },
   },
   mounted() {
     this.textBox = document.getElementById('typing-text')
@@ -64,6 +61,9 @@ export default {
     this.field = document.getElementById('typing-field')
 
     this.typeChar()
+  },
+  unmounted() {
+    clearTimeout(this.timeout)
   },
 }
 </script>

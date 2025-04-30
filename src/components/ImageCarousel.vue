@@ -1,120 +1,97 @@
-<script lang="ts">
-export default {
-  props: {
-    items: {
-      type: Array as () => { image: string; alt?: string }[],
-      required: true,
-    },
-    reverse: {
-      type: Boolean,
-      default: false,
-    },
-  },
+<script lang="ts" setup>
+import { ref, defineProps, onMounted, onUnmounted } from 'vue'
+
+const { images } = defineProps<{ images: { image: string; alt: string }[] }>()
+const currentIndex = ref(0)
+
+const prevSlide = () => {
+  currentIndex.value = (currentIndex.value - 1 + images.length) % images.length
 }
+const nextSlide = () => {
+  currentIndex.value = (currentIndex.value + 1) % images.length
+}
+
+let intervalId: number
+onMounted(() => {
+  intervalId = setInterval(() => nextSlide(), 5000)
+})
+
+onUnmounted(() => clearInterval(intervalId))
 </script>
 
 <template>
-  <div class="carousel-wrapper">
-    <div :class="'carousel-animation' + (reverse ? ' reverse' : '')">
-      <div class="carousel" v-for="i in 2" data-test="carousel" :key="i">
-        <div v-for="(item, index) in items" :key="index" class="carousel-item">
-          <img :src="item.image" :alt="item.alt ?? 'logo'" class="carousel-image" />
-        </div>
-      </div>
+  <div class="image-carousel">
+    <div class="carousel-container">
+      <div
+        class="carousel-slide"
+        v-for="(item, index) in images"
+        :key="index"
+        :style="{ backgroundImage: `url(${item.image})` }"
+        :class="{ active: index === currentIndex }"
+      ></div>
+    </div>
+    <div class="carousel-btn">
+      <button class="prev" @click="prevSlide">❮</button>
+      <button class="next" @click="nextSlide">❯</button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.carousel-item {
-  flex: 1;
-  height: auto;
-  object-fit: cover;
-  padding-right: 2rem;
-}
-
-.carousel-image {
-  height: 100%;
+.image-carousel {
+  background-color: black;
+  position: relative;
   width: 100%;
-  object-fit: cover;
-  filter: grayscale(100%);
-
-  -drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
-.carousel-image:hover {
-  filter: none;
-}
-
-.carousel {
-  display: flex;
-  width: 100vw;
-  min-width: 100vw;
-}
-
-.carousel-wrapper {
-  width: 100vw;
+  height: 1px;
+  min-height: 20px;
   overflow: hidden;
 }
-
-.carousel-animation {
+.carousel-container {
   display: flex;
-  animation-play-state: running;
-
-  animation:
-    move-first var(--carousel-time) linear infinite,
-    move-second 0s linear infinite;
-  -webkit-animation:
-    move-first var(--carousel-time) linear infinite,
-    move-second 0s linear infinite;
-  -moz-animation:
-    move-first var(--carousel-time) linear infinite,
-    move-second 0s linear infinite;
-  -o-animation:
-    move-first var(--carousel-time) linear infinite,
-    move-second 0s linear infinite;
-  animation-fill-mode: forwards, none;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  height: 100%;
 }
-
-.reverse {
-  animation:
-    move-second var(--carousel-time) linear infinite,
-    move-first 0s linear infinite;
-  -webkit-animation:
-    move-second var(--carousel-time) linear infinite,
-    move-first 0s linear infinite;
-  -moz-animation:
-    move-second var(--carousel-time) linear infinite,
-    move-first 0s linear infinite;
-  -o-animation:
-    move-second var(--carousel-time) linear infinite,
-    move-first 0s linear infinite;
-  animation-fill-mode: forwards, none;
+.carousel-slide {
+  width: 0;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+  transition: opacity 0.5s ease-in-out;
 }
-
-.carousel-animation:hover {
-  animation-play-state: paused;
+.carousel-slide.active {
+  width: 100%;
+  opacity: 1;
 }
+.carousel-btn {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  padding-inline: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 
-@keyframes move-first {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-@keyframes move-second {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+.carousel-btn:hover {
+  opacity: 1;
+}
+.prev,
+.next {
+  text-shadow:
+    #000 1px 0 2px,
+    #000 0 1px 2px,
+    #000 -1px 0 2px,
+    #000 0 -1px 2px;
+  background-color: transparent;
+  font-size: 2rem;
+  height: 3rem;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 </style>

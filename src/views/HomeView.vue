@@ -2,7 +2,6 @@
 import LogoAnimation from '@/components/LogoAnimation.vue'
 import LatestProduct from '../components/LatestProduct.vue'
 import MissionSection from '../components/MissionSection.vue'
-import FunctionList from '../components/FunctionList.vue'
 </script>
 
 <script lang="ts">
@@ -11,7 +10,7 @@ export default {
   beforeRouteLeave(to, from, next) {
     const threeScene = document.getElementById('model')
     if (threeScene) {
-      threeScene.remove()
+      threeScene.remove() // To remove lag
     }
 
     next()
@@ -24,7 +23,6 @@ export default {
   <main>
     <MissionSection :data="data[($route.meta.path as string) ?? 'home']" />
     <LatestProduct />
-    <FunctionList :data="data['functions']" />
   </main>
 </template>
 

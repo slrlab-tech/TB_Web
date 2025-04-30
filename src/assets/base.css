@@ -24,7 +24,7 @@
   --vt-c-highlight: #f78666;
   --vt-c-highlight-2: #adfcf9;
 
-  --carousel-time: 30s;
+  --scroller-time: 30s;
 }
 
 /* semantic color variables for this project */
@@ -75,18 +75,11 @@ body {
     background-color 0.5s;
   line-height: 1.6;
   font-family:
-    Inter,
+    /* Inter,
     -apple-system,
     BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
+    'Segoe UI', */
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

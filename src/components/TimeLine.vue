@@ -36,7 +36,7 @@ const onClicked = (i: number) => {
   bottom: 0.25rem;
   left: 50%;
   transform: translateX(-50%) translateY(50%);
-  width: 100%;
+  width: 100vw;
   height: 2px;
   background-color: var(--vt-c-text-light-1);
   z-index: -1;

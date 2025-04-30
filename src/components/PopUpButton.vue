@@ -33,8 +33,7 @@ export default {
   <div class="popup-wrapper">
     <div @click="onClick" class="popup-button" id="btn">
       <div class="popup-content">
-        test test test test test
-        <!-- <slot></slot> -->
+        <slot></slot>
       </div>
     </div>
   </div>
@@ -52,6 +51,7 @@ export default {
 }
 
 .popup-button {
+  aspect-ratio: 1;
   --height: 0rem;
   border-radius: var(--height);
   height: var(--height);
@@ -79,12 +79,12 @@ export default {
 }
 
 .is-inViewport {
-  --height: 5rem;
+  --height: 4rem;
 
   animation: ring 0.8s ease-in-out 1;
   bottom: 7.5rem;
   margin-bottom: 7.5rem;
-  padding: 0.5rem 5rem;
+  padding: 0.5rem 4rem;
 
   border-radius: var(--height);
   height: var(--height);

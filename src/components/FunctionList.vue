@@ -20,11 +20,12 @@ export default {
         <h2 style="margin-block: 0.5rem">{{ item.title }}</h2>
         <p style="text-align: center">{{ item.description }}</p>
       </div>
-
       <div style="height: 100%; width: 4px; background-color: var(--vt-c-brand-color)"></div>
       <div class="function-container">
         <h2 class="title-bg">{{ $t('Used Tech') }}</h2>
-        <div class="point" v-for="tech in item.technology" :key="tech">{{ tech }}</div>
+        <div style="width: 100%">
+          <div class="point" v-for="tech in item.technology" :key="tech">{{ tech }}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -46,8 +47,11 @@ export default {
   display: flex;
   align-items: center;
   width: 100%;
+  margin-top: 1rem;
+}
+
+.point:first-child {
   margin-top: 1.5rem;
-  font-size: 1.5rem;
 }
 
 .point::before,

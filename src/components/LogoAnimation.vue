@@ -384,7 +384,7 @@ export default {
       }
       document.body.style.overflow = 'auto'
     },
-    animateByStep: function (e: any) {
+    animateByStep: function (e: WheelEvent) {
       requestAnimationFrame(() => this.animate(e.deltaY))
     },
   },
@@ -403,7 +403,7 @@ export default {
     this.init()
     this.animate()
   },
-  destroyed() {
+  unmounted() {
     window.removeEventListener('resize', this.updateThree)
     document.removeEventListener('wheel', this.animateByStep)
     document.body.style.overflow = 'auto'
