@@ -5,23 +5,23 @@ import { Icon } from '@iconify/vue/dist/iconify.js'
 <script lang="ts">
 export default {
   props: ['typing'],
-  expose: ['clear'],
   data() {
     return {
       textBox: null as HTMLElement | null,
       field: null as HTMLElement | null,
       timeout: null as number | null,
-      imgs: [] as HTMLElement[],
+      imgs: undefined as HTMLCollection | undefined,
     }
   },
   methods: {
     typeChar(text = '' as string, index = -1) {
       if (text.length === 0) {
         index += 1
-        this.textBox.innerHTML = ''
-
-        for (let i = 0; i < this.imgs.length; i++) {
-          this.imgs[i].style.display = 'none'
+        if (this.textBox) this.textBox.innerHTML = ''
+        if (this.imgs) {
+          for (let i = 0; i < this.imgs.length; i++) {
+            ;(this.imgs[i] as HTMLElement).style.display = 'none'
+          }
         }
 
         if (index >= this.typing.length) index = 0
@@ -33,15 +33,16 @@ export default {
       text = text.slice(1)
 
       if (char === '.') {
-        this.imgs[index].style.display = 'block'
+        if (this.imgs) (this.imgs[index] as HTMLElement).style.display = 'block'
 
         this.timeout = setTimeout(() => {
-          this.field.style.backgroundColor = 'rgb(from var(--vt-c-text-light-1) r g b / 20%)'
+          if (this.field)
+            this.field.style.backgroundColor = 'rgb(from var(--vt-c-text-light-1) r g b / 20%)'
           this.deleteChar(index)
         }, 1000)
       } else {
-        this.imgs[index].style.display = 'none'
-        this.textBox.innerHTML += char
+        if (this.imgs) (this.imgs[index] as HTMLElement).style.display = 'none'
+        if (this.textBox) this.textBox.innerHTML += char
 
         this.timeout = setTimeout(() => {
           this.typeChar(text, index)
@@ -50,9 +51,12 @@ export default {
     },
     deleteChar(index: number) {
       this.timeout = setTimeout(() => {
-        this.field.style.backgroundColor = ''
+        if (this.field) this.field.style.backgroundColor = ''
         this.typeChar('', index)
       }, 800)
+    },
+    clear() {
+      if (this.timeout) clearTimeout(this.timeout)
     },
   },
   mounted() {
@@ -62,9 +66,7 @@ export default {
 
     this.typeChar()
   },
-  unmounted() {
-    clearTimeout(this.timeout)
-  },
+  exposed: ['clear'],
 }
 </script>
 
@@ -77,7 +79,6 @@ export default {
           v-for="word in typing"
           :icon="word.icon"
           :id="word.icon"
-          style="color: black"
           class="icon"
           :key="word.icon"
         />

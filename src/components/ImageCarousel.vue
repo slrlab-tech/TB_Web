@@ -1,19 +1,28 @@
 <script lang="ts" setup>
 import { ref, defineProps, onMounted, onUnmounted } from 'vue'
+let intervalId = -1
 
 const { images } = defineProps<{ images: { image: string; alt: string }[] }>()
 const currentIndex = ref(0)
 
 const prevSlide = () => {
   currentIndex.value = (currentIndex.value - 1 + images.length) % images.length
+  resetInterval()
 }
 const nextSlide = () => {
   currentIndex.value = (currentIndex.value + 1) % images.length
+  resetInterval()
+}
+const resetInterval = () => {
+  if (intervalId != -1) clearInterval(intervalId)
+  intervalId = setInterval(
+    () => (currentIndex.value = (currentIndex.value + 1) % images.length),
+    5000,
+  )
 }
 
-let intervalId: number
 onMounted(() => {
-  intervalId = setInterval(() => nextSlide(), 5000)
+  resetInterval()
 })
 
 onUnmounted(() => clearInterval(intervalId))

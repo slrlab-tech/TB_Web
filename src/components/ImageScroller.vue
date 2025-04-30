@@ -103,7 +103,7 @@ export default {
 
 @keyframes move-first {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
   100% {
     transform: translateX(0%);
@@ -114,7 +114,7 @@ export default {
     transform: translateX(0%);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
 }
 </style>
