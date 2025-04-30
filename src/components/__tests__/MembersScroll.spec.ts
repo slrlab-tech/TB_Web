@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import Members from '../Members.vue'
+import Members from '../MembersScroll.vue'
 
 describe('Members', () => {
   it('renders empty properly', () => {

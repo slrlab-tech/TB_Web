@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import Footer from '../Footer.vue'
+import Footer from '../SiteFooter.vue'
 
 describe('Footer', () => {
   it('renders empty properly', () => {

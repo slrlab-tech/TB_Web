@@ -18,7 +18,11 @@ export default {
           Math.floor(screen.height * 0.2)
         progressLine.style.height = `${Math.max(0, scroll)}px`
 
-        if (this.memberObj && this.memberObj.offsetTop + this.memberObj.offsetHeight / 2 < scroll) {
+        if (
+          this.memberObj &&
+          this.memberObj.offsetTop + this.memberObj.offsetHeight / 2 <
+            parseInt(progressLine.style.height.replace('px', ''))
+        ) {
           this.memberObj.classList.add('is-inViewport')
           this.memberObj = document.querySelectorAll(
             '.member:not(.is-inViewport)',
@@ -77,6 +81,7 @@ export default {
   height: 0;
   background-color: #000;
   max-height: 100%;
+  transition: all 0.2s;
 }
 
 .is-inViewport {
