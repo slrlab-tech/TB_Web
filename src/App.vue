@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import SideBar from '@/components/SideBar.vue'
-import Banner from '@/components/Banner.vue'
+import TitleBanner from '@/components/TitleBanner.vue'
 import json from '@/assets/data.json'
 import SiteFooter from '@/components/SiteFooter.vue'
 import { Icon } from '@iconify/vue/dist/iconify.js'
@@ -42,7 +42,7 @@ const closeMenu = () => {
       <RouterLink @click="closeMenu()" to="/products">{{ $t('Products') }}</RouterLink>
     </nav>
   </SideBar>
-  <Banner :title="$route.name || data.brand" :brand="data.brand"></Banner>
+  <TitleBanner :title="$route.name || data.brand" :brand="data.brand"></TitleBanner>
   <video
     class="background"
     src="https://videos.pexels.com/video-files/857134/857134-hd_1280_720_24fps.mp4"

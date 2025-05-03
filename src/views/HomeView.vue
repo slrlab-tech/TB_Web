@@ -2,6 +2,7 @@
 import LogoAnimation from '@/components/LogoAnimation.vue'
 import LatestProduct from '../components/LatestProduct.vue'
 import MissionSection from '../components/MissionSection.vue'
+import PartnerList from '@/components/PartnerList.vue'
 </script>
 
 <script lang="ts">
@@ -23,6 +24,7 @@ export default {
   <main>
     <MissionSection :data="data[($route.meta.path as string) ?? 'home']" />
     <LatestProduct />
+    <PartnerList :partners="data.partners" />
   </main>
 </template>
 

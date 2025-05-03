@@ -196,11 +196,9 @@
       "image": "https://picsum.photos/200/200"
     }
   ],
-  "sponsors": [
-    { "image": "https://picsum.photos/200/100", "alt": "logo 1" },
-    { "image": "https://picsum.photos/210/100", "alt": "logo 2" },
-    { "image": "https://picsum.photos/220/100" },
-    { "image": "https://picsum.photos/230/100" }
+  "partners": [
+    { "image": "partners/HKSTP.png", "alt": "logo 1", "href": "https://google.com" },
+    { "image": "partners/TEC.png", "alt": "logo 2" }
   ],
   "members": [
     {

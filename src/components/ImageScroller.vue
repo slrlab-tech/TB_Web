@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { resolveImagePath } from '@/utils/commonFunctions.ts'
+</script>
+
 <script lang="ts">
 export default {
   props: {
@@ -18,7 +22,11 @@ export default {
     <div :class="'scroller-animation' + (reverse ? ' reverse' : '')">
       <div class="scroller" v-for="i in 2" data-test="scroller" :key="i">
         <div v-for="(item, index) in items" :key="index" class="scroller-item">
-          <img :src="item.image" :alt="item.alt ?? 'logo'" class="scroller-image" />
+          <img
+            :src="resolveImagePath(item.image)"
+            :alt="item.alt ?? 'logo'"
+            class="scroller-image"
+          />
         </div>
       </div>
     </div>
@@ -35,9 +43,9 @@ export default {
 
 .scroller-image {
   height: 100%;
-  width: 100%;
   object-fit: cover;
   filter: grayscale(100%);
+  cursor: pointer;
 
   -drag: none;
   user-select: none;
@@ -53,18 +61,21 @@ export default {
 
 .scroller {
   display: flex;
-  width: 100vw;
+  width: min-content;
   min-width: 100vw;
+  height: 100%;
 }
 
 .scroller-wrapper {
-  width: 100vw;
+  height: 8rem;
   overflow: hidden;
 }
 
 .scroller-animation {
   display: flex;
   animation-play-state: running;
+  height: 100%;
+  width: min-content;
 
   animation:
     move-first var(--scroller-time) linear infinite,
@@ -103,18 +114,18 @@ export default {
 
 @keyframes move-first {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-25%);
   }
   100% {
-    transform: translateX(0%);
+    transform: translateX(25%);
   }
 }
 @keyframes move-second {
   0% {
-    transform: translateX(0%);
+    transform: translateX(25%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-25%);
   }
 }
 </style>

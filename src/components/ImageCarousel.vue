@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { ref, defineProps, onMounted, onUnmounted } from 'vue'
+import { resolveImagePath } from '@/utils/commonFunctions.ts'
+
 let intervalId = -1
 
 const { images } = defineProps<{ images: { image: string; alt: string }[] }>()
@@ -31,13 +33,14 @@ onUnmounted(() => clearInterval(intervalId))
 <template>
   <div class="image-carousel">
     <div class="carousel-container">
-      <div
+      <img
         class="carousel-slide"
         v-for="(item, index) in images"
         :key="index"
-        :style="{ backgroundImage: `url(${item.image})` }"
+        :src="resolveImagePath(item.image)"
+        :alt="item.alt ?? 'logo'"
         :class="{ active: index === currentIndex }"
-      ></div>
+      />
     </div>
     <div class="carousel-btn">
       <button class="prev" @click="prevSlide">❮</button>
@@ -48,7 +51,7 @@ onUnmounted(() => clearInterval(intervalId))
 
 <style scoped>
 .image-carousel {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.2);
   position: relative;
   width: 100%;
   height: 1px;
@@ -68,6 +71,7 @@ onUnmounted(() => clearInterval(intervalId))
   background-position: center;
   opacity: 0.8;
   transition: opacity 0.5s ease-in-out;
+  object-fit: contain;
 }
 .carousel-slide.active {
   width: 100%;

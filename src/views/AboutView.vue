@@ -17,13 +17,16 @@ export default {
 <template>
   <div class="about">
     <div class="wrapper" style="width: 900px">
-      <ImageCarousel :images="data.sponsors" style="height: 300px" />
+      <ImageCarousel :images="data.partners" style="height: 300px" />
     </div>
     <TypingAnimation ref="typing" :typing="data.typing" />
     <TimeLine :onChange="(year: string) => console.log(year)" />
     <MembersScroll :members="data.members" :title="$t('Our Members')" />
-    <ImageScroller :items="data.sponsors" class="carousel" />
-    <ImageScroller :items="data.sponsors" reverse class="carousel" />
+    <ImageScroller
+      :items="[...data.partners, ...data.partners, ...data.partners]"
+      class="carousel"
+    />
+    <ImageScroller :items="[...data.partners, ...data.partners]" reverse class="carousel" />
     <div class="button-section">
       <div style="background-color: lightgray; height: 110vh; width: 100%; text-align: center">
         Pop up button
