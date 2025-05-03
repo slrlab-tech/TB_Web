@@ -14,7 +14,7 @@ export default {
         </div>
       </div>
     </div>
-    <hr />
+    <hr style="width: 100%" />
     <div class="padding">
       <a href="http://google.com" target="_blank" rel="noopener noreferrer">
         <!-- TODO: change terms and condition to proper one -->
@@ -26,7 +26,7 @@ export default {
 
 <style scoped>
 .wrapper {
-  color: var(--vt-c-white);
+  color: var(--white);
   margin-bottom: 4rem;
 }
 

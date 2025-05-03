@@ -38,7 +38,7 @@ const onClicked = (i: number) => {
   transform: translateX(-50%) translateY(50%);
   width: 100vw;
   height: 2px;
-  background-color: var(--vt-c-text-light-1);
+  background-color: var(--text-light-1);
   z-index: -1;
 }
 
@@ -65,17 +65,17 @@ const onClicked = (i: number) => {
   display: block;
   width: 0.5rem;
   height: 0.5rem;
-  background-color: var(--vt-c-text-light-1);
+  background-color: var(--text-light-1);
   border-radius: 100%;
   transition: all 0.2s;
 }
 
 .highlighted {
-  color: var(--vt-c-highlight);
+  color: var(--highlight);
   font-size: 1.5rem;
 }
 
 .highlighted:after {
-  background-color: var(--vt-c-highlight);
+  background-color: var(--highlight);
 }
 </style>

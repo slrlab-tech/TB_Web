@@ -37,7 +37,7 @@ export default {
 
         this.timeout = setTimeout(() => {
           if (this.field)
-            this.field.style.backgroundColor = 'rgb(from var(--vt-c-text-light-1) r g b / 20%)'
+            this.field.style.backgroundColor = 'rgb(from var(--text-light-1) r g b / 20%)'
           this.deleteChar(index)
         }, 1000)
       } else {
@@ -90,11 +90,11 @@ export default {
 <style scoped>
 .icon {
   display: none;
-  color: var(--vt-c-text-light-1);
+  color: var(--text-light-1);
 }
 
 .typing-wrapper {
-  background-color: rgb(from var(--vt-c-text-light-1) r g b / 20%);
+  background-color: rgb(from var(--text-light-1) r g b / 20%);
   width: 10rem;
   height: 4rem;
   padding: 0.5rem 1rem;
@@ -114,7 +114,7 @@ export default {
   display: inline-block;
   width: 0.15rem;
   height: 3rem;
-  background-color: var(--vt-c-text-light-1);
+  background-color: var(--text-light-1);
   animation: blink 1s infinite;
 }
 

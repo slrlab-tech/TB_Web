@@ -80,8 +80,8 @@ export default {
   pointer-events: none;
 
   background:
-    linear-gradient(to right, var(--vt-c-white) 0, transparent 6rem),
-    linear-gradient(to left, var(--vt-c-white) 0, transparent 6rem);
+    linear-gradient(to right, var(--white) 0, transparent 6rem),
+    linear-gradient(to left, var(--white) 0, transparent 6rem);
 }
 
 .tab {

@@ -65,8 +65,8 @@ const closeMenu = () => {
 .up-btn {
   width: auto;
   height: 4rem;
-  color: var(--vt-c-white);
-  background-color: var(--vt-c-brand-color);
+  color: var(--white);
+  background-color: var(--brand-color);
   border-radius: 1rem;
   padding: 0rem 0.5rem;
 

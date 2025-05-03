@@ -45,7 +45,7 @@ export default {
 
 .banner {
   padding: 8rem 0 1rem 0;
-  color: var(--vt-c-white);
+  color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,7 +55,7 @@ export default {
   width: 30%;
   height: 0.5rem;
   border-radius: 0.5rem;
-  background-color: var(--vt-c-white);
+  background-color: var(--white);
   position: absolute;
   right: 0;
   top: 7rem;
@@ -65,7 +65,7 @@ export default {
   width: 4rem;
   height: 0.5rem;
   border-radius: 0.5rem;
-  background-color: var(--vt-c-white);
+  background-color: var(--white);
   position: absolute;
   right: calc(30% + 1.75rem * cos(45deg) - 2.25rem);
   top: calc(7rem + 1.75rem * cos(45deg));
@@ -74,7 +74,7 @@ export default {
   width: 5%;
   height: 0.5rem;
   border-radius: 0.5rem;
-  background-color: var(--vt-c-white);
+  background-color: var(--white);
   position: absolute;
   right: calc(30% + 3.5rem * cos(45deg) - 0.5rem);
   top: calc(7rem + 3.5rem * cos(45deg));
@@ -83,7 +83,7 @@ export default {
   width: 15%;
   height: 0.5rem;
   border-radius: 0.5rem;
-  background-color: var(--vt-c-white);
+  background-color: var(--white);
   position: absolute;
   right: 10%;
   top: calc(7rem + 3.5rem * cos(45deg));
@@ -93,7 +93,7 @@ export default {
   width: 20%;
   height: 0.5rem;
   border-radius: 0.5rem;
-  background-color: var(--vt-c-white);
+  background-color: var(--white);
   position: absolute;
   left: 0;
   top: 14rem;
@@ -103,7 +103,7 @@ export default {
   width: 4rem;
   height: 0.5rem;
   border-radius: 0.5rem;
-  background-color: var(--vt-c-white);
+  background-color: var(--white);
   position: absolute;
   left: calc(20% + 1.75rem * cos(45deg) - 2.25rem);
   top: calc(14rem + 1.75rem * cos(45deg));
@@ -112,7 +112,7 @@ export default {
   width: 10%;
   height: 0.5rem;
   border-radius: 0.5rem;
-  background-color: var(--vt-c-white);
+  background-color: var(--white);
   position: absolute;
   left: calc(20% + 3.5rem * cos(45deg) - 0.5rem);
   top: calc(14rem + 3.5rem * cos(45deg));
@@ -121,7 +121,7 @@ export default {
   width: 12%;
   height: 0.5rem;
   border-radius: 0.5rem;
-  background-color: var(--vt-c-white);
+  background-color: var(--white);
   position: absolute;
   left: 30%;
   top: 15rem;

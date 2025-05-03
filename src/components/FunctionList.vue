@@ -20,7 +20,7 @@ export default {
         <h2 style="margin-block: 0.5rem">{{ item.title }}</h2>
         <p style="text-align: center">{{ item.description }}</p>
       </div>
-      <div style="height: 100%; width: 4px; background-color: var(--vt-c-brand-color)"></div>
+      <div style="height: 100%; width: 4px; background-color: var(--brand-color)"></div>
       <div class="function-container">
         <h2 class="title-bg">{{ $t('Used Tech') }}</h2>
         <div style="width: 100%">
@@ -37,8 +37,8 @@ export default {
 }
 
 .title-bg {
-  background-color: var(--vt-c-brand-color);
-  color: var(--vt-c-white);
+  background-color: var(--brand-color);
+  color: var(--white);
   width: 100%;
   border-radius: 1rem;
 }
@@ -62,7 +62,7 @@ export default {
   height: 1rem;
   border-radius: 100%;
   margin: 0 1.5rem;
-  background-color: var(--vt-c-highlight-2);
+  background-color: var(--highlight-2);
 }
 
 .point::after {
@@ -85,7 +85,7 @@ export default {
 
   .point::after {
     display: block;
-    background-color: var(--vt-c-highlight);
+    background-color: var(--highlight);
   }
 
   .point {

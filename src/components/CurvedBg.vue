@@ -18,7 +18,7 @@
 }
 
 .curve {
-  background-color: var(--vt-c-white);
+  background-color: var(--white);
   border-radius: 50% 50% 0 0;
   height: 30vw;
   width: 120vw;
@@ -31,8 +31,8 @@
   margin-block: -20vw;
   padding-bottom: 5dvh;
   background:
-    linear-gradient(var(--vt-c-white) 0, var(--vt-c-white) 51%, transparent 51%),
-    linear-gradient(to top, var(--vt-c-white) 0, var(--vt-c-white) 51%, transparent 51%);
+    linear-gradient(var(--white) 0, var(--white) 51%, transparent 51%),
+    linear-gradient(to top, var(--white) 0, var(--white) 51%, transparent 51%);
   position: relative;
   z-index: 1;
 }

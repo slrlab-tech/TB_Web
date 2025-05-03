@@ -25,12 +25,12 @@
 
 <style scoped>
 .banner {
-  background-color: var(--vt-c-brand-color);
+  background-color: var(--brand-color);
 }
 
 .wrapper {
   display: flex;
-  color: var(--vt-c-white);
+  color: var(--white);
   gap: 2rem;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .route-btn {
-  background-color: var(--vt-c-white);
+  background-color: var(--white);
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
 }

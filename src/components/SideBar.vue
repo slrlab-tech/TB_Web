@@ -87,7 +87,7 @@ window.onscroll = function () {
 .brand {
   height: 2rem;
   font-size: 1rem;
-  background-color: var(--vt-c-white);
+  background-color: var(--white);
   padding: 0 1rem;
   border-radius: 1rem;
   display: flex;
@@ -98,7 +98,7 @@ window.onscroll = function () {
   content: '';
   width: 1rem;
   height: 1rem;
-  background-color: var(--vt-c-brand-color);
+  background-color: var(--brand-color);
   border-radius: 50%;
   margin-left: 0.5rem;
 }
@@ -127,7 +127,7 @@ window.onscroll = function () {
 .icon-button {
   height: 3rem;
   width: 3rem;
-  color: var(--vt-c-white);
+  color: var(--white);
   filter: drop-shadow(0.1rem 0.1rem 0.2rem var(--color-text));
   cursor: pointer;
 }

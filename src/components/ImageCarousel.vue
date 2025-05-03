@@ -4,7 +4,10 @@ import { resolveImagePath } from '@/utils/commonFunctions.ts'
 
 let intervalId = -1
 
-const { images } = defineProps<{ images: { image: string; alt: string }[] }>()
+const { images, auto = true } = defineProps<{
+  images: { image: string; alt: string }[]
+  auto?: boolean
+}>()
 const currentIndex = ref(0)
 
 const prevSlide = () => {
@@ -24,7 +27,7 @@ const resetInterval = () => {
 }
 
 onMounted(() => {
-  resetInterval()
+  if (auto) resetInterval()
 })
 
 onUnmounted(() => clearInterval(intervalId))
