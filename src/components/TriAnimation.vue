@@ -1,35 +1,41 @@
 <template>
   <div class="r-wrapper">
-    <div class="rhombus r-straight r-1">
-      Educational Neuroscience <br />
-      教育神經科學
+    <div class="animation animation-1">
+      <div class="rhombus text">
+        Educational Neuroscience <br />
+        教育神經科學
+      </div>
     </div>
-    <div class="rhombus r-rotate r-2">
-      AI <br />
-      人工智慧
+    <div class="animation animation-2">
+      <div class="rhombus text">
+        AI <br />
+        人工智慧
+      </div>
     </div>
-    <div class="rhombus r-rotate r-3">Psychology <br />心理測評</div>
-    <div class="text-center">Tomorrow’s Brain <br />明日腦</div>
+    <div class="animation animation-3">
+      <div class="rhombus text">Psychology <br />心理測評</div>
+    </div>
+    <div class="text-center text">Tomorrow’s Brain <br />明日腦</div>
   </div>
 </template>
 
 <style scoped>
+.text {
+  color: var(--text-dark-1);
+  font-weight: 700;
+  text-align: center;
+}
+
 .text-center {
   position: absolute;
   left: 50%;
   top: 65%;
   transform: translate(-50%, -50%);
-  text-align: center;
 
   animation: text-opacity ease;
   animation-timeline: scroll();
 }
 
-.r-wrapper * {
-  font-weight: 700;
-  /* font-size: var(--h4); */
-  color: var(--text-dark-1);
-}
 .r-wrapper {
   margin: 50px;
   --height: 20rem;
@@ -37,45 +43,63 @@
   position: relative;
   height: var(--height);
   width: calc(var(--height) * 2 / sqrt(3));
+  will-change: transform;
 
   .rhombus {
-    position: absolute;
     background-color: #4c91c1; /* color? */
+    height: 100%;
+    width: 100%;
+  }
+
+  .animation {
     mix-blend-mode: multiply;
-    text-align: center;
+    position: absolute;
 
     animation-timeline: scroll();
+    will-change: transform;
   }
 
-  .r-1 {
-    position: absolute;
+  .animation-1 {
     height: var(--height);
     aspect-ratio: 1 / calc(sqrt(3));
-    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
 
-    padding: 22% 10% 45% 10%;
+    .rhombus {
+      clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+      padding: 42% 10% 45% 10%;
+    }
   }
 
-  .r-2 {
+  .animation-2 {
     height: calc(var(--height) / 2);
-    max-height: calc(var(--height) / 2);
     aspect-ratio: calc(sqrt(3));
-    clip-path: polygon(calc(100% / 3) 0, 100% 0, calc(200% / 3) 100%, 0 100%);
 
-    padding: 22% 35% 5% 10%;
+    .rhombus {
+      clip-path: polygon(calc(100% / 3) 0, 100% 0, calc(200% / 3) 100%, 0 100%);
+      padding: 25% 42% 5% 10%;
+    }
   }
 
-  .r-3 {
+  .animation-3 {
+    height: calc(var(--height) / 2);
+    aspect-ratio: calc(sqrt(3));
+
+    .rhombus {
+      clip-path: polygon(calc(100% / 3) 100%, 100% 100%, calc(200% / 3) 0, 0 0);
+      padding: 25% 10% 5% 42%;
+    }
+  }
+
+  /* .r-3 {
     height: calc(var(--height) / 2);
     aspect-ratio: calc(sqrt(3));
     clip-path: polygon(calc(100% / 3) 100%, 100% 100%, calc(200% / 3) 0, 0 0);
 
     padding: 22% 10% 5% 35%;
-  }
+  } */
 }
 
 @supports (animation-timeline: scroll()) {
-  .r-1 {
+  .animation-1 {
     animation:
       r1 ease,
       opacity ease;
@@ -84,7 +108,7 @@
     transform: translateX(-50%);
   }
 
-  .r-2 {
+  .animation-2 {
     animation:
       r2 ease,
       opacity ease;
@@ -93,7 +117,7 @@
     bottom: 0;
   }
 
-  .r-3 {
+  .animation-3 {
     animation:
       r3 ease,
       opacity ease;

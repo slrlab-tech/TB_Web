@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import LogoAnimation from '@/components/LogoAnimation.vue'
 import LatestProduct from '../components/LatestProduct.vue'
-import MissionSection from '../components/MissionSection.vue'
+// import MissionSection from '../components/MissionSection.vue'
 import PartnerList from '@/components/PartnerList.vue'
 import TriAnimation from '@/components/TriAnimation.vue'
 </script>
@@ -35,7 +35,7 @@ export default {
         labo
       </p>
     </div>
-    <MissionSection :data="data[($route.meta.path as string) ?? 'home']" />
+    <!-- <MissionSection :data="data[($route.meta.path as string) ?? 'home']" /> -->
     <LatestProduct />
     <PartnerList :partners="data.partners" />
   </main>

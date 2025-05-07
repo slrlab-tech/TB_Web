@@ -42,7 +42,7 @@ const closeMenu = () => {
       <RouterLink @click="closeMenu()" to="/products">{{ $t('Products') }}</RouterLink>
     </nav>
   </SideBar>
-  <TitleBanner :title="$route.name || data.brand" :brand="data.brand"></TitleBanner>
+  <TitleBanner :title="$route.name || data.brand" :home="$route.path == '/'"></TitleBanner>
   <video
     class="background"
     src="https://videos.pexels.com/video-files/857134/857134-hd_1280_720_24fps.mp4"
