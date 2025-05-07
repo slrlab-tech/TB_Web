@@ -110,11 +110,11 @@ export default {
 
   .popup-button {
     opacity: 1;
-
     width: calc-size(max-content, size);
+
     transition:
-      width 0.4s 0.6s ease-in-out,
-      opacity 0.2s 0.6s ease-in-out;
+      width 0.4s 0.7s ease-in-out,
+      opacity 0.2s 0.7s ease-in-out;
 
     .popup-content {
       opacity: 1;

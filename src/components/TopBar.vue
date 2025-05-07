@@ -1,20 +1,21 @@
 <script setup lang="ts">
-import { ref, onUpdated } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
 
 const isMenuOpen = ref(false)
 const drawer = ref(null as HTMLElement | null)
 
 const toggleMenu = (isOpen: boolean) => {
-  isMenuOpen.value = isOpen
-}
-
-const setMenuPos = (isOpen: boolean) => {
   if (!drawer.value) return
-  drawer.value.style.setProperty('right', isOpen ? '0' : -drawer.value.offsetWidth - 2 + 'px')
+  isMenuOpen.value = isOpen
+  drawer.value.classList.toggle('open-drawer', isOpen)
 }
 
-onUpdated(() => setMenuPos(isMenuOpen.value))
+onMounted(() => {
+  if (drawer.value) {
+    drawer.value.style.setProperty('top', -drawer.value.offsetHeight - 2 + 'px')
+  }
+})
 
 defineExpose({
   toggleMenu,
@@ -42,30 +43,34 @@ window.onscroll = function () {
 
 <template>
   <header>
-    <img src="../assets/logo.svg" alt="Logo" class="logo" />
+    <img v-if="$route.path == '/'" src="../assets/logo.svg" alt="Logo" class="logo" />
+    <div v-if="$route.path !== '/'" @click="$router.push({ path: '/' })" class="logo-btn">
+      {{ $t('Tomorrow’s Brain') }}
+      <img src="../assets/logo.svg" alt="Logo" class="logo" />
+    </div>
     <Icon @click="toggleMenu(true)" icon="gg:details-more" class="icon-button" />
     <div class="menuMask" @click="toggleMenu(false)" v-show="isMenuOpen"></div>
     <div class="drawer" ref="drawer">
+      <slot></slot>
       <div class="language-switcher">
-        <p @click="$i18n.locale = 'en'" :class="{ green: $i18n.locale !== 'en', locale: true }">
+        <p @click="$i18n.locale = 'en'" :class="{ blue: $i18n.locale !== 'en', locale: true }">
           EN
         </p>
         |
         <p
           @click="$i18n.locale = 'zh-hk'"
-          :class="{ green: $i18n.locale !== 'zh-hk', locale: true }"
+          :class="{ blue: $i18n.locale !== 'zh-hk', locale: true }"
         >
           繁
         </p>
         |
         <p
           @click="$i18n.locale = 'zh-cn'"
-          :class="{ green: $i18n.locale !== 'zh-cn', locale: true }"
+          :class="{ blue: $i18n.locale !== 'zh-cn', locale: true }"
         >
           简
         </p>
       </div>
-      <slot></slot>
     </div>
   </header>
 </template>
@@ -73,6 +78,22 @@ window.onscroll = function () {
 <style scoped>
 .logo {
   width: 4rem;
+}
+
+.logo-btn {
+  background-color: var(--white);
+  padding: 0.25rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--h4);
+  font-weight: 700;
+  border-radius: var(--h4);
+
+  .logo {
+    width: var(--h4);
+  }
 }
 .locale {
   cursor: pointer;
@@ -84,12 +105,17 @@ window.onscroll = function () {
   gap: 0.2rem;
 }
 
+.open-drawer {
+  top: 0 !important;
+}
+
 .drawer {
   background-color: var(--color-background);
   position: absolute;
-  height: 100dvh;
-  right: -100vw;
-  top: 0;
+  padding: 2rem 0;
+  width: 100vw;
+  top: -100%;
+  left: 0;
   z-index: 100;
   transition: all 0.2s;
   padding: 0 1rem;

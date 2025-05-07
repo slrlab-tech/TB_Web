@@ -34,15 +34,14 @@
   "contacts": {
     "title": "Contact Us",
     "items": {
-      "Phone number": "1234 5678",
-      "Email": "abc@test.com",
-      "Address": "1234 Test St, Test City, Test Country"
+      "Phone number": "(852) 67715590",
+      "Email": "info@tomorrowsbrain.com"
     }
   },
   "products": [
     {
       "id": "1",
-      "name": "product 1",
+      "name": "I-DID Bilingual Assessment and Learning System",
       "description": "description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1",
       "category": "category 1",
       "image": "https://picsum.photos/400/200",
@@ -64,10 +63,18 @@
     },
     {
       "id": "2",
-      "name": "product 2",
+      "name": "Learning and Expo 2025",
       "description": "description 2",
       "category": "category 1",
-      "image": "https://picsum.photos/200/201"
+      "image": "https://picsum.photos/200/201",
+      "functions": [
+        {
+          "url": "https://picsum.photos/200/200",
+          "isVideo": false,
+          "name": "function 1",
+          "description": "function description 1"
+        }
+      ]
     },
     {
       "id": "3",

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import SideBar from '@/components/SideBar.vue'
+import TopBar from '@/components/TopBar.vue'
 import TitleBanner from '@/components/TitleBanner.vue'
 import json from '@/assets/data.json'
 import SiteFooter from '@/components/SiteFooter.vue'
@@ -27,21 +27,34 @@ const toTop = () => {
   })
 }
 
-const SideBarRef = ref<{ toggleMenu: (_: boolean) => void } | null>(null)
+const TopBarRef = ref<{ toggleMenu: (_: boolean) => void } | null>(null)
 
 const closeMenu = () => {
-  SideBarRef.value?.toggleMenu(false)
+  TopBarRef.value?.toggleMenu(false)
 }
 </script>
 
 <template>
-  <SideBar class="top-bar" :title="$route.name || data.brand" :brand="data.brand" ref="SideBarRef">
+  <TopBar class="top-bar" :title="$route.name || data.brand" :brand="data.brand" ref="TopBarRef">
     <nav>
-      <RouterLink @click="closeMenu()" to="/">{{ $t('Home') }}</RouterLink>
-      <RouterLink @click="closeMenu()" to="/about">{{ $t('About') }}</RouterLink>
-      <RouterLink @click="closeMenu()" to="/products">{{ $t('Products') }}</RouterLink>
+      <div class="nav-section">
+        <RouterLink @click="closeMenu()" to="/about">{{ $t('About Us') }}</RouterLink>
+        <RouterLink @click="closeMenu()" to="/products">{{ $t('Company Background') }}</RouterLink>
+        <RouterLink @click="closeMenu()" to="/products">{{ $t('Members') }}</RouterLink>
+      </div>
+      <div class="nav-section">
+        <RouterLink @click="closeMenu()" to="/products">{{ $t('Research Team') }}</RouterLink>
+      </div>
+      <div class="nav-section">
+        <RouterLink @click="closeMenu()" to="/products">{{ $t('Our Products') }}</RouterLink>
+      </div>
+      <div class="nav-section">
+        <RouterLink @click="closeMenu()" to="/components">{{
+          $t('Learn more about SEN!')
+        }}</RouterLink>
+      </div>
     </nav>
-  </SideBar>
+  </TopBar>
   <TitleBanner :title="$route.name || data.brand" :home="$route.path == '/'"></TitleBanner>
   <video
     class="background"
@@ -96,17 +109,24 @@ const closeMenu = () => {
   object-fit: cover;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a:not(:first-of-type) {
-  border-top: 1px solid var(--color-border);
-}
-
 nav {
   display: flex;
+}
+
+.nav-section {
+  text-align: left;
+  flex: 1;
+  display: flex;
   flex-direction: column;
+  padding: 1rem;
+
+  :first-child {
+    font-size: var(--h2);
+  }
+}
+
+.nav-section:not(:last-child) {
+  border-right: 1px solid var(--divider-light-1);
 }
 </style>
 
