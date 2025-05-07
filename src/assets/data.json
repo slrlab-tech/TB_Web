@@ -45,7 +45,7 @@
       "name": "product 1",
       "description": "description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1",
       "category": "category 1",
-      "image": "https://picsum.photos/200/200",
+      "image": "https://picsum.photos/400/200",
       "detailImage": "https://picsum.photos/600/200",
       "functions": [
         {
@@ -67,49 +67,49 @@
       "name": "product 2",
       "description": "description 2",
       "category": "category 1",
-      "image": "https://picsum.photos/200/200"
+      "image": "https://picsum.photos/200/201"
     },
     {
       "id": "3",
       "name": "product 3",
       "description": "description 3",
       "category": "category 1",
-      "image": "https://picsum.photos/200/200"
+      "image": "https://picsum.photos/200/202"
     },
     {
       "id": "4",
       "name": "product 7",
       "description": "description 7",
       "category": "category 2",
-      "image": "https://picsum.photos/200/200"
+      "image": "https://picsum.photos/200/203"
     },
     {
       "id": "5",
       "name": "product 8",
       "description": "description 8",
       "category": "category 3",
-      "image": "https://picsum.photos/200/200"
+      "image": "https://picsum.photos/200/204"
     },
     {
       "id": "6",
       "name": "product 9",
       "description": "description 9",
       "category": "category 3",
-      "image": "https://picsum.photos/200/200"
+      "image": "https://picsum.photos/200/205"
     },
     {
       "id": "7",
       "name": "product 10",
       "description": "description 10",
       "category": "category 4",
-      "image": "https://picsum.photos/200/200"
+      "image": "https://picsum.photos/200/206"
     },
     {
       "id": "8",
       "name": "product 11",
       "description": "description 11",
       "category": "category 5",
-      "image": "https://picsum.photos/200/200"
+      "image": "https://picsum.photos/200/207"
     },
     {
       "id": "9",

@@ -4,26 +4,35 @@ import { resolveImagePath } from '@/utils/commonFunctions.ts'
 
 let intervalId = -1
 
-const { images, auto = true } = defineProps<{
-  images: { image: string; alt: string }[]
+const {
+  items,
+  auto = true,
+  height,
+  onChange,
+} = defineProps<{
+  items: { image: string; alt: string }[]
+  height: string
   auto?: boolean
+  onChange?: (index: number) => void
 }>()
 const currentIndex = ref(0)
 
 const prevSlide = () => {
-  currentIndex.value = (currentIndex.value - 1 + images.length) % images.length
+  currentIndex.value = (currentIndex.value - 1 + items.length) % items.length
+  onChange?.(currentIndex.value)
   resetInterval()
 }
 const nextSlide = () => {
-  currentIndex.value = (currentIndex.value + 1) % images.length
+  currentIndex.value = (currentIndex.value + 1) % items.length
+  onChange?.(currentIndex.value)
   resetInterval()
 }
 const resetInterval = () => {
   if (intervalId != -1) clearInterval(intervalId)
-  intervalId = setInterval(
-    () => (currentIndex.value = (currentIndex.value + 1) % images.length),
-    5000,
-  )
+  intervalId = setInterval(() => {
+    currentIndex.value = (currentIndex.value + 1) % items.length
+    onChange?.(currentIndex.value)
+  }, 5000)
 }
 
 onMounted(() => {
@@ -34,11 +43,11 @@ onUnmounted(() => clearInterval(intervalId))
 </script>
 
 <template>
-  <div class="image-carousel">
+  <div class="image-carousel" :style="{ height }">
     <div class="carousel-container">
       <img
         class="carousel-slide"
-        v-for="(item, index) in images"
+        v-for="(item, index) in items"
         :key="index"
         :src="resolveImagePath(item.image)"
         :alt="item.alt ?? 'logo'"
@@ -57,8 +66,6 @@ onUnmounted(() => clearInterval(intervalId))
   background-color: rgba(0, 0, 0, 0.2);
   position: relative;
   width: 100%;
-  height: 1px;
-  min-height: 20px;
   overflow: hidden;
 }
 .carousel-container {

@@ -42,7 +42,6 @@ window.onscroll = function () {
 
 <template>
   <header>
-    <!-- <div class="brand">{{ brand }}</div> -->
     <img src="../assets/logo.svg" alt="Logo" class="logo" />
     <Icon @click="toggleMenu(true)" icon="gg:details-more" class="icon-button" />
     <div class="menuMask" @click="toggleMenu(false)" v-show="isMenuOpen"></div>
@@ -83,24 +82,6 @@ window.onscroll = function () {
 .language-switcher {
   display: flex;
   gap: 0.2rem;
-}
-.brand {
-  height: 2rem;
-  font-size: 1rem;
-  background-color: var(--white);
-  padding: 0 1rem;
-  border-radius: 1rem;
-  display: flex;
-  align-items: center;
-  filter: drop-shadow(0.1rem 0.1rem 0.2rem var(--color-text));
-}
-.brand:after {
-  content: '';
-  width: 1rem;
-  height: 1rem;
-  background-color: var(--brand-color);
-  border-radius: 50%;
-  margin-left: 0.5rem;
 }
 
 .drawer {

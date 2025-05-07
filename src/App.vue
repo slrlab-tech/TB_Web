@@ -74,6 +74,8 @@ const closeMenu = () => {
   z-index: 100;
   bottom: 4rem;
   right: 4rem;
+
+  filter: drop-shadow(2px 2px 2px);
 }
 
 .top-bar {

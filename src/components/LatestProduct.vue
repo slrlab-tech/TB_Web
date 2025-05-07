@@ -1,24 +1,36 @@
+<script setup lang="ts">
+import ImageCarousel from './ImageCarousel.vue'
+import PopUpButton from './PopUpButton.vue'
+import { ref } from 'vue'
+</script>
+
+<script lang="ts">
+export default {
+  props: ['items'],
+}
+
+const currentIndex = ref(0)
+</script>
+
 <template>
   <div class="banner">
-    <div class="wrapper">
-      <h1 class="title">Latest Products</h1>
-
+    <div class="wrapper button-section">
+      <h1>Highlights of TB</h1>
+      <h2>{{ $t(items[currentIndex].name || 'Product Name') }}</h2>
+      <ImageCarousel
+        height="20rem"
+        :items="items"
+        :onChange="(index) => (currentIndex = index)"
+        style="margin-top: 2rem"
+      />
       <div class="content">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae
-          vestibulum vestibulum. Cras venenatis euismod malesuada. Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras
-          venenatis euismod malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
-          vestibulum. Cras venenatis euismod malesuada. Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod
-          malesuada.
-        </div>
-        <div style="justify-content: end; display: flex">
-          <RouterLink class="route-btn" to="/about">More(TODO)</RouterLink>
+        <div v-for="func in items[currentIndex].functions" :key="func.name">
+          <p class="dot">{{ $t(func.name) }}</p>
         </div>
       </div>
+      <PopUpButton @click="() => console.log('Button clicked!')">{{
+        $t('More Information')
+      }}</PopUpButton>
     </div>
   </div>
 </template>
@@ -31,20 +43,17 @@
 .wrapper {
   display: flex;
   color: var(--white);
-  gap: 2rem;
+  padding-block: 4rem;
 }
 
 .content {
   flex: 1;
-  display: flex;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   flex-direction: column;
   justify-content: end;
   gap: 1rem;
-}
-
-.route-btn {
-  background-color: var(--white);
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
+  margin-block: 2rem 6rem;
 }
 </style>

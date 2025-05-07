@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import LogoAnimation from '@/components/LogoAnimation.vue'
 import LatestProduct from '../components/LatestProduct.vue'
-// import MissionSection from '../components/MissionSection.vue'
 import PartnerList from '@/components/PartnerList.vue'
 import TriAnimation from '@/components/TriAnimation.vue'
 </script>
@@ -23,7 +22,7 @@ export default {
 <template>
   <LogoAnimation class="logo-animation" />
   <main>
-    <div class="wrapper">
+    <div class="wrapper" style="margin-bottom: 4rem">
       <p>Our Mission</p>
       <p class="display-1">
         Lead the Growth. <span style="color: var(--highlight)">Lit</span> the Future.
@@ -36,7 +35,7 @@ export default {
       </p>
     </div>
     <!-- <MissionSection :data="data[($route.meta.path as string) ?? 'home']" /> -->
-    <LatestProduct />
+    <LatestProduct :items="data.products" />
     <PartnerList :partners="data.partners" />
   </main>
 </template>

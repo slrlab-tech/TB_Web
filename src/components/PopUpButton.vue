@@ -51,6 +51,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  pointer-events: none;
 }
 
 .circle {
@@ -67,6 +68,8 @@ export default {
   border-radius: 100%;
 
   .popup-button {
+    pointer-events: all;
+
     --size: 3rem;
     opacity: 0;
     position: absolute;
@@ -74,7 +77,7 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
-    padding-inline: 2rem;
+    padding-inline: 4rem;
 
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -85,7 +88,7 @@ export default {
     width: var(--size);
 
     background-color: var(--highlight);
-    color: var(--text-dark-1);
+    color: var(--text-light-1);
     align-content: center;
 
     .popup-content {

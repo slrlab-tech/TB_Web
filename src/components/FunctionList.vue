@@ -24,7 +24,7 @@ export default {
       <div class="function-container">
         <h2 class="title-bg">{{ $t('Used Tech') }}</h2>
         <div style="width: 100%">
-          <div class="point" v-for="tech in item.technology" :key="tech">{{ tech }}</div>
+          <div class="dot function" v-for="tech in item.technology" :key="tech">{{ tech }}</div>
         </div>
       </div>
     </div>
@@ -43,30 +43,12 @@ export default {
   border-radius: 1rem;
 }
 
-.point {
-  display: flex;
-  align-items: center;
-  width: 100%;
+.function {
   margin-top: 1rem;
 }
 
-.point:first-child {
+.function:first-child {
   margin-top: 1.5rem;
-}
-
-.point::before,
-.point::after {
-  content: '';
-  display: block;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 100%;
-  margin: 0 1.5rem;
-  background-color: var(--highlight-2);
-}
-
-.point::after {
-  display: none;
 }
 
 .columns {
@@ -79,17 +61,16 @@ export default {
 .reverse {
   direction: rtl;
 
-  .point::before {
+  .dot::before {
     display: none;
   }
 
-  .point::after {
+  .dot::after {
     display: block;
     background-color: var(--highlight);
   }
 
-  .point {
-    display: flex;
+  .dot {
     justify-content: flex-end;
   }
 }
