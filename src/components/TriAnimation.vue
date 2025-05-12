@@ -3,7 +3,11 @@ import { getBrowser } from '@/utils/utils'
 
 const browser = getBrowser()
 const isAnimated =
-  browser !== 'Safari' && browser !== 'Firefox' && /iPhone|iPad|iPod/i.test(navigator.userAgent)
+  browser !== 'Safari' && browser !== 'Firefox' && !/iPhone|iPad|iPod/i.test(navigator.userAgent)
+
+const { height = '20rem' } = defineProps<{
+  height?: string
+}>()
 </script>
 
 <template>
@@ -46,7 +50,7 @@ const isAnimated =
 
 .r-wrapper {
   margin: 50px;
-  --height: 20rem;
+  --height: v-bind(height);
   --translate: calc(var(--height) / 3);
   position: relative;
   height: var(--height);
