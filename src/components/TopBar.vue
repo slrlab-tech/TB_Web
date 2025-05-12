@@ -24,7 +24,7 @@ defineExpose({
 
 <script lang="ts">
 export default {
-  props: ['title', 'brand'],
+  props: ['title', 'brand', 'isIconShowing'],
 }
 
 window.onscroll = function () {
@@ -43,7 +43,13 @@ window.onscroll = function () {
 
 <template>
   <header>
-    <img v-if="$route.path == '/'" src="../assets/logo.svg" alt="Logo" class="logo" />
+    <img
+      v-if="$route.path == '/'"
+      src="../assets/logo.svg"
+      alt="Logo"
+      class="logo"
+      :style="{ opacity: isIconShowing ? '1' : '0' }"
+    />
     <div v-if="$route.path !== '/'" @click="$router.push({ path: '/' })" class="logo-btn">
       {{ $t('Tomorrow’s Brain') }}
       <img src="../assets/logo.svg" alt="Logo" class="logo" />

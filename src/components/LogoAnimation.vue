@@ -26,6 +26,16 @@ let brain = null as THREE.Group | null
 let neurons = null as THREE.Group | null
 
 export default {
+  props: {
+    onEnd: {
+      type: Function,
+      required: false,
+    },
+    onStart: {
+      type: Function,
+      required: false,
+    },
+  },
   data() {
     return {
       camera: null as THREE.OrthographicCamera | null,
@@ -385,6 +395,7 @@ export default {
         threeScene.remove()
       }
       document.body.style.overflow = 'auto'
+      if (this.onEnd) this.onEnd()
     },
     animateByStep: function (e: WheelEvent) {
       requestAnimationFrame(() => this.animate(e.deltaY))
@@ -402,6 +413,7 @@ export default {
     document.addEventListener('wheel', this.animateByStep)
     document.body.style.overflow = 'hidden'
 
+    if (this.onStart) this.onStart()
     this.init()
     this.animate()
   },

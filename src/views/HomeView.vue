@@ -7,20 +7,19 @@ import TriAnimation from '@/components/TriAnimation.vue'
 
 <script lang="ts">
 export default {
-  props: ['data'],
+  props: ['data', 'onLogoEnd', 'onLogoStart'],
   beforeRouteLeave(to, from, next) {
     const threeScene = document.getElementById('model')
     if (threeScene) {
       threeScene.remove() // To avoid lag
     }
-
     next()
   },
 }
 </script>
 
 <template>
-  <LogoAnimation class="logo-animation" />
+  <LogoAnimation class="logo-animation" :onEnd="onLogoEnd" :onStart="onLogoStart" />
   <main>
     <div class="wrapper" style="margin-bottom: 4rem">
       <p>Our Mission</p>
@@ -34,7 +33,6 @@ export default {
         labo
       </p>
     </div>
-    <!-- <MissionSection :data="data[($route.meta.path as string) ?? 'home']" /> -->
     <LatestProduct :items="data.products" />
     <PartnerList :partners="data.partners" />
   </main>

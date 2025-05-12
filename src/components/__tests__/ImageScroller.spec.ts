@@ -23,7 +23,7 @@ describe('ImageScroller', () => {
     const scroller = wrapper.get('[data-test="scroller"]')
 
     expect(scroller.element.childElementCount).toBe(3)
-    expect(scroller.findAll('img')[0].element.src).toContain('TB_Web/src/assets/test')
+    expect(scroller.findAll('img')[0].element.src).toContain('src/assets/test')
     expect(scroller.findAll('img')[0].element.alt).toBe('logo 1')
     expect(scroller.findAll('img')[1].element.src).toBe('https://picsum.photos/200/100')
     expect(scroller.findAll('img')[2].element.alt).toBe('logo')

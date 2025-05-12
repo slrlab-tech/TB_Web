@@ -28,14 +28,31 @@ const toTop = () => {
 }
 
 const TopBarRef = ref<{ toggleMenu: (_: boolean) => void } | null>(null)
+const isIconShowing = ref(true)
 
 const closeMenu = () => {
   TopBarRef.value?.toggleMenu(false)
 }
+
+const onLogoEnd = () => {
+  console.log('Animation ended')
+  isIconShowing.value = true
+}
+
+const onLogoStart = () => {
+  console.log('Animation started')
+  isIconShowing.value = false
+}
 </script>
 
 <template>
-  <TopBar class="top-bar" :title="$route.name || data.brand" :brand="data.brand" ref="TopBarRef">
+  <TopBar
+    class="top-bar"
+    :title="$route.name || data.brand"
+    :brand="data.brand"
+    ref="TopBarRef"
+    :isIconShowing="isIconShowing"
+  >
     <nav>
       <div class="nav-section">
         <RouterLink @click="closeMenu()" to="/about">{{ $t('About Us') }}</RouterLink>
@@ -68,7 +85,7 @@ const closeMenu = () => {
     TODO="replace video"
   ></video>
   <CurvedBg>
-    <RouterView :data="data" />
+    <RouterView :data="data" :onLogoEnd="onLogoEnd" :onLogoStart="onLogoStart" />
   </CurvedBg>
   <Icon icon="mingcute:up-line" class="up-btn" @click="toTop()"></Icon>
   <SiteFooter :data="data.contacts"></SiteFooter>

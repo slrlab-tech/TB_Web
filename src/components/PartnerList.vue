@@ -47,7 +47,6 @@ export default {
   min-width: 0;
   flex: 1;
   object-fit: contain;
-  filter: grayscale(100%);
   cursor: pointer;
   height: min-content;
 
@@ -58,11 +57,6 @@ export default {
   -webkit-user-select: none;
   -ms-user-select: none;
 }
-
-.partner-image:hover {
-  filter: none;
-}
-
 .partners-wrapper {
   flex-direction: row;
   justify-content: space-evenly;
