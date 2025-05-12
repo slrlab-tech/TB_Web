@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, defineProps, onMounted, onUnmounted } from 'vue'
-import { resolveImagePath } from '@/utils/commonFunctions.ts'
+import { resolveImagePath } from '@/utils/utils'
 
 let intervalId = -1
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { resolveImagePath } from '@/utils/commonFunctions.ts'
+import { resolveImagePath } from '@/utils/utils'
 </script>
 
 <script lang="ts">

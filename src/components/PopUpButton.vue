@@ -110,6 +110,7 @@ export default {
 
   .popup-button {
     opacity: 1;
+    width: max-content; /* Fall back for unsupported browser */
     width: calc-size(max-content, size);
 
     transition:

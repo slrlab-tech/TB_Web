@@ -9,5 +9,10 @@
   "About": "About",
   "Home": "Home",
 
-  "Our Members": "Our Members"
+  "Our Members": "Our Members",
+
+  "mission": "Our mission is to transform education by:",
+  "mission-1": "Developing personalized and adaptive assessment and training for all children",
+  "mission-2": "Leveraging AI and brain-based tools to optimize the learning of and teaching for children",
+  "mission-3": "Providing accessible and sustainable education for children with different learning needs"
 }

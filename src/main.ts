@@ -11,7 +11,7 @@ import cn from './i18n/zh-cn.json'
 import hk from './i18n/zh-hk.json'
 
 const i18n = createI18n({
-  locale: 'zh-hk',
+  locale: 'en',
   messages: {
     en,
     'zh-cn': cn,

@@ -1,18 +1,26 @@
+<script setup lang="ts">
+import { getBrowser } from '@/utils/utils'
+
+const browser = getBrowser()
+const isAnimated =
+  browser !== 'Safari' && browser !== 'Firefox' && /iPhone|iPad|iPod/i.test(navigator.userAgent)
+</script>
+
 <template>
   <div class="r-wrapper">
-    <div class="animation animation-1">
+    <div :class="isAnimated ? 'animation animation-1' : 'animation animation-1 fixed-1'">
       <div class="rhombus text">
         Educational Neuroscience <br />
         教育神經科學
       </div>
     </div>
-    <div class="animation animation-2">
+    <div :class="isAnimated ? 'animation animation-2' : 'animation animation-2 fixed-2'">
       <div class="rhombus text">
         AI <br />
         人工智慧
       </div>
     </div>
-    <div class="animation animation-3">
+    <div :class="isAnimated ? 'animation animation-3' : 'animation animation-3 fixed-3'">
       <div class="rhombus text">Psychology <br />心理測評</div>
     </div>
     <div class="text-center text">Tomorrow’s Brain <br />明日腦</div>
@@ -43,6 +51,7 @@
   position: relative;
   height: var(--height);
   width: calc(var(--height) * 2 / sqrt(3));
+  min-width: calc(var(--height) * 2 / sqrt(3));
   will-change: transform;
 
   .rhombus {
@@ -75,7 +84,7 @@
 
     .rhombus {
       clip-path: polygon(calc(100% / 3) 0, 100% 0, calc(200% / 3) 100%, 0 100%);
-      padding: 25% 42% 5% 10%;
+      padding: 28% 42% 5% 9%;
     }
   }
 
@@ -85,17 +94,22 @@
 
     .rhombus {
       clip-path: polygon(calc(100% / 3) 100%, 100% 100%, calc(200% / 3) 0, 0 0);
-      padding: 25% 10% 5% 42%;
+      padding: 28% 9% 5% 42%;
     }
   }
+}
 
-  /* .r-3 {
-    height: calc(var(--height) / 2);
-    aspect-ratio: calc(sqrt(3));
-    clip-path: polygon(calc(100% / 3) 100%, 100% 100%, calc(200% / 3) 0, 0 0);
-
-    padding: 22% 10% 5% 35%;
-  } */
+.fixed-1 {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.fixed-2 {
+  left: 0;
+  bottom: 0;
+}
+.fixed-3 {
+  right: 0;
+  bottom: 0;
 }
 
 @supports (animation-timeline: scroll()) {
@@ -129,7 +143,6 @@
 
 @keyframes r1 {
   0% {
-    opacity: 0;
     transform: translateX(-50%) translateY(calc(-1 * var(--translate)));
   }
   25% {

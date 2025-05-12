@@ -22,16 +22,24 @@ export default {
   <LogoAnimation class="logo-animation" :onEnd="onLogoEnd" :onStart="onLogoStart" />
   <main>
     <div class="wrapper" style="margin-bottom: 4rem">
-      <p>Our Mission</p>
-      <p class="display-1">
-        Lead the Growth. <span style="color: var(--highlight)">Lit</span> the Future.
-      </p>
-      <TriAnimation />
-      <p style="text-align: center">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        labo
-      </p>
+      <h1>{{ $t('Our Mission') }}</h1>
+      <div style="display: flex">
+        <TriAnimation />
+        <div>
+          <h4>
+            {{ $t('mission') }}
+          </h4>
+          <p>
+            {{ $t('mission-1') }}
+          </p>
+          <p>
+            {{ $t('mission-2') }}
+          </p>
+          <p>
+            {{ $t('mission-3') }}
+          </p>
+        </div>
+      </div>
     </div>
     <LatestProduct :items="data.products" />
     <PartnerList :partners="data.partners" />

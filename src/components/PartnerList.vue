@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ImageScroller from './ImageScroller.vue'
-import { resolveImagePath } from '@/utils/commonFunctions.ts'
+import { resolveImagePath } from '@/utils/utils'
 
 function openLink(href: string) {
   if (href) {

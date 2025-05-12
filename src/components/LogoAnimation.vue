@@ -45,33 +45,6 @@ export default {
     }
   },
   methods: {
-    brainDummy: function (iconSize: number) {
-      const material = new THREE.MeshNormalMaterial({ opacity: 0.5, transparent: true })
-
-      const left = new THREE.Mesh(new THREE.SphereGeometry(iconSize, 20, 10), material)
-      left.scale.y = 0.9
-      left.position.y = 0
-      left.scale.z = 0.6
-      left.position.z = -10
-
-      const right = new THREE.Mesh(new THREE.SphereGeometry(iconSize, 20, 10), material)
-      right.scale.y = 0.9
-      right.position.y = 0
-      right.scale.z = 0.6
-      right.position.z = 10
-
-      const bottom = new THREE.Mesh(new THREE.SphereGeometry(iconSize / 2, 20, 10), material)
-      bottom.scale.y = 0.6
-      bottom.position.y = -20
-      bottom.position.x = 10
-
-      const brain = new THREE.Group()
-      brain.add(left)
-      brain.add(right)
-      brain.add(bottom)
-
-      return brain
-    },
     renderLights: function (brain: THREE.Box3) {
       const lightMesh = new THREE.Mesh(
         new THREE.SphereGeometry(1, 20, 10),
@@ -326,15 +299,6 @@ export default {
           obj.position.y = posY
 
           this.progress += step
-          const maxProgress = 100
-
-          this.container.style.opacity = (
-            Math.max(maxProgress - this.progress, 0) / maxProgress
-          ).toString()
-
-          if (this.progress >= maxProgress) {
-            this.endAnimation()
-          }
         } else if (obj.rotation.x < 0) {
           obj.scale.set(scale, scale, scale)
           obj.rotation.x = 0
@@ -358,16 +322,26 @@ export default {
       this.updateObj(brain, step)
       this.updateObj(neurons, step, true)
 
+      const maxProgress = 100
+
+      if (this.container)
+        this.container.style.opacity = (
+          Math.max(maxProgress - this.progress, 0) / maxProgress
+        ).toString()
+
+      if (this.onEnd) {
+        this.onEnd(this.progress / maxProgress)
+      }
+
+      if (this.progress >= maxProgress) {
+        this.endAnimation()
+      }
+
       composer.render()
     },
     updateThree: function () {
-      if (!this.renderer || !this.camera || !scene) {
+      if (!this.renderer || !this.camera || !scene || !this.container) {
         console.error('Error loading three.js components')
-        return
-      }
-
-      if (!this.container) {
-        console.error('Container element not found')
         return
       }
 
@@ -395,7 +369,6 @@ export default {
         threeScene.remove()
       }
       document.body.style.overflow = 'auto'
-      if (this.onEnd) this.onEnd()
     },
     animateByStep: function (e: WheelEvent) {
       requestAnimationFrame(() => this.animate(e.deltaY))

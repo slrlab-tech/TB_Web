@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
+import { getBrowser } from '@/utils/utils.ts'
 
 const isMenuOpen = ref(false)
 const drawer = ref(null as HTMLElement | null)
@@ -24,7 +25,7 @@ defineExpose({
 
 <script lang="ts">
 export default {
-  props: ['title', 'brand', 'isIconShowing'],
+  props: ['title', 'brand', 'iconOpacity'],
 }
 
 window.onscroll = function () {
@@ -39,20 +40,18 @@ window.onscroll = function () {
     document.querySelector('header')?.style.setProperty('padding-top', '8px')
   }
 }
+
+const SafariScale = getBrowser() == 'Safari' ? 2 : 1
 </script>
 
 <template>
   <header>
-    <img
-      v-if="$route.path == '/'"
-      src="../assets/logo.svg"
-      alt="Logo"
-      class="logo"
-      :style="{ opacity: isIconShowing ? '1' : '0' }"
-    />
+    <img v-if="$route.path == '/'" src="../assets/logo.svg" alt="Logo" class="logo" />
     <div v-if="$route.path !== '/'" @click="$router.push({ path: '/' })" class="logo-btn">
       {{ $t('Tomorrow’s Brain') }}
-      <img src="../assets/logo.svg" alt="Logo" class="logo" />
+      <div class="logo-wrapper" :style="{ height: SafariScale === 2 ? 'var(--h4)' : 'unset' }">
+        <img src="../assets/logo.svg" alt="Logo" class="logo" />
+      </div>
     </div>
     <Icon @click="toggleMenu(true)" icon="gg:details-more" class="icon-button" />
     <div class="menuMask" @click="toggleMenu(false)" v-show="isMenuOpen"></div>
@@ -83,7 +82,9 @@ window.onscroll = function () {
 
 <style scoped>
 .logo {
-  width: 4rem;
+  opacity: v-bind(iconOpacity);
+  width: calc(4rem * v-bind(SafariScale));
+  scale: calc(1 / v-bind(SafariScale));
 }
 
 .logo-btn {
@@ -98,8 +99,17 @@ window.onscroll = function () {
   border-radius: var(--h4);
 
   .logo {
-    width: var(--h4);
+    width: calc(var(--h4) * v-bind(SafariScale));
+    translate: calc((v-bind(SafariScale) - 1) * -25%) calc((v-bind(SafariScale) - 1) * -25%);
+    scale: calc(1 / v-bind(SafariScale));
   }
+}
+
+.logo-wrapper {
+  width: var(--h4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .locale {
   cursor: pointer;
@@ -120,7 +130,7 @@ window.onscroll = function () {
   position: absolute;
   padding: 2rem 0;
   width: 100vw;
-  top: -100%;
+  top: -100dvh;
   left: 0;
   z-index: 100;
   transition: all 0.2s;

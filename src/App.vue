@@ -28,20 +28,20 @@ const toTop = () => {
 }
 
 const TopBarRef = ref<{ toggleMenu: (_: boolean) => void } | null>(null)
-const isIconShowing = ref(true)
+const iconOpacity = ref(1)
 
 const closeMenu = () => {
   TopBarRef.value?.toggleMenu(false)
 }
 
-const onLogoEnd = () => {
-  console.log('Animation ended')
-  isIconShowing.value = true
+const onLogoEnd = (progress: number) => {
+  console.log('Animation ended', progress)
+  iconOpacity.value = progress
 }
 
 const onLogoStart = () => {
   console.log('Animation started')
-  isIconShowing.value = false
+  iconOpacity.value = 0
 }
 </script>
 
@@ -51,7 +51,7 @@ const onLogoStart = () => {
     :title="$route.name || data.brand"
     :brand="data.brand"
     ref="TopBarRef"
-    :isIconShowing="isIconShowing"
+    :iconOpacity="iconOpacity"
   >
     <nav>
       <div class="nav-section">
