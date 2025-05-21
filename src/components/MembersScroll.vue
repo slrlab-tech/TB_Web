@@ -53,7 +53,9 @@ export default {
           <div class="image-wrapper">
             <img :src="member.image" :alt="member.name" class="member-image" />
           </div>
-          <h2 style="margin-top: -1rem">{{ member.name }}</h2>
+          <h2 class="member-name">
+            {{ member.name }}
+          </h2>
           <p>{{ member.position }}</p>
           <p class="member-description">{{ member.description }}</p>
         </div>
@@ -99,6 +101,13 @@ export default {
   border-radius: 50%;
   margin: 10px;
   overflow: hidden;
+}
+
+.member-name {
+  margin-top: -1rem;
+  text-align: center;
+  line-height: normal;
+  padding: 1rem 0;
 }
 
 .member-image {

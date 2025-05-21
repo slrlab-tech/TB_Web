@@ -57,3 +57,14 @@ git subtree push --prefix dist origin gh-pages
 ```
 
 Check Action on github, and until it is ready.
+
+### API calls to OSS alibaba
+
+An access key pair is needed to write/read data from OSS with src/utils/oss.ts
+The key can be found in Resource Access Management in Alibaba Cloud (RAM-Identities-Users). The user name is web.
+The key need to be store in .env in root
+
+```
+VITE_OSS_ACCESS_KEY_ID=
+VITE_OSS_ACCESS_KEY_SECRET=
+```

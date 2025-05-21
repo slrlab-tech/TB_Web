@@ -1,0 +1,240 @@
+{
+  "brand": "Tomorrow's Brain",
+  "home": {
+    "/title": "Lead the Future",
+    "title": "Tomorrow's Brain",
+    "mission": {
+      "banner": "https://picsum.photos/500/100",
+      "image": "https://picsum.photos/500/500"
+    }
+  },
+  "functions": [
+    {
+      "title": "Function 1",
+      "icon": "ci:bell-ring",
+      "description": "Function 1 description",
+      "technology": ["Function 1 technology", "Function 1 technology 2"]
+    },
+    {
+      "title": "Function 2",
+      "icon": "ci:arrow-up-md",
+      "description": "Function 2 description",
+      "technology": ["Function 2 technology", "Function 2 technology 2"]
+    },
+    {
+      "title": "Function 3",
+      "icon": "ci:bell",
+      "description": "Function 3 description",
+      "technology": ["Function 3 technology", "Function 3 technology 2", "Function 3 technology 3"]
+    }
+  ],
+  "about": {
+    "title": "About Us"
+  },
+  "contacts": {
+    "title": "Contact Us",
+    "items": {
+      "Phone number": "(852) 67715590",
+      "Email": "info@tomorrowsbrain.com"
+    }
+  },
+  "products": [
+    {
+      "id": "1",
+      "name": "I-DID Bilingual Assessment and Learning System",
+      "description": "description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1",
+      "category": "category 1",
+      "image": "https://picsum.photos/400/200",
+      "detailImage": "https://picsum.photos/600/200",
+      "functions": [
+        {
+          "url": "https://picsum.photos/200/200",
+          "isVideo": false,
+          "name": "function 1",
+          "description": "function description 1"
+        },
+        {
+          "url": "https://videos.pexels.com/video-files/857134/857134-hd_1280_720_24fps.mp4",
+          "isVideo": true,
+          "name": "function 2",
+          "description": "function description 2"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Learning and Teaching Expo 2025",
+      "description": "description 2",
+      "category": "category 1",
+      "image": "https://picsum.photos/200/201",
+      "functions": [
+        {
+          "url": "https://picsum.photos/200/200",
+          "isVideo": false,
+          "name": "function 1",
+          "description": "function description 1"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "product 3",
+      "description": "description 3",
+      "category": "category 1",
+      "image": "https://picsum.photos/200/202"
+    },
+    {
+      "id": "4",
+      "name": "product 7",
+      "description": "description 7",
+      "category": "category 2",
+      "image": "https://picsum.photos/200/203"
+    },
+    {
+      "id": "5",
+      "name": "product 8",
+      "description": "description 8",
+      "category": "category 3",
+      "image": "https://picsum.photos/200/204"
+    },
+    {
+      "id": "6",
+      "name": "product 9",
+      "description": "description 9",
+      "category": "category 3",
+      "image": "https://picsum.photos/200/205"
+    },
+    {
+      "id": "7",
+      "name": "product 10",
+      "description": "description 10",
+      "category": "category 4",
+      "image": "https://picsum.photos/200/206"
+    },
+    {
+      "id": "8",
+      "name": "product 11",
+      "description": "description 11",
+      "category": "category 5",
+      "image": "https://picsum.photos/200/207"
+    },
+    {
+      "id": "9",
+      "name": "product 12",
+      "description": "description 12",
+      "category": "category 6",
+      "image": "https://picsum.photos/200/200"
+    },
+    {
+      "id": "10",
+      "name": "product 4",
+      "description": "description 4",
+      "category": "category 2",
+      "image": "https://picsum.photos/200/200"
+    },
+    {
+      "id": "11",
+      "name": "product 5",
+      "description": "description 5",
+      "category": "category 2",
+      "image": "https://picsum.photos/200/200"
+    },
+    {
+      "id": "12",
+      "name": "product 6",
+      "description": "description 6",
+      "category": "category 2",
+      "image": "https://picsum.photos/200/200"
+    },
+    {
+      "id": "13",
+      "name": "product 13",
+      "description": "description 13",
+      "category": "category 7",
+      "image": "https://picsum.photos/200/200"
+    },
+    {
+      "id": "14",
+      "name": "product 14",
+      "description": "description 14",
+      "category": "category 8",
+      "image": "https://picsum.photos/200/200"
+    },
+    {
+      "id": "15",
+      "name": "product 15",
+      "description": "description 15",
+      "category": "category 9",
+      "image": "https://picsum.photos/200/200"
+    },
+    {
+      "id": "16",
+      "name": "product 16",
+      "description": "description 16",
+      "category": "category 10",
+      "image": "https://picsum.photos/200/200"
+    },
+    {
+      "id": "17",
+      "name": "product 17",
+      "description": "description 17",
+      "category": "category 11",
+      "image": "https://picsum.photos/200/200"
+    },
+    {
+      "id": "18",
+      "name": "product 18",
+      "description": "description 18",
+      "category": "category 12",
+      "image": "https://picsum.photos/200/200"
+    },
+    {
+      "id": "19",
+      "name": "product 19",
+      "description": "description 19",
+      "category": "category 13",
+      "image": "https://picsum.photos/200/200"
+    },
+    {
+      "id": "20",
+      "name": "product 20",
+      "description": "description 20",
+      "category": "category 14",
+      "image": "https://picsum.photos/200/200"
+    }
+  ],
+  "partners": [
+    { "image": "partners/HKSTP.png", "alt": "logo 1", "href": "https://google.com" },
+    { "image": "partners/TEC.png", "alt": "logo 2" }
+  ],
+  "members": [
+    {
+      "image": "https://picsum.photos/100/100",
+      "name": "test",
+      "position": "test position",
+      "description": "test description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitaevestibulum vestibulum."
+    },
+    {
+      "image": "https://picsum.photos/100/100",
+      "name": "test 2",
+      "position": "test position 2",
+      "description": "test description 2"
+    },
+    {
+      "image": "https://picsum.photos/100/100",
+      "name": "test 3",
+      "position": "test position 3",
+      "description": "test description 3"
+    },
+    {
+      "image": "https://picsum.photos/100/100",
+      "name": "test 4",
+      "position": "test position 4",
+      "description": "test description 4"
+    }
+  ],
+  "typing": [
+    { "text": "abc", "icon": "ci:bell-ring" },
+    { "text": "efg", "icon": "ci:arrow-up-md" }
+  ]
+}

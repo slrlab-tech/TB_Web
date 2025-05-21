@@ -16,7 +16,7 @@ const currentIndex = ref(0)
   <div class="banner">
     <div class="wrapper button-section">
       <h1>Highlights of TB</h1>
-      <h2>{{ $t(items[currentIndex].name || 'Product Name') }}</h2>
+      <h2>{{ $t(items[currentIndex]?.name || 'Product Name') }}</h2>
       <ImageCarousel
         height="20rem"
         :items="items"
@@ -24,7 +24,7 @@ const currentIndex = ref(0)
         style="margin-top: 2rem"
       />
       <div class="content">
-        <div v-for="func in items[currentIndex].functions" :key="func.name">
+        <div v-for="func in items[currentIndex]?.functions" :key="func.name">
           <p class="dot">{{ $t(func.name) }}</p>
         </div>
       </div>

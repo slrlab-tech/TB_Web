@@ -18,7 +18,7 @@ export default {
 <template>
   <div>
     <h1 class="center" style="margin-top: 4rem">{{ $t('Our Partners') }}</h1>
-    <div v-if="partners.length <= 5" class="wrapper partners-wrapper" id="partners">
+    <div v-if="partners?.length <= 5" class="wrapper partners-wrapper" id="partners">
       <div class="partner-wrapper" v-for="partner in partners" :key="partner.alt">
         <img
           :src="resolveImagePath(partner.image)"
@@ -30,11 +30,11 @@ export default {
     </div>
     <ImageScroller
       v-else
-      :items="partners <= 10 ? partners : partners.slice(0, Math.floor(partners.length / 2))"
+      :items="partners <= 10 ? partners : partners?.slice(0, Math.floor(partners.length / 2))"
       class="carousel"
     />
     <ImageScroller
-      v-if="partners.length >= 10"
+      v-if="partners?.length >= 10"
       :items="partners.slice(Math.floor(partners.length / 2), partners.length)"
       class="carousel"
       reverse

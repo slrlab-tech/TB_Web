@@ -1,25 +1,19 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue/dist/iconify.js'
 import { RouterView } from 'vue-router'
+import { ref } from 'vue'
+
+import { useDataStore } from '@/stores/data.ts'
+
 import TopBar from '@/components/TopBar.vue'
 import TitleBanner from '@/components/TitleBanner.vue'
-import json from '@/assets/data.json'
 import SiteFooter from '@/components/SiteFooter.vue'
-import { Icon } from '@iconify/vue/dist/iconify.js'
-import { ref } from 'vue'
 import CurvedBg from '@/components/CurvedBg.vue'
+
+const data = useDataStore()
 </script>
 
 <script lang="ts">
-export default {
-  data() {
-    return {
-      data: json as {
-        [key: string]: unknown
-      },
-    }
-  },
-}
-
 const toTop = () => {
   window.scrollTo({
     top: 0,
@@ -35,24 +29,16 @@ const closeMenu = () => {
 }
 
 const onLogoEnd = (progress: number) => {
-  console.log('Animation ended', progress)
   iconOpacity.value = progress
 }
 
 const onLogoStart = () => {
-  console.log('Animation started')
   iconOpacity.value = 0
 }
 </script>
 
 <template>
-  <TopBar
-    class="top-bar"
-    :title="$route.name || data.brand"
-    :brand="data.brand"
-    ref="TopBarRef"
-    :iconOpacity="iconOpacity"
-  >
+  <TopBar class="top-bar" ref="TopBarRef" :iconOpacity="iconOpacity">
     <nav>
       <div class="nav-section">
         <RouterLink @click="closeMenu()" to="/about">{{ $t('About Us') }}</RouterLink>
@@ -72,7 +58,7 @@ const onLogoStart = () => {
       </div>
     </nav>
   </TopBar>
-  <TitleBanner :title="$route.name || data.brand" :home="$route.path == '/'"></TitleBanner>
+  <TitleBanner :title="$route.name || 'Tomorrow\'s Brain'" :home="$route.path == '/'"></TitleBanner>
   <video
     class="background"
     src="https://videos.pexels.com/video-files/857134/857134-hd_1280_720_24fps.mp4"
@@ -85,6 +71,7 @@ const onLogoStart = () => {
     TODO="replace video"
   ></video>
   <CurvedBg>
+    <!-- <RouterView v-if="isLoaded" :data="data" :onLogoEnd="onLogoEnd" :onLogoStart="onLogoStart" /> -->
     <RouterView :data="data" :onLogoEnd="onLogoEnd" :onLogoStart="onLogoStart" />
   </CurvedBg>
   <Icon icon="mingcute:up-line" class="up-btn" @click="toTop()"></Icon>

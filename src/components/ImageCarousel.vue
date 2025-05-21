@@ -10,7 +10,7 @@ const {
   height,
   onChange,
 } = defineProps<{
-  items: { image: string; alt: string }[]
+  items: { image: string; alt: string; name: string }[]
   height: string
   auto?: boolean
   onChange?: (index: number) => void
@@ -50,7 +50,7 @@ onUnmounted(() => clearInterval(intervalId))
         v-for="(item, index) in items"
         :key="index"
         :src="resolveImagePath(item.image)"
-        :alt="item.alt ?? 'logo'"
+        :alt="item.alt ?? item.name ?? 'image'"
         :class="{ active: index === currentIndex }"
       />
     </div>

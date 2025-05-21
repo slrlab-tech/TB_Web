@@ -25,7 +25,7 @@ defineExpose({
 
 <script lang="ts">
 export default {
-  props: ['title', 'brand', 'iconOpacity'],
+  props: ['iconOpacity'],
 }
 
 window.onscroll = function () {
