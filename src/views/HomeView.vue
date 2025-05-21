@@ -25,7 +25,7 @@ export default {
     <div class="wrapper" style="margin-bottom: 4rem">
       <h1>{{ $t('Our Mission') }}</h1>
       <div style="display: flex; align-items: flex-end">
-        <TriAnimation height="25rem" />
+        <TriAnimation height="20rem" />
         <div class="mission">
           <h4 style="line-height: normal">
             {{ $t('mission') }}

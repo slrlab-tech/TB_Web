@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import MembersScroll from '@/components/MembersScroll.vue'
-// import OSS from 'ali-oss'
-import { Buffer } from 'buffer'
+// import { Buffer } from 'buffer'
 </script>
 
 <script lang="ts">
@@ -9,58 +8,25 @@ export default {
   props: ['data'],
   data() {
     return {
-      // client: this.$ossClient as unknown as OSS,
+      client: this.$ossClient,
     }
   },
-  // methods: {
-  //   async sendData() {
-  //     try {
-  //       // const result = await this.client.get('subscription.json')
-  //       this.client.append(
-  //         'subscription.json',
-  //         Buffer.from("{ name: 'test', email: 'abc@mail.com' }", 'utf8'),
-  //       )
-  //       // const jsonString = Buffer.from(result.content).toString('utf8')
-  //       // console.log(JSON.parse(jsonString))
-  //     } catch (err) {
-  //       console.log(err)
-  //     }
-  //   },
-  // },
+  methods: {
+    async sendData() {
+      try {
+        // TODO: how to get pos?
+        const sub = await this.client.head('subscription.json')
+        console.log(sub)
+        //   this.client.append(
+        //     'subscription.json',
+        //     Buffer.from("{ name: 'test', email: 'abc@mail.com' }", 'utf8'),
+        //   )
+      } catch (err) {
+        console.log(err)
+      }
+    },
+  },
 }
-
-// const client = this.$ossClient
-
-// async function sendData() {
-//   try {
-//     const result = await client.get('subscription.json')
-//     console.log(result)
-//   } catch (err) {
-//     console.log(err)
-//   }
-// }
-
-// listObject()
-// const sendData = () => {
-//   const input = document.querySelector('input[type="text"]') as HTMLInputElement
-//   const value = input.value
-//   console.log(value)
-
-//   fetch('https://tb-web.oss-cn-hongkong.aliyuncs.com/subscription.json', {
-//     method: 'HEAD',
-//     headers: {
-//       // 'Content-Type': 'application/json',
-//       'Access-Control-Allow-Origin': '*',
-//     },
-//     // body: JSON.stringify({ value }),
-//   })
-//     .then((response) => {
-//       if (!response.ok) throw new Error('Network response was not ok')
-//       return response.json()
-//     })
-//     .then((data) => console.log(data))
-//     .catch((error) => console.error('Error:', error))
-// }
 </script>
 
 <template>

@@ -1,3 +1,6 @@
+<script setup lang="ts">
+import { Icon } from '@iconify/vue/dist/iconify.js'
+</script>
 <script lang="ts">
 export default {
   props: ['members', 'title'],
@@ -5,6 +8,7 @@ export default {
     return {
       lineHeight: 0 as number,
       memberObj: null as HTMLElement | null,
+      memberImages: Array.from(Array(this.members.length).fill(true)),
     }
   },
   methods: {
@@ -50,8 +54,20 @@ export default {
         <div class="placeHolder"></div>
         <div class="point"></div>
         <div class="member placeHolder" data-inviewport="member">
-          <div class="image-wrapper">
-            <img :src="member.image" :alt="member.name" class="member-image" />
+          <div class="image-wrapper center">
+            <img
+              v-if="memberImages[index]"
+              :src="member.image"
+              :alt="member.name"
+              class="member-image"
+              @error="memberImages[index] = false"
+            />
+            <Icon
+              v-else
+              icon="mingcute:user-2-line"
+              class="member-image"
+              style="width: 80%; height: 80%"
+            />
           </div>
           <h2 class="member-name">
             {{ member.name }}
@@ -101,6 +117,8 @@ export default {
   border-radius: 50%;
   margin: 10px;
   overflow: hidden;
+  background-color: var(--brand-color);
+  color: var(--text-dark-1);
 }
 
 .member-name {

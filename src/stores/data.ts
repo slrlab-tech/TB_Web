@@ -7,6 +7,10 @@ export const useDataStore = defineStore('data', {
     return {
       members: members as MemberInfo[],
       products: [] as unknown[],
+      contacts: {
+        'Phone number': '(852) 67715590',
+        Email: 'info@tomorrowsbrain.com',
+      },
     }
   },
 })

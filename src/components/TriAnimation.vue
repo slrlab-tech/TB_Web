@@ -44,8 +44,12 @@ const { height = '20rem' } = defineProps<{
   top: 65%;
   transform: translate(-50%, -50%);
 
-  animation: text-opacity ease;
-  animation-timeline: scroll();
+  animation-name: text-opacity;
+  animation-range: entry 40% contain 60%;
+  animation-fill-mode: both;
+  animation-duration: 1ms;
+  view-timeline: --subjectReveal block;
+  animation-timeline: --subjectReveal;
 }
 
 .r-wrapper {
@@ -68,13 +72,22 @@ const { height = '20rem' } = defineProps<{
     mix-blend-mode: multiply;
     position: absolute;
 
-    animation-timeline: scroll();
     will-change: transform;
+
+    animation-range: entry 40% contain 60%;
+    animation-fill-mode: both;
+    animation-duration: 1ms;
+    view-timeline: --subjectReveal block;
+    animation-timeline: --subjectReveal;
   }
 
   .animation-1 {
     height: var(--height);
     aspect-ratio: 1 / calc(sqrt(3));
+
+    animation-name: r1, opacity;
+    left: 50%;
+    transform: translateX(-50%);
 
     .rhombus {
       clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
@@ -86,6 +99,10 @@ const { height = '20rem' } = defineProps<{
     height: calc(var(--height) / 2);
     aspect-ratio: calc(sqrt(3));
 
+    animation-name: r2, opacity;
+    left: 0;
+    bottom: 0;
+
     .rhombus {
       clip-path: polygon(calc(100% / 3) 0, 100% 0, calc(200% / 3) 100%, 0 100%);
       padding: 28% 42% 5% 9%;
@@ -95,6 +112,10 @@ const { height = '20rem' } = defineProps<{
   .animation-3 {
     height: calc(var(--height) / 2);
     aspect-ratio: calc(sqrt(3));
+
+    animation-name: r3, opacity;
+    right: 0;
+    bottom: 0;
 
     .rhombus {
       clip-path: polygon(calc(100% / 3) 100%, 100% 100%, calc(200% / 3) 0, 0 0);
@@ -116,69 +137,40 @@ const { height = '20rem' } = defineProps<{
   bottom: 0;
 }
 
-@supports (animation-timeline: scroll()) {
-  .animation-1 {
-    animation:
-      r1 ease,
-      opacity ease;
-
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .animation-2 {
-    animation:
-      r2 ease,
-      opacity ease;
-
-    left: 0;
-    bottom: 0;
-  }
-
-  .animation-3 {
-    animation:
-      r3 ease,
-      opacity ease;
-
-    right: 0;
-    bottom: 0;
-  }
-}
-
 @keyframes r1 {
-  0% {
+  from {
     transform: translateX(-50%) translateY(calc(-1 * var(--translate)));
   }
-  25% {
+  to {
     transform: translateX(-50%) translateY(0);
   }
 }
 
 @keyframes r2 {
-  0% {
+  from {
     transform: translateX(calc(-1 * var(--translate) * sqrt(3) / 2))
       translateY(calc(var(--translate) / 2));
   }
-  25% {
+  to {
     transform: translateX(0) translateY(0);
   }
 }
 
 @keyframes r3 {
-  0% {
+  from {
     transform: translateX(calc(var(--translate) * sqrt(3) / 2))
       translateY(calc(var(--translate) / 2));
   }
-  25% {
+  to {
     transform: translateX(0) translateY(0);
   }
 }
 
 @keyframes opacity {
-  0% {
+  from {
     opacity: 0;
   }
-  25% {
+  to {
     opacity: 1;
   }
 }
