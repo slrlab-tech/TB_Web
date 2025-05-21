@@ -4,7 +4,7 @@ import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia'
 
-import OSS from 'ali-oss'
+// import OSS from 'ali-oss'
 
 import App from './App.vue'
 import router from './router'
@@ -29,13 +29,13 @@ app.use(i18n)
 app.use(router)
 app.use(pinia)
 
-const client = new OSS({
-  region: 'oss-cn-hongkong',
-  accessKeyId: import.meta.env.VITE_OSS_ACCESS_KEY_ID,
-  accessKeySecret: import.meta.env.VITE_OSS_ACCESS_KEY_SECRET,
-  bucket: 'tb-web',
-  secure: true,
-})
-app.config.globalProperties.$ossClient = client as OSS
+// const client = new OSS({
+//   region: 'oss-cn-hongkong',
+//   accessKeyId: import.meta.env.VITE_OSS_ACCESS_KEY_ID,
+//   accessKeySecret: import.meta.env.VITE_OSS_ACCESS_KEY_SECRET,
+//   bucket: 'tb-web',
+//   secure: true,
+// })
+// app.config.globalProperties.$ossClient = client as OSS
 
 app.mount('#app')

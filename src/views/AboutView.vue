@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MembersScroll from '@/components/MembersScroll.vue'
-import OSS from 'ali-oss'
+// import OSS from 'ali-oss'
 import { Buffer } from 'buffer'
 </script>
 
@@ -9,24 +9,24 @@ export default {
   props: ['data'],
   data() {
     return {
-      client: this.$ossClient as unknown as OSS,
+      // client: this.$ossClient as unknown as OSS,
     }
   },
-  methods: {
-    async sendData() {
-      try {
-        // const result = await this.client.get('subscription.json')
-        this.client.append(
-          'subscription.json',
-          Buffer.from("{ name: 'test', email: 'abc@mail.com' }", 'utf8'),
-        )
-        // const jsonString = Buffer.from(result.content).toString('utf8')
-        // console.log(JSON.parse(jsonString))
-      } catch (err) {
-        console.log(err)
-      }
-    },
-  },
+  // methods: {
+  //   async sendData() {
+  //     try {
+  //       // const result = await this.client.get('subscription.json')
+  //       this.client.append(
+  //         'subscription.json',
+  //         Buffer.from("{ name: 'test', email: 'abc@mail.com' }", 'utf8'),
+  //       )
+  //       // const jsonString = Buffer.from(result.content).toString('utf8')
+  //       // console.log(JSON.parse(jsonString))
+  //     } catch (err) {
+  //       console.log(err)
+  //     }
+  //   },
+  // },
 }
 
 // const client = this.$ossClient
