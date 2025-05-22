@@ -6,7 +6,7 @@ const { contacts } = useDataStore()
 <template>
   <div class="wrapper">
     <div class="padding">
-      <h2>{{ $t('Contact Us') }}</h2>
+      <h4>{{ $t('Contact Us') }}</h4>
       <div class="contacts" data-test="contacts">
         <div v-for="(value, key) in contacts" :key="key">
           <p>{{ $t(key) }}: {{ value }}</p>

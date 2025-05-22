@@ -38,19 +38,17 @@ const onLogoStart = () => {
     <nav>
       <div class="nav-section">
         <RouterLink @click="closeMenu()" to="/about">{{ $t('About Us') }}</RouterLink>
-        <RouterLink @click="closeMenu()" to="/products">{{ $t('Company Background') }}</RouterLink>
-        <RouterLink @click="closeMenu()" to="/products">{{ $t('Members') }}</RouterLink>
+        <RouterLink @click="closeMenu()" to="/">{{ $t('Company Background') }}</RouterLink>
+        <RouterLink @click="closeMenu()" to="/">{{ $t('Members') }}</RouterLink>
       </div>
       <div class="nav-section">
-        <RouterLink @click="closeMenu()" to="/products">{{ $t('Research Team') }}</RouterLink>
+        <RouterLink @click="closeMenu()" to="/">{{ $t('Research Team') }}</RouterLink>
       </div>
       <div class="nav-section">
-        <RouterLink @click="closeMenu()" to="/products">{{ $t('Our Products') }}</RouterLink>
+        <RouterLink @click="closeMenu()" to="/">{{ $t('Our Products') }}</RouterLink>
       </div>
       <div class="nav-section">
-        <RouterLink @click="closeMenu()" to="/components">{{
-          $t('Learn more about SEN!')
-        }}</RouterLink>
+        <RouterLink @click="closeMenu()" to="/">{{ $t('Learn more about SEN!') }}</RouterLink>
       </div>
     </nav>
   </TopBar>
@@ -117,10 +115,10 @@ nav {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0.5rem;
 
   :first-child {
-    font-size: var(--h2);
+    font-size: var(--h3);
   }
 }
 
