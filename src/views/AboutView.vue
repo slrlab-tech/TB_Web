@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import MembersScroll from '@/components/MembersScroll.vue'
 // import { Buffer } from 'buffer'
+
+import { useDataStore } from '@/stores/data.ts'
+const { members } = useDataStore()
 </script>
 
 <script lang="ts">
 export default {
-  props: ['data'],
   data() {
     return {
       client: this.$ossClient,
@@ -66,14 +68,17 @@ export default {
         <br />
         <br />
         {{ $t('about-2') }}
-        <br />
-        <br />
+      </div>
+      <div style="width: 100%">
         {{ $t('about-3') }}
         <br />
         <br />
         {{ $t('about-4') }}
       </div>
+      <div
+        style="background-image: url('https://picsum.photos/500/500'); background-size: cover"
+      ></div>
     </div>
-    <MembersScroll :members="data.members" :title="$t('Our Members')" />
+    <MembersScroll :members="members" :title="$t('Our Members')" />
   </div>
 </template>

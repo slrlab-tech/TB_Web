@@ -3,14 +3,10 @@ import { Icon } from '@iconify/vue/dist/iconify.js'
 import { RouterView } from 'vue-router'
 import { ref } from 'vue'
 
-import { useDataStore } from '@/stores/data.ts'
-
 import TopBar from '@/components/TopBar.vue'
 import TitleBanner from '@/components/TitleBanner.vue'
 import SiteFooter from '@/components/SiteFooter.vue'
 import CurvedBg from '@/components/CurvedBg.vue'
-
-const data = useDataStore()
 </script>
 
 <script lang="ts">
@@ -71,17 +67,16 @@ const onLogoStart = () => {
     TODO="replace video"
   ></video>
   <CurvedBg>
-    <!-- <RouterView v-if="isLoaded" :data="data" :onLogoEnd="onLogoEnd" :onLogoStart="onLogoStart" /> -->
-    <RouterView :data="data" :onLogoEnd="onLogoEnd" :onLogoStart="onLogoStart" />
+    <RouterView :onLogoEnd="onLogoEnd" :onLogoStart="onLogoStart" />
   </CurvedBg>
   <Icon icon="mingcute:up-line" class="up-btn" @click="toTop()"></Icon>
-  <SiteFooter :data="data.contacts"></SiteFooter>
+  <SiteFooter />
 </template>
 
 <style scoped>
 .up-btn {
   width: auto;
-  height: 4rem;
+  height: 3rem;
   color: var(--white);
   background-color: var(--brand-color);
   border-radius: 1rem;

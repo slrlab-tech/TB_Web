@@ -11,6 +11,10 @@ export const useDataStore = defineStore('data', {
         'Phone number': '(852) 67715590',
         Email: 'info@tomorrowsbrain.com',
       },
+      partners: [
+        { image: 'partners/HKSTP.png', alt: 'logo 1', href: 'https://google.com' },
+        { image: 'partners/TEC.png', alt: 'logo 2' },
+      ],
     }
   },
 })

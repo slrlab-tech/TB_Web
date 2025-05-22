@@ -7,37 +7,38 @@ export default {
   data() {
     return {
       lineHeight: 0 as number,
-      memberObj: null as HTMLElement | null,
+      memberLocation: -1 as number,
+      memberWrapper: null as HTMLElement | null,
+      progressLine: null as HTMLElement | null,
       memberImages: Array.from(Array(this.members.length).fill(true)),
     }
   },
   methods: {
     scroll() {
-      const progressLine = document.querySelector('.progress-line') as HTMLElement
+      if (this.progressLine) {
+        const scroll = Math.max(
+          0,
+          document.documentElement.scrollTop - (this.progressLine.parentElement?.offsetTop || 0),
+        )
+        this.progressLine.style.height = `${scroll}px`
 
-      if (progressLine) {
-        const scroll =
-          document.documentElement.scrollTop -
-          (progressLine.parentElement?.offsetTop || 0) +
-          Math.floor(screen.height * 0.2)
-        progressLine.style.height = `${Math.max(0, scroll)}px`
-
-        if (
-          this.memberObj &&
-          this.memberObj.offsetTop + this.memberObj.offsetHeight / 2 <
-            parseInt(progressLine.style.height.replace('px', ''))
-        ) {
-          this.memberObj.classList.add('is-inViewport')
-          this.memberObj = document.querySelectorAll(
-            '.member:not(.is-inViewport)',
-          )[0] as HTMLElement
+        if (this.memberWrapper && this.memberLocation < scroll) {
+          this.memberWrapper.classList.add('is-inViewport')
+          this.memberWrapper = document.querySelector(
+            '.member-wrapper:not(.is-inViewport)',
+          ) as HTMLElement
+          this.memberLocation = this.memberWrapper.offsetTop + this.memberWrapper.offsetHeight / 2
         }
       }
     },
   },
   mounted() {
     this.lineHeight = document.getElementsByClassName('line-background')[0]?.clientHeight || 0
-    this.memberObj = document.querySelectorAll('.member:not(.is-inViewport)')[0] as HTMLElement
+    this.progressLine = document.querySelector('.progress-line') as HTMLElement
+    this.memberWrapper = document.querySelector(
+      '.member-wrapper:not(.is-inViewport)',
+    ) as HTMLElement
+    this.memberLocation = this.memberWrapper.offsetTop + this.memberWrapper.offsetHeight / 2
 
     document.addEventListener('scroll', this.scroll)
   },
@@ -45,12 +46,12 @@ export default {
 </script>
 
 <template>
-  <h2 style="padding-bottom: 4.5rem">{{ title }}</h2>
+  <h2 class="title">{{ title }}</h2>
   <div id="scrollArea" data-test="members">
     <div class="line-background"></div>
     <div class="line-background progress-line"></div>
     <div v-for="(member, index) in members" :key="index">
-      <div :class="index % 2 ? 'memberWrapper' : 'memberWrapper inverted'">
+      <div :class="index % 2 ? 'member-wrapper' : 'member-wrapper inverted'">
         <div class="placeHolder"></div>
         <div class="point"></div>
         <div class="member placeHolder" data-inviewport="member">
@@ -69,9 +70,9 @@ export default {
               style="width: 80%; height: 80%"
             />
           </div>
-          <h2 class="member-name">
+          <h3 class="member-name">
             {{ member.name }}
-          </h2>
+          </h3>
           <p>{{ member.position }}</p>
           <p class="member-description">{{ member.description }}</p>
         </div>
@@ -81,9 +82,17 @@ export default {
 </template>
 
 <style scoped>
+.title {
+  border-bottom: 5px solid var(--highlight-2);
+  margin-block: 3rem 1px;
+  padding-inline: 2rem;
+  line-height: 1.2;
+}
+
 #scrollArea {
-  margin-block: 3rem;
   position: relative;
+  border-top: 4px solid var(--black);
+  width: 100%;
 }
 
 .line-background {
@@ -92,23 +101,14 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   width: 3px;
-  background-color: #f0f0f0;
+  background-color: var(--white-soft);
 }
 
 .progress-line {
   height: 0;
-  background-color: #000;
+  background-color: var(--black);
   max-height: 100%;
   transition: all 0.2s;
-}
-
-.is-inViewport {
-  transition:
-    opacity 1s,
-    transform 1s;
-  animation-play-state: running;
-  transform: translateY(-50px);
-  opacity: 1 !important;
 }
 
 .image-wrapper {
@@ -142,12 +142,24 @@ export default {
   text-align: center;
 }
 
-.memberWrapper {
+.member-wrapper {
   display: flex;
   align-items: center;
+  justify-content: center;
+  transform: translateY(50px);
 }
-.memberWrapper.inverted {
+.member-wrapper.inverted {
   flex-direction: row-reverse;
+}
+.member-wrapper.is-inViewport {
+  .member {
+    transition:
+      opacity 1s,
+      transform 1s;
+    animation-play-state: running;
+    transform: translateY(-50px);
+    opacity: 1 !important;
+  }
 }
 
 .member {
@@ -157,7 +169,7 @@ export default {
 
 .placeHolder {
   padding: 1rem 0;
-  margin: -3rem 2rem;
+  margin: 0 2rem;
 
   max-width: 25vw;
   width: 25vw;

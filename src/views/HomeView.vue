@@ -4,16 +4,17 @@ import LatestProduct from '../components/LatestProduct.vue'
 import PartnerList from '@/components/PartnerList.vue'
 import TriAnimation from '@/components/TriAnimation.vue'
 import { Icon } from '@iconify/vue/dist/iconify.js'
+
+import { useDataStore } from '@/stores/data.ts'
+const { partners, products } = useDataStore()
 </script>
 
 <script lang="ts">
 export default {
-  props: ['data', 'onLogoEnd', 'onLogoStart'],
+  props: ['onLogoEnd', 'onLogoStart'],
   beforeRouteLeave(to, from, next) {
     const threeScene = document.getElementById('model')
-    if (threeScene) {
-      threeScene.remove() // To avoid lag
-    }
+    if (threeScene) threeScene.remove() // To avoid lag
     next()
   },
 }
@@ -30,35 +31,27 @@ export default {
           <h4 style="line-height: normal">
             {{ $t('mission') }}
           </h4>
-          <div class="mission-item">
+          <div
+            v-for="(icon, index) in [
+              'material-symbols:psychology',
+              'ic:round-task',
+              'carbon:ai-business-impact-assessment',
+            ]"
+            class="mission-item"
+            :key="index"
+          >
             <div class="mission-icon center">
-              <Icon icon="ic:round-task" style="font-size: 1.5rem" />
+              <Icon :icon="icon" style="font-size: 1.5rem" />
             </div>
             <p>
-              {{ $t('mission-1') }}
-            </p>
-          </div>
-          <div class="mission-item">
-            <div class="mission-icon center">
-              <Icon icon="carbon:ai-business-impact-assessment" />
-            </div>
-            <p>
-              {{ $t('mission-2') }}
-            </p>
-          </div>
-          <div class="mission-item">
-            <div class="mission-icon center">
-              <Icon icon="mingcute:bank-line" />
-            </div>
-            <p>
-              {{ $t('mission-3') }}
+              {{ $t('mission-' + (index + 1)) }}
             </p>
           </div>
         </div>
       </div>
     </div>
-    <LatestProduct :items="data.products" />
-    <PartnerList :partners="data.partners" />
+    <LatestProduct :items="products" />
+    <PartnerList :partners="partners" />
   </main>
 </template>
 
@@ -69,6 +62,7 @@ export default {
   gap: 2rem;
   margin: 50px;
 }
+
 .mission-icon {
   width: 2rem;
   min-width: 2rem;

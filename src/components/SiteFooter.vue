@@ -1,7 +1,6 @@
-<script lang="ts">
-export default {
-  props: ['data'],
-}
+<script setup lang="ts">
+import { useDataStore } from '@/stores/data.ts'
+const { contacts } = useDataStore()
 </script>
 
 <template>
@@ -9,8 +8,8 @@ export default {
     <div class="padding">
       <h2>{{ $t('Contact Us') }}</h2>
       <div class="contacts" data-test="contacts">
-        <div v-for="(value, key) in data?.items" :key="key">
-          <p>{{ $t(String(key)) }}: {{ value }}</p>
+        <div v-for="(value, key) in contacts" :key="key">
+          <p>{{ $t(key) }}: {{ value }}</p>
         </div>
       </div>
     </div>
