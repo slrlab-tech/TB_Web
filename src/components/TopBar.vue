@@ -50,8 +50,8 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
 
 <template>
   <header>
-    <img v-if="$route.path == '/'" src="../assets/logo.svg" alt="Logo" class="logo" />
-    <div v-if="$route.path !== '/'" @click="$router.push({ path: '/' })" class="logo-btn">
+    <img v-if="$route.path == '/'" src="../assets/logo.svg" alt="Logo" class="logo shadow" />
+    <div v-if="$route.path !== '/'" @click="$router.push({ path: '/' })" class="logo-btn shadow">
       {{ $t('Tomorrow’s Brain') }}
       <div class="logo-wrapper" :style="{ height: SafariScale === 2 ? 'var(--h4)' : 'unset' }">
         <img src="../assets/logo.svg" alt="Logo" class="logo" />
@@ -61,10 +61,10 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
       <Icon
         @click="toggleLanguage(true)"
         icon="material-symbols:language"
-        class="icon-button"
+        class="icon-button shadow"
         style="anchor-name: --language"
       />
-      <Icon @click="toggleMenu(true)" icon="gg:details-more" class="icon-button" />
+      <Icon @click="toggleMenu(true)" icon="gg:details-more" class="icon-button shadow" />
     </div>
     <div
       class="mask"
@@ -94,7 +94,7 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
 .logo {
   opacity: v-bind(iconOpacity);
   width: calc((var(--h4) * 1.5 + 1.25rem) * v-bind(SafariScale));
-  margin: -0.5rem;
+  margin-block: -0.5rem;
   scale: calc(1 / v-bind(SafariScale));
 }
 
@@ -166,8 +166,11 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
   width: 3rem;
   padding: 0.5rem;
   color: var(--white);
-  filter: drop-shadow(0.1rem 0.1rem 0.2rem var(--color-text));
   cursor: pointer;
+}
+
+.shadow {
+  filter: drop-shadow(0.1rem 0.1rem 0.2rem var(--color-text));
 }
 
 header {

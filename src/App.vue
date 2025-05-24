@@ -42,7 +42,7 @@ const onLogoStart = () => {
         <RouterLink @click="closeMenu()" to="/">{{ $t('Members') }}</RouterLink>
       </div>
       <div class="nav-section">
-        <RouterLink @click="closeMenu()" to="/">{{ $t('Research Team') }}</RouterLink>
+        <RouterLink @click="closeMenu()" to="/Rnd">{{ $t('R&D Area') }}</RouterLink>
       </div>
       <div class="nav-section">
         <RouterLink @click="closeMenu()" to="/">{{ $t('Our Products') }}</RouterLink>

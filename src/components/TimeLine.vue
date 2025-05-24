@@ -1,26 +1,39 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
-const year = ref(1)
-const props = defineProps({
+const year = ref('')
+const { onChange, years, light } = defineProps({
   onChange: {
     type: Function,
     default: () => {},
   },
+  years: {
+    type: Array<string>,
+    default: () => Array.from({ length: 10 }, (_, i) => i + 2010),
+  },
+  light: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const onClicked = (i: number) => {
-  year.value = i
-  props.onChange(i + 2010)
+  year.value = years[i]
+  onChange(i)
 }
+
+onMounted(() => onClicked(0))
 </script>
 
 <template>
   <div class="wrapper">
     <div class="timeline">
-      <div class="line"></div>
-      <div v-for="i in 10" :key="i" @click="() => onClicked(i)" style="flex: 1">
-        <div :class="'year ' + (year == i ? 'highlighted' : '')">{{ i + 2010 }}</div>
+      <div
+        class="line"
+        :style="{ backgroundColor: light ? 'var(--text-dark-1)' : 'var(--text-light-1)' }"
+      ></div>
+      <div v-for="(i, index) in years" :key="i" @click="() => onClicked(index)" style="flex: 1">
+        <div class="year" :class="{ light, highlighted: year == i }">{{ i }}</div>
       </div>
     </div>
   </div>
@@ -38,8 +51,6 @@ const onClicked = (i: number) => {
   transform: translateX(-50%) translateY(50%);
   width: 100vw;
   height: 2px;
-  background-color: var(--text-light-1);
-  z-index: -1;
 }
 
 .timeline {
@@ -54,6 +65,8 @@ const onClicked = (i: number) => {
   cursor: pointer;
   justify-items: center;
   transition: all 0.2s;
+  z-index: 1;
+  position: relative;
 }
 
 .year:hover {
@@ -70,12 +83,16 @@ const onClicked = (i: number) => {
   transition: all 0.2s;
 }
 
+.year.light:after {
+  background-color: var(--text-dark-1);
+}
+
 .highlighted {
   color: var(--highlight);
   font-size: 1.5rem;
 }
 
 .highlighted:after {
-  background-color: var(--highlight);
+  background-color: var(--highlight) !important;
 }
 </style>

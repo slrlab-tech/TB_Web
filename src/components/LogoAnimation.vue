@@ -13,12 +13,13 @@ import model from '@/assets/brain.glb?url'
 
 <script lang="ts">
 const d90 = Math.PI / 2
-const iconSize = 4 * 8 // The width of icon in topBar (4)
-const brainScale = 50
-const lineWidth = 6
+const lineWidth = 10
 const emissiveColor = 0xffffff
-const emissiveIntensity = 6000
+const emissiveIntensity = 2000
 const passStrength = 0.01
+const rem = 20 // Font size of body
+const iconSize = 3.5 * rem // The height of icon in topBar
+const padding = { width: rem * 4, height: rem * 2 }
 
 let scene = null as THREE.Scene | null
 let composer = null as EffectComposer | null
@@ -42,12 +43,14 @@ export default {
       renderer: null as THREE.WebGLRenderer | null,
       progress: 0 as number,
       container: null as HTMLElement | null,
+      brainHeight: 0 as number,
+      brainScale: 0 as number,
     }
   },
   methods: {
     renderLights: function (brain: THREE.Box3) {
       const lightMesh = new THREE.Mesh(
-        new THREE.SphereGeometry(1, 20, 10),
+        new THREE.SphereGeometry(20, 15, 10),
         new THREE.MeshStandardMaterial({
           toneMapped: false,
           emissiveIntensity: emissiveIntensity,
@@ -60,28 +63,33 @@ export default {
         }),
       )
 
+      // Adjust the size of the bounding box to fit the brain model
       brain.expandByVector(
         new THREE.Vector3(
           (brain.max.x - brain.min.x) * -0.05,
-          (brain.max.y - brain.min.y) * -0.125,
+          1,
           (brain.max.z - brain.min.z) * -0.1,
         ),
       )
+      brain.max.y = brain.max.y * 0.95
+      brain.min.y = brain.min.y * 0.5
 
       const lights = new THREE.Group()
 
       let count = 0
-      while (count < 60) {
+      while (count < 100) {
         const mesh = lightMesh.clone()
 
         const randomSize = Math.random() * 0.5 + 0.3
         mesh.scale.set(randomSize, randomSize, randomSize)
 
+        // Get a random position within the bounding box
         const randomX = Math.random() * (brain.max.x - brain.min.x) + brain.min.x
         const randomY = Math.random() * (brain.max.y - brain.min.y) + brain.min.y
         const randomZ = Math.random() * (brain.max.z - brain.min.z) + brain.min.z
         mesh.position.set(randomX, randomY, randomZ)
 
+        // Check if the position is within the sphere
         if (
           (randomX / brain.max.x) ** 2 +
             (randomY / brain.max.y) ** 2 +
@@ -94,53 +102,58 @@ export default {
       }
 
       const lines = new THREE.Group()
-      count = 0
-      while (count < 100) {
-        const points = []
-        const start = lights.children[Math.floor(Math.random() * lights.children.length)]
-        const end = lights.children[Math.floor(Math.random() * lights.children.length)]
+      for (let i = 0; i < 10; i++) {
+        const start = lights.children[i]
+        count = 0
+        let failCount = 0
+        while (count < 5 || failCount < 50) {
+          failCount += 1
+          const points = []
+          // const start = lights.children[Math.floor(Math.random() * lights.children.length)]
+          const end = lights.children[Math.floor(Math.random() * lights.children.length)]
 
-        let length = start.position.distanceTo(end.position)
-        if (length > 15) continue
+          let length = start.position.distanceTo(end.position)
+          if (length > 200) continue
 
-        length = length / 2
+          length = length / 20
 
-        const dx = (end.position.x - start.position.x) / length
-        const dy = (end.position.y - start.position.y) / length
-        const dz = (end.position.z - start.position.z) / length
+          const dx = (end.position.x - start.position.x) / length
+          const dy = (end.position.y - start.position.y) / length
+          const dz = (end.position.z - start.position.z) / length
 
-        points.push(start.position)
-        for (let i = 1; i < length; i++) {
-          const x = (start.position.x + dx * i) * (Math.random() * 0.1 + 0.9)
-          const y = (start.position.y + dy * i) * (Math.random() * 0.1 + 0.9)
-          const z = (start.position.z + dz * i) * (Math.random() * 0.1 + 0.9)
-          points.push(new THREE.Vector3(x, y, z))
+          points.push(start.position)
+          for (let i = 1; i < length; i++) {
+            const x = (start.position.x + dx * i) * (Math.random() * 0.1 + 0.9)
+            const y = (start.position.y + dy * i) * (Math.random() * 0.1 + 0.9)
+            const z = (start.position.z + dz * i) * (Math.random() * 0.1 + 0.9)
+            points.push(new THREE.Vector3(x, y, z))
+          }
+          points.push(end.position)
+
+          const geometry = new THREE.TubeGeometry(
+            new THREE.CatmullRomCurve3(points),
+            20,
+            Math.min(start.scale.x, end.scale.x) ** 2 * lineWidth,
+            8,
+            false,
+          )
+
+          const line = new THREE.Mesh(
+            geometry,
+            new THREE.MeshStandardMaterial({
+              toneMapped: false,
+              emissiveIntensity: emissiveIntensity / 2,
+              emissive: emissiveColor,
+              color: emissiveColor,
+              depthTest: false,
+              depthWrite: false,
+              transparent: true,
+              opacity: 0.9,
+            }),
+          )
+          lines.add(line)
+          count += 1
         }
-        points.push(end.position)
-
-        const geometry = new THREE.TubeGeometry(
-          new THREE.CatmullRomCurve3(points),
-          20,
-          (Math.min(start.scale.x, end.scale.x) ** 2 * lineWidth) / 20,
-          8,
-          false,
-        )
-
-        const line = new THREE.Mesh(
-          geometry,
-          new THREE.MeshStandardMaterial({
-            toneMapped: false,
-            emissiveIntensity: emissiveIntensity / 2,
-            emissive: emissiveColor,
-            color: emissiveColor,
-            depthTest: false,
-            depthWrite: false,
-            transparent: true,
-            opacity: 0.9,
-          }),
-        )
-        lines.add(line)
-        count += 1
       }
 
       count = 0
@@ -191,20 +204,15 @@ export default {
         return
       }
 
-      const w = this.container.clientWidth
-      const h = this.container.clientHeight
-      const viewSize = h
-      const aspectRatio = w / h
-
       this.camera = new THREE.OrthographicCamera(
-        (-aspectRatio * viewSize) / 2,
-        (aspectRatio * viewSize) / 2,
-        viewSize / 2,
-        -viewSize / 2,
+        -this.container.clientWidth / 2,
+        this.container.clientWidth / 2,
+        this.container.clientHeight / 2,
+        -this.container.clientHeight / 2,
         -1000,
         1000,
       )
-      this.camera.position.z = 1
+      this.camera.position.z = 0
 
       scene = new THREE.Scene()
 
@@ -244,7 +252,14 @@ export default {
           depthTest: false,
         })
 
-        obj.scene.scale.set(brainScale, brainScale, brainScale)
+        let brainBox = new THREE.Box3().setFromObject(obj.scene)
+        if (this.container) {
+          this.brainScale = Math.min(
+            (this.container.clientHeight - padding.height * 2) / (brainBox.max.y - brainBox.min.y),
+            (this.container.clientWidth - padding.width * 2) / (brainBox.max.x - brainBox.min.x),
+          )
+          obj.scene.scale.set(this.brainScale, this.brainScale, this.brainScale)
+        }
         obj.scene.rotation.y = -Math.PI / 2
         obj.scene.updateMatrix()
         obj.scene.traverse((child) => {
@@ -253,7 +268,9 @@ export default {
           }
         })
 
-        this.renderLights(new THREE.Box3().setFromObject(obj.scene))
+        brainBox = new THREE.Box3().setFromObject(obj.scene)
+        this.brainHeight = brainBox.max.y - brainBox.min.y
+        this.renderLights(brainBox.clone())
 
         brain.add(obj.scene)
         brain.renderOrder = 1
@@ -268,20 +285,19 @@ export default {
       }
 
       if (obj.rotation.x >= 0 || step > 0) {
-        const scale =
-          (Math.min(this.container.clientHeight, this.container.clientWidth) - 64) / iconSize / 2
+        const targetScale = iconSize / this.brainHeight
 
-        const posX = -this.container.clientWidth / 2 + 64 + iconSize
-        const posY = this.container.clientHeight / 2 - 32 - iconSize
+        const posX = -this.container.clientWidth / 2 + padding.width + iconSize / 2
+        const posY = this.container.clientHeight / 2 - padding.height - iconSize / 2
 
         obj.rotation.x += 0.01 * step
         obj.rotation.y -= 0.01 * step
 
-        obj.position.x = posX / (d90 / obj.rotation.x)
-        obj.position.y = posY / (d90 / obj.rotation.x)
+        const currentStep = Math.max(0, Math.min(1, obj.rotation.x == 0 ? 0 : obj.rotation.x / d90))
+        obj.position.x = posX * currentStep
+        obj.position.y = posY * currentStep
 
-        const stepScale = scale - Math.min(Math.max((scale * obj.position.x) / posX, 1), scale) + 1
-
+        const stepScale = 1 + (targetScale - 1) * currentStep
         obj.scale.set(stepScale, stepScale, stepScale)
 
         if (isLight) {
@@ -292,25 +308,24 @@ export default {
         }
 
         if (obj.rotation.x > d90 || this.progress > 0) {
-          obj.scale.set(1, 1, 1)
           obj.rotation.x = d90
           obj.rotation.y = -d90
-          obj.position.x = posX
-          obj.position.y = posY
-
           this.progress += step
         } else if (obj.rotation.x < 0) {
-          obj.scale.set(scale, scale, scale)
           obj.rotation.x = 0
           obj.rotation.y = 0
-          obj.position.x = 0
-          obj.position.y = 0
         } else if (obj.rotation.x < d90) this.progress = 0
       }
     },
     animate: function (step = 0) {
       if (!this.renderer || !scene || !this.camera || !composer) {
-        console.error('Error loading three.js components')
+        console.error(
+          'Error loading three.js components',
+          !this.renderer,
+          !scene,
+          !this.camera,
+          !composer,
+        )
         return
       }
 
@@ -347,15 +362,10 @@ export default {
 
       this.renderer.setSize(this.container.clientWidth, this.container.clientHeight)
 
-      const w = this.container.clientWidth
-      const h = this.container.clientHeight
-      const viewSize = h
-      const aspectRatio = w / h
-
-      this.camera.left = -(aspectRatio * viewSize) / 2
-      this.camera.right = (aspectRatio * viewSize) / 2
-      this.camera.top = viewSize / 2
-      this.camera.bottom = -viewSize / 2
+      this.camera.left = -this.container.clientWidth / 2
+      this.camera.right = this.container.clientWidth / 2
+      this.camera.top = this.container.clientHeight / 2
+      this.camera.bottom = -this.container.clientHeight / 2
 
       this.camera.updateProjectionMatrix()
       requestAnimationFrame(() => this.animate())

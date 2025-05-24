@@ -25,7 +25,7 @@ const currentIndex = ref(0)
       />
       <div class="content">
         <div v-for="func in items[currentIndex]?.functions" :key="func.name">
-          <p class="dot">{{ $t(func.name) }}</p>
+          <p class="dot-content">{{ $t(func.name) }}</p>
         </div>
       </div>
       <PopUpButton @click="() => console.log('Button clicked!')">{{
@@ -44,16 +44,5 @@ const currentIndex = ref(0)
   display: flex;
   color: var(--white);
   padding-block: 4rem;
-}
-
-.content {
-  flex: 1;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  flex-direction: column;
-  justify-content: end;
-  gap: 1rem;
-  margin-block: 2rem 6rem;
 }
 </style>
