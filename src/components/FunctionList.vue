@@ -11,7 +11,8 @@ export default {
 <template>
   <div class="wrapper">
     <div
-      :class="index % 2 ? 'columns reverse' : 'columns'"
+      class="columns"
+      :class="{ reverse: index % 2 }"
       v-for="(item, index) in data"
       :key="item.title"
     >

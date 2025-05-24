@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TimeLine from '@/components/TimeLine.vue'
 import { ref, onBeforeMount } from 'vue'
+import { resolveImagePath } from '@/utils/utils'
 
 import { useDataStore } from '@/stores/data.ts'
 const { publications } = useDataStore()
@@ -40,7 +41,7 @@ const updateYear = (newYear: number) => {
       light
     />
     <img
-      :src="publications[year].image"
+      :src="resolveImagePath(publications[year].image)"
       alt="Research Image"
       style="width: 100%; margin-block: 1.5rem"
     />

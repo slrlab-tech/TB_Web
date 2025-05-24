@@ -30,7 +30,9 @@ export default {
     </div>
     <ImageScroller
       v-else
-      :items="partners <= 10 ? partners : partners?.slice(0, Math.floor(partners.length / 2))"
+      :items="
+        partners?.length <= 10 ? partners : partners?.slice(0, Math.floor(partners.length / 2))
+      "
       class="carousel"
     />
     <ImageScroller
@@ -43,11 +45,15 @@ export default {
 </template>
 
 <style scoped>
+.partner-image:hover {
+  filter: none;
+}
 .partner-image {
   min-width: 0;
   flex: 1;
   object-fit: contain;
   cursor: pointer;
+  filter: grayscale(30%);
   height: min-content;
 
   -drag: none;
@@ -64,5 +70,9 @@ export default {
   width: 100%;
   height: 100%;
   gap: 2rem;
+}
+
+.carousel {
+  max-height: 4rem;
 }
 </style>

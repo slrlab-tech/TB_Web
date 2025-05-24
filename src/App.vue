@@ -73,6 +73,7 @@ const onLogoStart = () => {
 
 <style scoped>
 .up-btn {
+  cursor: pointer;
   width: auto;
   height: 3rem;
   color: var(--white);

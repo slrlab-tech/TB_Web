@@ -19,7 +19,8 @@ export default {
 
 <template>
   <div class="scroller-wrapper">
-    <div :class="'scroller-animation' + (reverse ? ' reverse' : '')">
+    {{ console.log(reverse, items) }}
+    <div class="scroller-animation" :class="{ reverse: reverse }">
       <div class="scroller" v-for="i in 2" data-test="scroller" :key="i">
         <div v-for="(item, index) in items" :key="index" class="scroller-item">
           <img
@@ -44,7 +45,7 @@ export default {
 .scroller-image {
   height: 100%;
   object-fit: cover;
-  filter: grayscale(100%);
+  filter: grayscale(30%);
   cursor: pointer;
 
   -drag: none;
@@ -114,18 +115,18 @@ export default {
 
 @keyframes move-first {
   0% {
-    transform: translateX(-25%);
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(25%);
+    transform: translateX(-50%);
   }
 }
 @keyframes move-second {
   0% {
-    transform: translateX(25%);
+    transform: translateX(-50%);
   }
   100% {
-    transform: translateX(-25%);
+    transform: translateX(0%);
   }
 }
 </style>
