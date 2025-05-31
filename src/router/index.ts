@@ -18,7 +18,6 @@ const router = createRouter({
       name: 'About Us',
       component: () => import('../views/AboutView.vue'),
     },
-    ,
     {
       path: '/RnD',
       name: 'R&D Area',

@@ -7,6 +7,8 @@
   --black-soft: #222222;
   --black-mute: #282828;
 
+  --error: #f56c6c;
+
   --indigo: #2c3e50;
   --brand-color: #2c3e50;
 
@@ -29,6 +31,7 @@
   --h2: 2rem;
   --h3: 1.75rem;
   --h4: 1.5rem;
+  --option: 0.8rem;
 
   --display: 3rem;
   font-size: 20px;

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import MembersScroll from '@/components/MembersScroll.vue'
-// import { Buffer } from 'buffer'
-
 import { useDataStore } from '@/stores/data.ts'
+import SubscribeForm from '@/components/SubscribeForm.vue'
+
 const { members } = useDataStore()
 </script>
 
@@ -13,51 +13,12 @@ export default {
       client: this.$ossClient,
     }
   },
-  methods: {
-    async sendData() {
-      try {
-        // TODO: how to get pos?
-        const sub = await this.client.head('subscription.json')
-        console.log(sub)
-        //   this.client.append(
-        //     'subscription.json',
-        //     Buffer.from("{ name: 'test', email: 'abc@mail.com' }", 'utf8'),
-        //   )
-      } catch (err) {
-        console.log(err)
-      }
-    },
-  },
 }
 </script>
 
 <template>
   <div class="wrapper">
-    <input
-      type="text"
-      placeholder="Search"
-      style="
-        width: 100%;
-        height: 3rem;
-        border-radius: 1.5rem;
-        padding-left: 1rem;
-        border: none;
-        background-color: #f0f0f0;
-      "
-    />
-    <button
-      style="
-        width: 100%;
-        height: 3rem;
-        border-radius: 1.5rem;
-        padding-left: 1rem;
-        border: none;
-        background-color: #f0f0f0;
-      "
-      @click="sendData"
-    >
-      {{ $t('Submit') }}
-    </button>
+    <SubscribeForm />
     <h1 style="width: 100%">{{ $t('About TB') }}</h1>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; width: 100%">
       <div
