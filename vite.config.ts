@@ -15,6 +15,6 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  base: '/',
-  // base: process.env.VITE_NODE_ENV === 'production' ? 'TB_Web/' : '/',
+  // base: '/',
+  base: process.env.VITE_NODE_ENV === 'test' ? 'TB_Web/' : '/',
 })
