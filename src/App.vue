@@ -7,9 +7,20 @@ import TopBar from '@/components/TopBar.vue'
 import TitleBanner from '@/components/TitleBanner.vue'
 import SiteFooter from '@/components/SiteFooter.vue'
 import CurvedBg from '@/components/CurvedBg.vue'
+
+import { useDataStore } from './stores/data'
 </script>
 
 <script lang="ts">
+let dataStore
+
+export default {
+  beforeMount() {
+    dataStore = useDataStore()
+    dataStore.fetchAll()
+  },
+}
+
 const toTop = () => {
   window.scrollTo({
     top: 0,
@@ -33,7 +44,7 @@ const onLogoStart = () => {
 }
 </script>
 
-<template>
+<template v-if="dataStore.loaded">
   <TopBar class="top-bar" ref="TopBarRef" :iconOpacity="iconOpacity">
     <nav>
       <div class="nav-section">

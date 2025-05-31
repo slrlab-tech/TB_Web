@@ -27,7 +27,8 @@ export default {
           this.memberWrapper = document.querySelector(
             '.member-wrapper:not(.is-inViewport)',
           ) as HTMLElement
-          this.memberLocation = this.memberWrapper.offsetTop + this.memberWrapper.offsetHeight / 2
+          if (this.memberWrapper)
+            this.memberLocation = this.memberWrapper.offsetTop + this.memberWrapper.offsetHeight / 2
         }
       }
     },
