@@ -11,7 +11,6 @@ declare module '@vue/runtime-core' {
     $rt: Composer<A, B, C, D, E>['rt']
     $router: Router
     $route: RouteLocationNormalized
-    $ossClient: OSS
     $i18n: BaseFormatProps
   }
 }

@@ -6,16 +6,6 @@ import SubscribeForm from '@/components/SubscribeForm.vue'
 const { members } = useDataStore()
 </script>
 
-<script lang="ts">
-export default {
-  data() {
-    return {
-      client: this.$ossClient,
-    }
-  },
-}
-</script>
-
 <template>
   <div class="wrapper">
     <SubscribeForm />

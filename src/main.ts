@@ -4,8 +4,6 @@ import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia'
 
-import OSS from 'ali-oss'
-
 import App from './App.vue'
 import router from './router'
 
@@ -28,15 +26,5 @@ const app = createApp(App)
 app.use(i18n)
 app.use(router)
 app.use(pinia)
-
-// TODO: unsafe :( (ECS or Function Compute) https://www.alibabacloud.com/en/product/function-compute?_p_lc=1#J_3311282310
-const client = new OSS({
-  region: 'oss-cn-hongkong',
-  accessKeyId: import.meta.env.VITE_OSS_ACCESS_KEY_ID,
-  accessKeySecret: import.meta.env.VITE_OSS_ACCESS_KEY_SECRET,
-  bucket: 'tb-subscription',
-  secure: true,
-})
-app.config.globalProperties.$ossClient = client as OSS
 
 app.mount('#app')

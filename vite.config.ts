@@ -16,5 +16,5 @@ export default defineConfig({
     },
   },
   // base: '/',
-  base: process.env.VITE_NODE_ENV === 'test' ? 'TB_Web/' : '/',
+  base: process.env.VITE_NODE_ENV === 'testing' ? 'TB_Web/' : '/',
 })
