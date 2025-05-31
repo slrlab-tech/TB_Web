@@ -7,17 +7,27 @@ import { useDataStore } from '@/stores/data.ts'
 const { publications } = useDataStore()
 
 const year = ref(0)
+const current = ref(0)
+let sortedPub: Array<Array<(typeof publications)[0]>>
 
-onBeforeMount(() =>
-  publications.sort((a, b) => {
-    if (a.year > b.year) return 1
-    if (a.year < b.year) return -1
-    return 0
-  }),
-)
+onBeforeMount(() => {
+  publications.sort((a, b) => Number(a.year) - Number(b.year))
+
+  const firstYear = Number(publications[0].year)
+  sortedPub = Array.from(
+    { length: Number(publications[publications.length - 1].year) - firstYear + 1 },
+    () => [],
+  )
+
+  publications.forEach((pub) => {
+    const idx = Number(pub.year) - firstYear
+    sortedPub[idx].push(pub)
+  })
+})
 
 const updateYear = (newYear: number) => {
   year.value = newYear
+  current.value = 0
 }
 </script>
 
@@ -33,25 +43,58 @@ const updateYear = (newYear: number) => {
       {{ $t('Descriptions') }}
     </p>
   </div>
-  <div class="wrapper" style="background-color: var(--brand-color); color: var(--text-dark-1)">
-    <h1>{{ $t('Publications') }}</h1>
-    <TimeLine
-      :years="publications.map(({ year }) => year)"
-      :onChange="(year: number) => updateYear(year)"
-      light
-    />
-    <img
-      :src="resolveImagePath(publications[year].image)"
-      alt="Research Image"
-      style="width: 100%; margin-block: 1.5rem"
-    />
-    <p>
-      {{ $t(publications[year].description) }}
-    </p>
-    <div class="dot-content">
-      <div v-for="func in publications[year].functions" :key="func.name">
-        <p class="dot">{{ $t(func.name) }}</p>
+  <div class="wrapper-background">
+    <div class="wrapper">
+      <div style="width: 100%">
+        <h1 style="width: 100%; text-align: center">{{ $t('Publications') }}</h1>
+        <TimeLine
+          :years="sortedPub.map((pub) => pub[0].year)"
+          :onChange="(year: number) => updateYear(year)"
+          light
+        />
+        <div style="display: flex; width: 100%; align-items: center; gap: 1rem">
+          <button class="btn" @click="current -= 1" :disabled="current === 0">❮</button>
+          <div style="width: 100%">
+            <img
+              :src="resolveImagePath(sortedPub[year][current].image)"
+              alt="Research Image"
+              style="width: 100%; margin-block: 1rem"
+            />
+            <p>
+              {{ $t(sortedPub[year][current].description) }}
+            </p>
+            <div class="dot-content">
+              <div v-for="func in sortedPub[year][current].functions" :key="func.name">
+                <p class="dot">{{ $t(func.name) }}</p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="btn"
+            @click="current += 1"
+            :disabled="current === sortedPub[year].length - 1"
+          >
+            ❯
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.btn {
+  height: min-content;
+  background-color: var(--text-dark-1);
+  color: var(--text-light-1);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+}
+.btn:disabled {
+  opacity: 0;
+  cursor: unset;
+}
+</style>

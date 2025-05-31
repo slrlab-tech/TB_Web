@@ -32,6 +32,7 @@ onMounted(() => onClicked(0))
         class="line"
         :style="{ backgroundColor: light ? 'var(--text-dark-1)' : 'var(--text-light-1)' }"
       ></div>
+      <!-- TODO: show missing years -->
       <div v-for="(i, index) in years" :key="i" @click="() => onClicked(index)" style="flex: 1">
         <div class="year" :class="{ light, highlighted: year == i }">{{ i }}</div>
       </div>

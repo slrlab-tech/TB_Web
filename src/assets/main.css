@@ -87,6 +87,12 @@ body {
   flex-direction: column;
 }
 
+.wrapper-background {
+  background-color: var(--brand-color);
+  color: var(--text-dark-1);
+  width: 100%;
+}
+
 .center {
   display: flex;
   justify-content: center;

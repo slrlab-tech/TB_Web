@@ -22,6 +22,11 @@ const toggleLanguage = (isOpen: boolean) => {
 onMounted(() => {
   menuHeight = drawer.value ? -drawer.value.offsetHeight : 0
   toggleMenu(false)
+
+  window.addEventListener('resize', () => {
+    menuHeight = drawer.value ? -drawer.value.offsetHeight : 0
+    toggleMenu(isMenuOpen.value)
+  })
 })
 
 defineExpose({ toggleMenu })

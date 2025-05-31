@@ -90,12 +90,7 @@ const sendData = async () => {
       </div>
     </div>
 
-    <button
-      class="subscribe-button"
-      :class="{ disabled: loading }"
-      @click="sendData"
-      :disabled="loading"
-    >
+    <button class="subscribe-button" @click="sendData">
       {{ $t(btnText) }}
     </button>
 
@@ -171,10 +166,6 @@ const sendData = async () => {
 }
 .subscribe-button:active {
   filter: brightness(0.9);
-}
-.subscribe-button.disabled {
-  filter: grayscale(0.5);
-  cursor: not-allowed;
 }
 .error-text {
   color: var(--error);

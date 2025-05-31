@@ -25,6 +25,13 @@ export const useDataStore = defineStore('data', {
           functions: [{ name: '2023 Soft Robotics' }, { name: '2023 3D Printing' }],
         },
         {
+          name: '2023',
+          year: '2023',
+          description: '2023',
+          image: 'https://picsum.photos/400/150',
+          functions: [{ name: '2023 1' }, { name: '2023 2' }],
+        },
+        {
           name: '2022 A study on the effects of soft robotics on human-robot interaction',
           year: '2022',
           description:
