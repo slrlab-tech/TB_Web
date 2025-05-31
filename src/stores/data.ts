@@ -12,14 +12,14 @@ export const useDataStore = defineStore('data', {
   actions: {
     async fetchAll() {
       const [members, publications, data] = await Promise.all([
-        fetch('/members.json').then((res) => res.json()),
-        fetch('/publications.json').then((res) => res.json()),
-        fetch('/data.json').then((res) => res.json()),
+        fetch('./members.json').then((res) => res.json()),
+        fetch('./publications.json').then((res) => res.json()),
+        fetch('./data.json').then((res) => res.json()),
       ])
       this.members = members
       this.publications = publications
       this.contacts = data.contacts
-      this.partners = data.partners
+      this.partners = data.partners // TODO: update partners path to be in public folder
       this.products = data.products
 
       this.loaded = true
