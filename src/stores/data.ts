@@ -11,6 +11,7 @@ export const useDataStore = defineStore('data', {
   }),
   actions: {
     async fetchAll() {
+      // Need to add TB_Web/ to the path if running in testing mode
       const [members, publications, data] = await Promise.all([
         fetch('/members.json').then((res) => res.json()),
         fetch('/publications.json').then((res) => res.json()),
