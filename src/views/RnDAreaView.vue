@@ -13,16 +13,18 @@ let sortedPub: Array<Array<(typeof publications)[0]>>
 onBeforeMount(() => {
   publications.sort((a, b) => Number(a.year) - Number(b.year))
 
-  const firstYear = Number(publications[0].year)
-  sortedPub = Array.from(
-    { length: Number(publications[publications.length - 1].year) - firstYear + 1 },
-    () => [],
+  sortedPub = publications.reduce(
+    (acc, pub) => {
+      const lastGroup = acc[acc.length - 1]
+      if (!lastGroup || lastGroup[0].year !== pub.year) {
+        acc.push([pub])
+      } else {
+        lastGroup.push(pub)
+      }
+      return acc
+    },
+    [] as Array<Array<(typeof publications)[0]>>,
   )
-
-  publications.forEach((pub) => {
-    const idx = Number(pub.year) - firstYear
-    sortedPub[idx].push(pub)
-  })
 })
 
 const updateYear = (newYear: number) => {
