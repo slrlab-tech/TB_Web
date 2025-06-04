@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { resolveImagePath } from '@/utils/utils'
-</script>
+<script setup lang="ts"></script>
 
 <script lang="ts">
 export default {
@@ -22,11 +20,7 @@ export default {
     <div class="scroller-animation" :class="{ reverse: reverse }">
       <div class="scroller" v-for="i in 2" data-test="scroller" :key="i">
         <div v-for="(item, index) in items" :key="index" class="scroller-item">
-          <img
-            :src="resolveImagePath(item.image)"
-            :alt="item.alt ?? 'logo'"
-            class="scroller-image"
-          />
+          <img :src="item.image" :alt="item.alt ?? 'logo'" class="scroller-image" />
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ImageScroller from './ImageScroller.vue'
-import { resolveImagePath } from '@/utils/utils'
 
 function openLink(href: string) {
   if (href) {
@@ -21,7 +20,7 @@ export default {
     <div v-if="partners?.length <= 5" class="wrapper partners-wrapper" id="partners">
       <div class="partner-wrapper" v-for="partner in partners" :key="partner.alt">
         <img
-          :src="resolveImagePath(partner.image)"
+          :src="partner.image"
           :alt="partner.alt ?? 'logo'"
           class="partner-image"
           @click="openLink(partner.href)"

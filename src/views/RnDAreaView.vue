@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import TimeLine from '@/components/TimeLine.vue'
 import { ref, onBeforeMount } from 'vue'
-import { resolveImagePath } from '@/utils/utils'
 
 import { useDataStore } from '@/stores/data.ts'
 const { publications } = useDataStore()
@@ -58,7 +57,7 @@ const updateYear = (newYear: number) => {
           <button class="btn" @click="current -= 1" :disabled="current === 0">❮</button>
           <div style="width: 100%">
             <img
-              :src="resolveImagePath(sortedPub[year][current].image)"
+              :src="sortedPub[year][current].image"
               alt="Research Image"
               style="width: 100%; margin-block: 1rem"
             />

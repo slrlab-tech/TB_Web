@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { ref, defineProps, onMounted, onUnmounted } from 'vue'
-import { resolveImagePath } from '@/utils/utils'
 
 let intervalId = -1
 
@@ -49,7 +48,7 @@ onUnmounted(() => clearInterval(intervalId))
         class="carousel-slide"
         v-for="(item, index) in items"
         :key="index"
-        :src="resolveImagePath(item.image)"
+        :src="item.image"
         :alt="item.alt ?? item.name ?? 'image'"
         :class="{ active: index === currentIndex }"
       />
