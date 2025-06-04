@@ -11,11 +11,15 @@ export default {
       memberWrapper: null as HTMLElement | null,
       progressLine: null as HTMLElement | null,
       memberImages: Array.from(Array(this.members.length).fill(true)),
+      isTop: false as boolean,
     }
   },
   methods: {
     scroll() {
-      if (this.progressLine) {
+      if (!this.isTop && document.documentElement.scrollTop < 20) {
+        this.isTop = true
+      }
+      if (this.isTop && this.progressLine) {
         const scroll = Math.max(
           0,
           document.documentElement.scrollTop - (this.progressLine.parentElement?.offsetTop || 0),

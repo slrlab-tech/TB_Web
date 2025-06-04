@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FunctionList from '@/components/FunctionList.vue'
+import FunctionList from '@/__legacy/FunctionList.vue'
 import ImageCarousel from '@/components/ImageCarousel.vue'
 import ImageScroller from '@/components/ImageScroller.vue'
 import MembersScroll from '@/components/MembersScroll.vue'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ImageScroller from './ImageScroller.vue'
+import ImageScroller from '@/components/ImageScroller.vue'
 
 function openLink(href: string) {
   if (href) {

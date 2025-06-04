@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import LogoAnimation from '@/components/LogoAnimation.vue'
-import LatestProduct from '../components/LatestProduct.vue'
-import PartnerList from '@/components/PartnerList.vue'
-import TriAnimation from '@/components/TriAnimation.vue'
+import LatestProduct from '../components/HomeView/LatestProduct.vue'
+import PartnerList from '@/components/HomeView/PartnerList.vue'
+import TriAnimation from '@/components/HomeView/TriAnimation.vue'
 import { Icon } from '@iconify/vue/dist/iconify.js'
 
 import { useDataStore } from '@/stores/data.ts'

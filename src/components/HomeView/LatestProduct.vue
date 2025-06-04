@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ImageCarousel from './ImageCarousel.vue'
-import PopUpButton from './PopUpButton.vue'
+import ImageCarousel from '@/components/ImageCarousel.vue'
+import PopUpButton from '@/components/PopUpButton.vue'
 import { ref } from 'vue'
 </script>
 
@@ -25,7 +25,7 @@ const currentIndex = ref(0)
       <ImageCarousel
         height="20rem"
         :items="product.images"
-        :onChange="(index) => (currentIndex = index)"
+        :onChange="(index: number) => (currentIndex = index)"
         style="margin-top: 2rem"
       />
       <div class="dot-content">

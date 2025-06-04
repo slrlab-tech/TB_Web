@@ -55,11 +55,11 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
 
 <template>
   <header>
-    <img v-if="$route.path == '/'" src="../assets/logo.svg" alt="Logo" class="logo shadow" />
+    <img v-if="$route.path == '/'" src="@/assets/logo.svg" alt="Logo" class="logo shadow" />
     <div v-if="$route.path !== '/'" @click="$router.push({ path: '/' })" class="logo-btn shadow">
       {{ $t('Tomorrow’s Brain') }}
       <div class="logo-wrapper" :style="{ height: SafariScale === 2 ? 'var(--h4)' : 'unset' }">
-        <img src="../assets/logo.svg" alt="Logo" class="logo" />
+        <img src="@/assets/logo.svg" alt="Logo" class="logo" />
       </div>
     </div>
     <div>
