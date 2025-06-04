@@ -3,7 +3,13 @@ import { Icon } from '@iconify/vue/dist/iconify.js'
 </script>
 <script lang="ts">
 export default {
-  props: ['members', 'title'],
+  props: {
+    members: {
+      type: Array<{ name: string; position: string; description: string; image: string }>,
+      required: true,
+    },
+    title: String,
+  },
   data() {
     return {
       lineHeight: 0 as number,
@@ -51,7 +57,7 @@ export default {
 </script>
 
 <template>
-  <h2 class="title">{{ title }}</h2>
+  <h2 v-if="title" class="title">{{ title }}</h2>
   <div id="scrollArea" data-test="members">
     <div class="line-background"></div>
     <div class="line-background progress-line"></div>

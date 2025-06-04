@@ -4,7 +4,12 @@ import { Icon } from '@iconify/vue/dist/iconify.js'
 
 <script lang="ts">
 export default {
-  props: ['typing'],
+  props: {
+    typing: {
+      type: Array<{ text: string; icon: string }>,
+      required: true,
+    },
+  },
   data() {
     return {
       textBox: null as HTMLElement | null,

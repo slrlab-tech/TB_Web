@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-  props: ['contacts'],
+  props: { contacts: { type: Object, required: true } },
 }
 </script>
 

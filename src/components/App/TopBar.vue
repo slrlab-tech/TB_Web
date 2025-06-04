@@ -34,7 +34,7 @@ defineExpose({ toggleMenu })
 
 <script lang="ts">
 export default {
-  props: ['iconOpacity'],
+  props: { iconOpacity: { type: Number, default: 1 } },
 }
 
 window.onscroll = function () {
@@ -55,12 +55,14 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
 
 <template>
   <header>
-    <img v-if="$route.path == '/'" src="@/assets/logo.svg" alt="Logo" class="logo shadow" />
-    <div v-if="$route.path !== '/'" @click="$router.push({ path: '/' })" class="logo-btn shadow">
-      {{ $t('Tomorrow’s Brain') }}
-      <div class="logo-wrapper" :style="{ height: SafariScale === 2 ? 'var(--h4)' : 'unset' }">
-        <img src="@/assets/logo.svg" alt="Logo" class="logo" />
+    <div style="position: relative">
+      <div v-if="$route.path !== '/'" @click="$router.push({ path: '/' })" class="logo-btn shadow">
+        <div class="logo-text">{{ $t('Tomorrow’s Brain') }}</div>
+        <!-- <div class="logo-wrapper" :style="{ height: SafariScale === 2 ? 'var(--h4)' : 'unset' }">
+          <img src="@/assets/logo.svg" alt="Logo" class="logo" />
+        </div> -->
       </div>
+      <img src="@/assets/logo.svg" alt="Logo" class="logo big-logo" />
     </div>
     <div>
       <Icon
@@ -103,20 +105,46 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
   scale: calc(1 / v-bind(SafariScale));
 }
 
+.big-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  filter: drop-shadow(0rem 0rem 0.1rem var(--white)) drop-shadow(0rem 0rem 0.1rem var(--color-text));
+}
+
+.logo-text {
+  transition: width 0.2s ease-in-out;
+  font-size: var(--h4);
+  font-weight: 700;
+  width: 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.logo-btn:hover {
+  padding: 0.25rem 1.5rem 0.25rem 4rem;
+
+  .logo-text {
+    width: max-content; /* Fall back for unsupported browser */
+    width: calc-size(max-content, size);
+  }
+}
+
 .logo-btn {
   background-color: var(--white);
-  padding: 0.25rem 1.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.25rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  font-size: var(--h4);
-  font-weight: 700;
   border-radius: var(--h4);
+  overflow: hidden;
+  transition: padding 0.2s ease-in-out;
 
   .logo {
     width: calc(var(--h4) * v-bind(SafariScale));
-    translate: calc((v-bind(SafariScale) - 1) * -25%) calc((v-bind(SafariScale) - 1) * -25%);
+    translate: calc((v-bind(SafariScale) - 2)) calc((v-bind(SafariScale) - 2));
     scale: calc(1 / v-bind(SafariScale));
   }
 }
@@ -175,7 +203,7 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
 }
 
 .shadow {
-  filter: drop-shadow(0.1rem 0.1rem 0.2rem var(--color-text));
+  filter: drop-shadow(0rem 0rem 0.1rem var(--color-text));
 }
 
 header {

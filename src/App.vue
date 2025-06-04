@@ -53,15 +53,15 @@ const onLogoStart = () => {
     <nav>
       <div class="nav-section">
         <RouterLink @click="closeMenu()" to="/about">{{ $t('About Us') }}</RouterLink>
-        <RouterLink @click="closeMenu()" to="/" class="incomplete">{{
+        <!-- <RouterLink @click="closeMenu()" to="/" class="incomplete">{{
           $t('Company Background')
         }}</RouterLink>
-        <RouterLink @click="closeMenu()" to="/" class="incomplete">{{ $t('Members') }}</RouterLink>
+        <RouterLink @click="closeMenu()" to="/" class="incomplete">{{ $t('Members') }}</RouterLink> -->
       </div>
       <div class="nav-section">
         <RouterLink @click="closeMenu()" to="/Rnd">{{ $t('R&D Area') }}</RouterLink>
       </div>
-      <div class="nav-section">
+      <!-- <div class="nav-section">
         <RouterLink @click="closeMenu()" to="/" class="incomplete">{{
           $t('Our Products')
         }}</RouterLink>
@@ -70,10 +70,13 @@ const onLogoStart = () => {
         <RouterLink @click="closeMenu()" to="/" class="incomplete">{{
           $t('Learn more about SEN!')
         }}</RouterLink>
-      </div>
+      </div> -->
     </nav>
   </TopBar>
-  <TitleBanner :title="$route.name || 'Tomorrow\'s Brain'" :home="$route.path == '/'"></TitleBanner>
+  <TitleBanner
+    :title="$route.name || 'Tomorrow\'s Brain'"
+    :isHome="$route.path == '/'"
+  ></TitleBanner>
   <video
     class="background"
     src="https://videos.pexels.com/video-files/857134/857134-hd_1280_720_24fps.mp4"

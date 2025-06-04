@@ -1,6 +1,9 @@
 <script lang="ts">
 export default {
-  props: ['title', 'home'],
+  props: {
+    title: { type: String, required: true },
+    isHome: { type: Boolean, default: false },
+  },
 }
 </script>
 
@@ -12,10 +15,10 @@ export default {
     rel="stylesheet"
   />
   <div class="banner">
-    <div v-if="home">
+    <div v-if="isHome">
       <h1 class="title">明日腦教育科技有限公司<br />TOMORROW’S BRAIN</h1>
     </div>
-    <div v-if="!home">
+    <div v-if="!isHome">
       <h1 style="margin-bottom: 2rem">{{ $t(title) }}</h1>
     </div>
   </div>

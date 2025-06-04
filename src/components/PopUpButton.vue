@@ -93,6 +93,7 @@ export default {
 
     .popup-content {
       opacity: 0;
+      white-space: nowrap;
     }
   }
 }

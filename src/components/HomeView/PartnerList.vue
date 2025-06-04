@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ImageScroller from '@/components/ImageScroller.vue'
 
-function openLink(href: string) {
+function openLink(href?: string) {
   if (href) {
     window.open(href, '_blank')
   }
@@ -10,7 +10,16 @@ function openLink(href: string) {
 
 <script lang="ts">
 export default {
-  props: ['partners'],
+  props: {
+    partners: {
+      type: Array<{
+        image: string
+        alt?: string
+        href?: string
+      }>,
+      required: true,
+    },
+  },
 }
 </script>
 
@@ -49,6 +58,7 @@ export default {
 }
 .partner-image {
   min-width: 0;
+  max-height: 4rem;
   flex: 1;
   object-fit: contain;
   cursor: pointer;
