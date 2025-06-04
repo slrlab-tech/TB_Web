@@ -53,17 +53,23 @@ const onLogoStart = () => {
     <nav>
       <div class="nav-section">
         <RouterLink @click="closeMenu()" to="/about">{{ $t('About Us') }}</RouterLink>
-        <RouterLink @click="closeMenu()" to="/">{{ $t('Company Background') }}</RouterLink>
-        <RouterLink @click="closeMenu()" to="/">{{ $t('Members') }}</RouterLink>
+        <RouterLink @click="closeMenu()" to="/" class="incomplete">{{
+          $t('Company Background')
+        }}</RouterLink>
+        <RouterLink @click="closeMenu()" to="/" class="incomplete">{{ $t('Members') }}</RouterLink>
       </div>
       <div class="nav-section">
         <RouterLink @click="closeMenu()" to="/Rnd">{{ $t('R&D Area') }}</RouterLink>
       </div>
       <div class="nav-section">
-        <RouterLink @click="closeMenu()" to="/">{{ $t('Our Products') }}</RouterLink>
+        <RouterLink @click="closeMenu()" to="/" class="incomplete">{{
+          $t('Our Products')
+        }}</RouterLink>
       </div>
       <div class="nav-section">
-        <RouterLink @click="closeMenu()" to="/">{{ $t('Learn more about SEN!') }}</RouterLink>
+        <RouterLink @click="closeMenu()" to="/" class="incomplete">{{
+          $t('Learn more about SEN!')
+        }}</RouterLink>
       </div>
     </nav>
   </TopBar>
@@ -140,6 +146,11 @@ nav {
 
 .nav-section:not(:last-child) {
   border-right: 1px solid var(--divider-light-1);
+}
+
+.incomplete {
+  color: lightgrey;
+  font-style: italic;
 }
 </style>
 
