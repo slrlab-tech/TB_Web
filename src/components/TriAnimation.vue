@@ -179,10 +179,10 @@ const { height = '20rem' } = defineProps<{
   0% {
     opacity: 0;
   }
-  15% {
+  50% {
     opacity: 0;
   }
-  25% {
+  70% {
     opacity: 1;
   }
 }

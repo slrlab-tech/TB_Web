@@ -4,8 +4,7 @@
     "Email": "info@tomorrowsbrain.com"
   },
   "partners": [
-    { "image": "partners/HKSTP.png", "alt": "logo 1", "href": "https://google.com" },
-    { "image": "partners/TEC.png", "alt": "logo 2" }
-  ],
-  "products": []
+    { "image": "partners/HKSTP.png", "alt": "logo 1", "href": "https://www.hkstp.org/" },
+    { "image": "partners/TEC.png", "alt": "logo 2", "href": "https://tec.hku.hk/" }
+  ]
 }

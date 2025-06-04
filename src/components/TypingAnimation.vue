@@ -35,7 +35,7 @@ export default {
       if (char === '.') {
         if (this.imgs) (this.imgs[index] as HTMLElement).style.display = 'block'
 
-        this.timeout = setTimeout(() => {
+        this.timeout = window.setTimeout(() => {
           if (this.field)
             this.field.style.backgroundColor = 'rgb(from var(--text-light-1) r g b / 20%)'
           this.deleteChar(index)
@@ -44,13 +44,13 @@ export default {
         if (this.imgs) (this.imgs[index] as HTMLElement).style.display = 'none'
         if (this.textBox) this.textBox.innerHTML += char
 
-        this.timeout = setTimeout(() => {
+        this.timeout = window.setTimeout(() => {
           this.typeChar(text, index)
         }, 200)
       }
     },
     deleteChar(index: number) {
-      this.timeout = setTimeout(() => {
+      this.timeout = window.setTimeout(() => {
         if (this.field) this.field.style.backgroundColor = ''
         this.typeChar('', index)
       }, 800)

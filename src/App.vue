@@ -12,7 +12,11 @@ import { useDataStore } from './stores/data'
 </script>
 
 <script lang="ts">
-let dataStore
+let dataStore: {
+  fetchAll: () => void
+  loaded: boolean
+  contacts: Record<string, string>
+}
 
 export default {
   beforeMount() {
@@ -79,7 +83,7 @@ const onLogoStart = () => {
     <RouterView :onLogoEnd="onLogoEnd" :onLogoStart="onLogoStart" />
   </CurvedBg>
   <Icon icon="mingcute:up-line" class="up-btn" @click="toTop()"></Icon>
-  <SiteFooter />
+  <SiteFooter :contacts="dataStore.contacts" />
 </template>
 
 <style scoped>

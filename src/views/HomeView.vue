@@ -18,6 +18,7 @@ export default {
     next()
   },
 }
+const latestProductId = '1'
 </script>
 
 <template>
@@ -50,7 +51,7 @@ export default {
         </div>
       </div>
     </div>
-    <LatestProduct :items="products" />
+    <LatestProduct :product="products.find((product) => product.id == latestProductId)" />
     <PartnerList :partners="partners" />
   </main>
 </template>

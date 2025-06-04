@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import MembersScroll from '@/components/MembersScroll.vue'
 import { useDataStore } from '@/stores/data.ts'
-import SubscribeForm from '@/components/SubscribeForm.vue'
 
 const { members } = useDataStore()
 </script>
 
 <template>
   <div class="wrapper">
-    <SubscribeForm />
     <h1 style="width: 100%">{{ $t('About TB') }}</h1>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; width: 100%">
       <div

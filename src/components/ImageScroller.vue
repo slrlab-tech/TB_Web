@@ -19,7 +19,6 @@ export default {
 
 <template>
   <div class="scroller-wrapper">
-    {{ console.log(reverse, items) }}
     <div class="scroller-animation" :class="{ reverse: reverse }">
       <div class="scroller" v-for="i in 2" data-test="scroller" :key="i">
         <div v-for="(item, index) in items" :key="index" class="scroller-item">

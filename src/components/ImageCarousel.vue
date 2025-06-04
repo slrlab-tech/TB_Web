@@ -29,7 +29,7 @@ const nextSlide = () => {
 }
 const resetInterval = () => {
   if (intervalId != -1) clearInterval(intervalId)
-  intervalId = setInterval(() => {
+  intervalId = window.setInterval(() => {
     currentIndex.value = (currentIndex.value + 1) % items.length
     onChange?.(currentIndex.value)
   }, 5000)
@@ -54,7 +54,7 @@ onUnmounted(() => clearInterval(intervalId))
         :class="{ active: index === currentIndex }"
       />
     </div>
-    <div class="carousel-btn">
+    <div class="carousel-btn" v-if="items.length > 1">
       <button class="prev" @click="prevSlide">❮</button>
       <button class="next" @click="nextSlide">❯</button>
     </div>

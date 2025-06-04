@@ -1,6 +1,7 @@
-<script setup lang="ts">
-import { useDataStore } from '@/stores/data.ts'
-const { contacts } = useDataStore()
+<script lang="ts">
+export default {
+  props: ['contacts'],
+}
 </script>
 
 <template>

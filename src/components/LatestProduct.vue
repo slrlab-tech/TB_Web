@@ -6,7 +6,12 @@ import { ref } from 'vue'
 
 <script lang="ts">
 export default {
-  props: ['items'],
+  props: {
+    product: {
+      type: { images: Array<string>, name: String, functions: Array },
+      required: true,
+    },
+  },
 }
 
 const currentIndex = ref(0)
@@ -16,19 +21,19 @@ const currentIndex = ref(0)
   <div class="banner">
     <div class="wrapper button-section">
       <h1>Highlights of TB</h1>
-      <h2>{{ $t(items[currentIndex]?.name || 'Product Name') }}</h2>
+      <h2>{{ $t(product.name || 'Product Name') }}</h2>
       <ImageCarousel
         height="20rem"
-        :items="items"
+        :items="product.images"
         :onChange="(index) => (currentIndex = index)"
         style="margin-top: 2rem"
       />
-      <div class="content">
-        <div v-for="func in items[currentIndex]?.functions" :key="func.name">
-          <p class="dot-content">{{ $t(func.name) }}</p>
+      <div class="dot-content">
+        <div v-for="func in product.functions" :key="func.name">
+          <p class="dot">{{ $t(func.name) }}</p>
         </div>
       </div>
-      <PopUpButton @click="() => console.log('Button clicked!')">{{
+      <PopUpButton @click="() => $router.push({ path: '/products/' + product.id })">{{
         $t('More Information')
       }}</PopUpButton>
     </div>
@@ -44,5 +49,9 @@ const currentIndex = ref(0)
   display: flex;
   color: var(--white);
   padding-block: 4rem;
+}
+
+.dot-content {
+  margin-bottom: 6rem;
 }
 </style>
