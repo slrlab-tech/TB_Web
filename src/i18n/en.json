@@ -7,17 +7,5 @@
   "About Us": "About Us",
   "Products": "Products",
   "About": "About",
-  "Home": "Home",
-
-  "About TB": "About TB",
-  "about-1": "Tomorrow’s Brain (TB) Limited is an EdTech company offering personalized and adaptive assessment and training on children’s foundational learning abilities, with a specific focus on reading and writing skills.",
-  "about-2": "Over the past 15 years, Professor Shelley Xiuli Tong and her research team at the Speech, Language and Reading Lab of the University of Hong Kong has synergized cognitive-behavioural, educational neuroscience and machine learning approaches to develop and validate cutting-edge educational products tailored to individuals’ diverse learning needs and preferences.",
-  "about-3": "Our pioneering product, the I-DID (Intelligent Dyslexic Interface Design) is an integrated bilingual assessment and learning system that provides 4-to 12-year-old children with a multifactorial learning profiles in Chinese, English, and Cognitive skills, as well as trainings corresponding to their ability matrix.",
-  "about-4": "By leveraging educational neuroscience, intervention science and AI technology, our mission is to develop the customized educational products that guide children to recognize their unique strengths, explore curiosity, and develop a sustainable and thriving future.",
-  "Our Members": "Our Members",
-
-  "mission": "Our mission is to transform education by:",
-  "mission-1": "Developing personalized and adaptive assessment and training for all children",
-  "mission-2": "Leveraging AI and brain-based tools to optimize the learning of and teaching for children",
-  "mission-3": "Providing accessible and sustainable education for children with different learning needs"
+  "Home": "Home"
 }

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, defineProps, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 let intervalId = -1
 
