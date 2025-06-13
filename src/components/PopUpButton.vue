@@ -92,6 +92,7 @@ export default {
     align-content: center;
 
     .popup-content {
+      overflow: hidden;
       opacity: 0;
       white-space: nowrap;
     }
@@ -125,7 +126,6 @@ export default {
 
     .popup-content {
       opacity: 1;
-
       transition: opacity 0.2s 1s ease-in-out;
     }
   }

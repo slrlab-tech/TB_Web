@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUpdated } from 'vue'
 import { Icon } from '@iconify/vue'
 import { getBrowser } from '@/utils/utils.ts'
 
@@ -19,10 +19,12 @@ const toggleLanguage = (isOpen: boolean) => {
   isLanguageOpen.value = isOpen
 }
 
-onMounted(() => {
+onUpdated(() => {
   menuHeight = drawer.value ? -drawer.value.offsetHeight : 0
-  toggleMenu(false)
+  toggleMenu(isMenuOpen.value)
+})
 
+onMounted(() => {
   window.addEventListener('resize', () => {
     menuHeight = drawer.value ? -drawer.value.offsetHeight : 0
     toggleMenu(isMenuOpen.value)
@@ -58,9 +60,6 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
     <div style="position: relative">
       <div v-if="$route.path !== '/'" @click="$router.push({ path: '/' })" class="logo-btn shadow">
         <div class="logo-text">{{ $t('Tomorrow’s Brain') }}</div>
-        <!-- <div class="logo-wrapper" :style="{ height: SafariScale === 2 ? 'var(--h4)' : 'unset' }">
-          <img src="@/assets/logo.svg" alt="Logo" class="logo" />
-        </div> -->
       </div>
       <img
         src="@/assets/logo.svg"

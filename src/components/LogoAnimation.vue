@@ -19,7 +19,7 @@ const emissiveIntensity = 2000
 const passStrength = 0.01
 const rem = 20 // Font size of body
 const iconSize = 3.5 * rem // The height of icon in topBar
-const padding = { width: rem * 4, height: rem * 2 }
+const padding = { width: window.innerWidth > rem * 25 ? rem * 4 : rem * 2, height: rem * 2 }
 
 let scene = null as THREE.Scene | null
 let composer = null as EffectComposer | null
@@ -45,6 +45,8 @@ export default {
       container: null as HTMLElement | null,
       brainHeight: 0 as number,
       brainScale: 0 as number,
+      touchStart: 0 as number,
+      touchEnd: 0 as number,
     }
   },
   methods: {
@@ -75,12 +77,13 @@ export default {
       brain.min.y = brain.min.y * 0.5
 
       const lights = new THREE.Group()
+      const lightSize = (brain.max.x - brain.min.x) / 1000
 
       let count = 0
       while (count < 100) {
         const mesh = lightMesh.clone()
 
-        const randomSize = Math.random() * 0.5 + 0.3
+        const randomSize = Math.random() * lightSize + lightSize / 2
         mesh.scale.set(randomSize, randomSize, randomSize)
 
         // Get a random position within the bounding box
@@ -109,7 +112,6 @@ export default {
         while (count < 5 || failCount < 50) {
           failCount += 1
           const points = []
-          // const start = lights.children[Math.floor(Math.random() * lights.children.length)]
           const end = lights.children[Math.floor(Math.random() * lights.children.length)]
 
           let length = start.position.distanceTo(end.position)
@@ -253,6 +255,7 @@ export default {
         })
 
         let brainBox = new THREE.Box3().setFromObject(obj.scene)
+        // set brain size based on window size
         if (this.container) {
           this.brainScale = Math.min(
             (this.container.clientHeight - padding.height * 2) / (brainBox.max.y - brainBox.min.y),
@@ -320,11 +323,15 @@ export default {
     animate: function (step = 0) {
       if (!this.renderer || !scene || !this.camera || !composer) {
         console.error(
-          'Error loading three.js components',
-          !this.renderer,
-          !scene,
-          !this.camera,
-          !composer,
+          'Error loading three.js components: \n',
+          'renderer:',
+          this.renderer,
+          'scene:',
+          scene,
+          'camera:',
+          this.camera,
+          'composer:',
+          composer,
         )
         return
       }
@@ -373,6 +380,8 @@ export default {
     endAnimation: function () {
       document.removeEventListener('wheel', this.animateByStep)
       window.removeEventListener('resize', this.updateThree)
+      document.removeEventListener('touchstart', this.touchStartEvent)
+      document.removeEventListener('touchmove', this.touchEndEvent)
 
       const threeScene = document.getElementById('model')
       if (threeScene) {
@@ -383,6 +392,16 @@ export default {
     animateByStep: function (e: WheelEvent) {
       requestAnimationFrame(() => this.animate(e.deltaY))
     },
+    touchStartEvent: function (e: TouchEvent) {
+      this.touchStart = e.changedTouches[0].screenX
+    },
+    touchMoveEvent: function (e: TouchEvent) {
+      this.touchEnd = e.changedTouches[0].screenX
+
+      this.animateByStep({
+        deltaY: (this.touchEnd - this.touchStart) / 10,
+      } as WheelEvent)
+    },
   },
   mounted() {
     const isShown = sessionStorage.getItem('TBisShown')
@@ -392,23 +411,19 @@ export default {
     this.updateThree = this.updateThree.bind(this)
     this.animateByStep = this.animateByStep.bind(this)
 
+    document.body.style.overflow = 'hidden'
     window.addEventListener('resize', this.updateThree)
     document.addEventListener('wheel', this.animateByStep)
-    document.body.style.overflow = 'hidden'
+
+    document.addEventListener('touchstart', this.touchStartEvent)
+    document.addEventListener('touchmove', this.touchMoveEvent)
 
     if (this.onStart) this.onStart()
     this.init()
     this.animate()
   },
   unmounted() {
-    window.removeEventListener('resize', this.updateThree)
-    document.removeEventListener('wheel', this.animateByStep)
-    document.body.style.overflow = 'auto'
-
-    const threeScene = document.getElementById('model')
-    if (threeScene) {
-      threeScene.remove()
-    }
+    this.endAnimation()
   },
 }
 </script>
