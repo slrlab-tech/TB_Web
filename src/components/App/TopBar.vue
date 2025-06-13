@@ -144,6 +144,7 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
   background-color: var(--white);
   padding: 0.25rem 0.5rem 0.25rem 0.25rem;
   cursor: pointer;
+  pointer-events: all;
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -181,6 +182,7 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
   z-index: 100;
   padding: 0.5rem;
   border-radius: 0.5rem;
+  pointer-events: all;
 }
 
 .drawer {
@@ -192,6 +194,7 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
   z-index: 100;
   transition: top 0.2s;
   padding: 0 1rem;
+  pointer-events: all;
 }
 
 .mask {
@@ -201,6 +204,7 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
   top: 0;
   left: 0;
   z-index: 100;
+  pointer-events: all;
 }
 
 .icon-button {
@@ -209,6 +213,7 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
   padding: 0.5rem;
   color: var(--white);
   cursor: pointer;
+  pointer-events: all;
 }
 
 .shadow {
@@ -221,6 +226,7 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 2rem 4rem 0 4rem;
+  pointer-events: none;
 }
 
 @media only screen and (max-width: 1024px) {
