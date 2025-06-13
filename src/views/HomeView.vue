@@ -29,7 +29,7 @@ const latestProductId = '1'
       <div class="mission-wrapper">
         <TriAnimation />
         <div class="mission">
-          <h4 style="line-height: normal">
+          <h4 style="line-height: normal; width: 100%">
             {{ $t('mission') }}
           </h4>
           <div
@@ -94,6 +94,7 @@ const latestProductId = '1'
 .mission-item {
   display: flex;
   gap: 2rem;
+  width: 100%;
 }
 
 .logo-animation {

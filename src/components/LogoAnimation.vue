@@ -381,7 +381,7 @@ export default {
       document.removeEventListener('wheel', this.animateByStep)
       window.removeEventListener('resize', this.updateThree)
       document.removeEventListener('touchstart', this.touchStartEvent)
-      document.removeEventListener('touchmove', this.touchEndEvent)
+      document.removeEventListener('touchmove', this.touchMoveEvent)
 
       const threeScene = document.getElementById('model')
       if (threeScene) {
