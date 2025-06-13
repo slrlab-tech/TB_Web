@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted, onUpdated } from 'vue'
 import { Icon } from '@iconify/vue'
-import { getBrowser } from '@/utils/utils.ts'
+import { getBrowser, getMobile } from '@/utils/utils.ts'
 
 const drawer = ref(null as HTMLElement | null)
 const isMenuOpen = ref(false)
 const isLanguageOpen = ref(false)
+const isMobile = getMobile()
 let menuHeight: number
 
 const toggleMenu = (isOpen: boolean) => {
@@ -58,7 +59,11 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
 <template>
   <header>
     <div style="position: relative">
-      <div v-if="$route.path !== '/'" @click="$router.push({ path: '/' })" class="logo-btn shadow">
+      <div
+        v-if="$route.path !== '/' && !isMobile"
+        @click="$router.push({ path: '/' })"
+        class="logo-btn shadow"
+      >
         <div class="logo-text">{{ $t('Tomorrow’s Brain') }}</div>
       </div>
       <img
@@ -130,7 +135,7 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
   padding: 0.25rem 1.5rem 0.25rem 4rem;
 
   .logo-text {
-    width: max-content; /* Fall back for unsupported browser */
+    width: max-content; /* Fallback for unsupported browser */
     width: calc-size(max-content, size);
   }
 }
