@@ -39,4 +39,10 @@ export default {
   width: 100%;
   padding: 2rem 1rem;
 }
+
+@media only screen and (max-width: 768px) {
+  .padding {
+    padding: 1rem 0;
+  }
+}
 </style>

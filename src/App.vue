@@ -4,7 +4,7 @@ import { RouterView } from 'vue-router'
 import { ref } from 'vue'
 
 import TopBar from '@/components/App/TopBar.vue'
-import TitleBanner from '@/components/HomeView/TitleBanner.vue'
+import TitleBanner from '@/components/App/TitleBanner.vue'
 import SiteFooter from '@/components/App/SiteFooter.vue'
 import CurvedBg from '@/components/App/CurvedBg.vue'
 

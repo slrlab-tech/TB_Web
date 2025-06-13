@@ -19,7 +19,7 @@ const emissiveIntensity = 2000
 const passStrength = 0.01
 const rem = 20 // Font size of body
 const iconSize = 3.5 * rem // The height of icon in topBar
-const padding = { width: window.innerWidth > rem * 25 ? rem * 4 : rem * 2, height: rem * 2 }
+const padding = { width: window.innerWidth > rem * 25 ? rem * 4 : rem, height: rem }
 
 let scene = null as THREE.Scene | null
 let composer = null as EffectComposer | null
@@ -77,7 +77,7 @@ export default {
       brain.min.y = brain.min.y * 0.5
 
       const lights = new THREE.Group()
-      const lightSize = (brain.max.x - brain.min.x) / 1000
+      const lightSize = (brain.max.x - brain.min.x) / 1200
 
       let count = 0
       while (count < 100) {
@@ -115,7 +115,7 @@ export default {
           const end = lights.children[Math.floor(Math.random() * lights.children.length)]
 
           let length = start.position.distanceTo(end.position)
-          if (length > 200) continue
+          if (length > lightSize * 280) continue
 
           length = length / 20
 

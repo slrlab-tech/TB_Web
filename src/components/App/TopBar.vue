@@ -217,4 +217,10 @@ header {
   justify-content: space-between;
   padding: 2rem 4rem 0 4rem;
 }
+
+@media only screen and (max-width: 1024px) {
+  header {
+    padding: 1rem;
+  }
+}
 </style>
