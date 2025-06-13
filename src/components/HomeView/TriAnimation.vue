@@ -4,10 +4,6 @@ import { getBrowser } from '@/utils/utils'
 const browser = getBrowser()
 const isAnimated =
   browser !== 'Safari' && browser !== 'Firefox' && !/iPhone|iPad|iPod/i.test(navigator.userAgent)
-
-const { height = '20rem' } = defineProps<{
-  height?: string
-}>()
 </script>
 
 <template>
@@ -36,6 +32,7 @@ const { height = '20rem' } = defineProps<{
   color: var(--text-dark-1);
   font-weight: 700;
   text-align: center;
+  font-size: 1.5vw;
 }
 
 .text-center {
@@ -53,8 +50,8 @@ const { height = '20rem' } = defineProps<{
 }
 
 .r-wrapper {
-  margin: 50px;
-  --height: v-bind(height);
+  margin: 50px 0px;
+  --height: 35vw;
   --translate: calc(var(--height) / 3);
   position: relative;
   height: var(--height);
@@ -121,6 +118,15 @@ const { height = '20rem' } = defineProps<{
       clip-path: polygon(calc(100% / 3) 100%, 100% 100%, calc(200% / 3) 0, 0 0);
       padding: 28% 9% 5% 42%;
     }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .r-wrapper {
+    --height: 50vw;
+  }
+  .text {
+    font-size: 2.3vw;
   }
 }
 

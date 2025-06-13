@@ -21,7 +21,7 @@ const currentIndex = ref(0)
   <div class="banner">
     <div class="wrapper button-section">
       <h1>Highlights of TB</h1>
-      <h2>{{ $t(product.name || 'Product Name') }}</h2>
+      <h2 style="text-align: center">{{ $t(product.name || 'Product Name') }}</h2>
       <ImageCarousel
         height="20rem"
         :items="product.images"

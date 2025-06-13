@@ -97,6 +97,11 @@ export default {
     }
   }
 }
+@media only screen and (max-width: 768px) {
+  .circle .popup-button {
+    padding-inline: 2rem;
+  }
+}
 
 .is-inViewport {
   --size: 3rem;

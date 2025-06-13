@@ -62,7 +62,12 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
           <img src="@/assets/logo.svg" alt="Logo" class="logo" />
         </div> -->
       </div>
-      <img src="@/assets/logo.svg" alt="Logo" class="logo big-logo" />
+      <img
+        src="@/assets/logo.svg"
+        alt="Logo"
+        class="logo big-logo"
+        :style="{ translate: $route.path !== '/' ? '0' : '0 -25%' }"
+      />
     </div>
     <div>
       <Icon

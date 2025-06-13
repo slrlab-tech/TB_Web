@@ -45,12 +45,3 @@ setupI18n().then((i18n) => {
   app.use(pinia)
   app.mount('#app')
 })
-
-// const pinia = createPinia()
-// const app = createApp(App)
-
-// app.use(i18n)
-// app.use(router)
-// app.use(pinia)
-
-// app.mount('#app')

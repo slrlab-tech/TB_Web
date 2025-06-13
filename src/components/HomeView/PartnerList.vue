@@ -81,6 +81,17 @@ export default {
   gap: 2rem;
 }
 
+@media only screen and (max-width: 768px) {
+  .partners-wrapper {
+    flex-direction: column;
+    align-items: center;
+
+    .partner-image {
+      max-width: 80dvw;
+    }
+  }
+}
+
 .carousel {
   max-height: 4rem;
 }

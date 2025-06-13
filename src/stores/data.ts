@@ -23,7 +23,7 @@ export const useDataStore = defineStore('data', {
         this.publications = publications
         this.products = products
         this.contacts = data.contacts
-        this.partners = data.partners // TODO: update partners path to be in public folder
+        this.partners = data.partners
 
         this.loaded = true
       }

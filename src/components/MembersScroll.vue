@@ -132,6 +132,16 @@ export default {
   color: var(--text-dark-1);
 }
 
+@media only screen and (max-width: 768px) {
+  .image-wrapper {
+    width: 150px;
+  }
+
+  .member-name {
+    font-size: 1.2rem;
+  }
+}
+
 .member-name {
   margin-top: -1rem;
   text-align: center;

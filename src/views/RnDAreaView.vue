@@ -98,4 +98,18 @@ const updateYear = (newYear: number) => {
   opacity: 0;
   cursor: unset;
 }
+
+@media only screen and (max-width: 768px) {
+  .btn {
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+  }
+
+  .btn:first-child {
+    margin-left: -1rem;
+  }
+  .btn:last-child {
+    margin-right: -1rem;
+  }
+}
 </style>

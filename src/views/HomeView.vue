@@ -26,8 +26,8 @@ const latestProductId = '1'
   <main>
     <div class="wrapper" style="margin-bottom: 4rem">
       <h1>{{ $t('Our Mission') }}</h1>
-      <div style="display: flex; align-items: flex-end">
-        <TriAnimation height="20rem" />
+      <div class="mission-wrapper">
+        <TriAnimation />
         <div class="mission">
           <h4 style="line-height: normal">
             {{ $t('mission') }}
@@ -57,11 +57,28 @@ const latestProductId = '1'
 </template>
 
 <style scoped>
+.mission-wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+
 .mission {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+  .mission-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mission {
+    margin: 0;
+    align-items: center;
+  }
 }
 
 .mission-icon {

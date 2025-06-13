@@ -28,7 +28,7 @@ export default {
 .title {
   padding: 1rem 0 4rem 0;
   font-family: 'Tomorrow', sans-serif;
-  font-size: 5rem;
+  font-size: 8vw;
 }
 
 .banner {
