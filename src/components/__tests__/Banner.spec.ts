@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import Banner from '../HomeView/TitleBanner.vue'
+import Banner from '../App/TitleBanner.vue'
 
 describe('Banner', () => {
   it('renders properly', () => {
