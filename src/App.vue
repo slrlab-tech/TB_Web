@@ -77,9 +77,18 @@ const onLogoStart = () => {
     :title="$route.name || 'Tomorrow\'s Brain'"
     :isHome="$route.path == '/'"
   ></TitleBanner>
-  <video
+  <img
     class="background"
-    src="https://videos.pexels.com/video-files/857134/857134-hd_1280_720_24fps.mp4"
+    src="./assets/img1.png"
+    alt="Background image"
+    width="100%"
+    height="100%"
+    style="object-fit: cover"
+    TODO="replace image"
+  />
+  <!-- <video
+    class="background"
+    src="./assets/v1.mp4"
     autoplay
     loop
     muted
@@ -87,7 +96,7 @@ const onLogoStart = () => {
     height="100%"
     style="object-fit: cover"
     TODO="replace video"
-  ></video>
+  ></video> -->
   <CurvedBg>
     <RouterView :onLogoEnd="onLogoEnd" :onLogoStart="onLogoStart" />
   </CurvedBg>

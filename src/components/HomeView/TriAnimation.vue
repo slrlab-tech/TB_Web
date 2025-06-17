@@ -23,7 +23,7 @@ const isAnimated =
     <div :class="isAnimated ? 'animation animation-3' : 'animation animation-3 fixed-3'">
       <div class="rhombus text">Psychology <br />心理測評</div>
     </div>
-    <div class="text-center text">Tomorrow’s Brain <br />明日腦</div>
+    <div class="text-center text dark">Tomorrow’s Brain <br />明日腦</div>
   </div>
 </template>
 
@@ -33,6 +33,10 @@ const isAnimated =
   font-weight: 700;
   text-align: center;
   font-size: 1.5vw;
+
+  &.dark {
+    color: var(--text-light-1);
+  }
 }
 
 .text-center {
@@ -66,7 +70,7 @@ const isAnimated =
   }
 
   .animation {
-    mix-blend-mode: multiply;
+    mix-blend-mode: plus-lighter;
     position: absolute;
 
     will-change: transform;
@@ -144,30 +148,33 @@ const isAnimated =
 }
 
 @keyframes r1 {
-  from {
+  0%,
+  25% {
     transform: translateX(-50%) translateY(calc(-1 * var(--translate)));
   }
-  to {
+  100% {
     transform: translateX(-50%) translateY(0);
   }
 }
 
 @keyframes r2 {
-  from {
+  0% {
     transform: translateX(calc(-1 * var(--translate) * sqrt(3) / 2))
       translateY(calc(var(--translate) / 2));
   }
-  to {
+  80%,
+  100% {
     transform: translateX(0) translateY(0);
   }
 }
 
 @keyframes r3 {
-  from {
+  0% {
     transform: translateX(calc(var(--translate) * sqrt(3) / 2))
       translateY(calc(var(--translate) / 2));
   }
-  to {
+  80%,
+  100% {
     transform: translateX(0) translateY(0);
   }
 }
