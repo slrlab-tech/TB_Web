@@ -9,19 +9,19 @@ const isAnimated =
 <template>
   <div class="r-wrapper">
     <div :class="isAnimated ? 'animation animation-1' : 'animation animation-1 fixed-1'">
-      <div class="rhombus text">
+      <div class="rhombus text rhombus-1">
         Educational Neuroscience <br />
         教育神經科學
       </div>
     </div>
     <div :class="isAnimated ? 'animation animation-2' : 'animation animation-2 fixed-2'">
-      <div class="rhombus text">
+      <div class="rhombus text rhombus-2">
         AI <br />
         人工智慧
       </div>
     </div>
     <div :class="isAnimated ? 'animation animation-3' : 'animation animation-3 fixed-3'">
-      <div class="rhombus text">Psychology <br />心理測評</div>
+      <div class="rhombus text rhombus-3">Psychology <br />心理測評</div>
     </div>
     <div class="text-center text dark">Tomorrow’s Brain <br />明日腦</div>
   </div>
@@ -64,13 +64,22 @@ const isAnimated =
   will-change: transform;
 
   .rhombus {
-    background-color: #4c91c1; /* color? */
     height: 100%;
     width: 100%;
+
+    &.rhombus-1 {
+      background-color: #62c4ee; /* color? */
+    }
+    &.rhombus-2 {
+      background-color: #44cde2; /* color? */
+    }
+    &.rhombus-3 {
+      background-color: #5ad7c2; /* color? */
+    }
   }
 
   .animation {
-    mix-blend-mode: plus-lighter;
+    mix-blend-mode: color-dodge;
     position: absolute;
 
     will-change: transform;
