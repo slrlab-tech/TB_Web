@@ -58,9 +58,9 @@ const onLogoStart = () => {
         }}</RouterLink>
         <RouterLink @click="closeMenu()" to="/" class="incomplete">{{ $t('Members') }}</RouterLink> -->
       </div>
-      <div class="nav-section">
+      <!-- <div class="nav-section">
         <RouterLink @click="closeMenu()" to="/Rnd">{{ $t('R&D Area') }}</RouterLink>
-      </div>
+      </div> -->
       <!-- <div class="nav-section">
         <RouterLink @click="closeMenu()" to="/" class="incomplete">{{
           $t('Our Products')
@@ -109,7 +109,7 @@ const onLogoStart = () => {
   cursor: pointer;
   width: auto;
   height: 3rem;
-  color: var(--white);
+  color: var(--text-light-1);
   background-color: var(--brand-color);
   border-radius: 1rem;
   padding: 0rem 0.5rem;

@@ -56,45 +56,94 @@ export default {
 }
 </script>
 
+<!-- !!!TODO: clean up -->
 <template>
   <h2 v-if="title" class="title">{{ title }}</h2>
-  <div id="scrollArea" data-test="members">
-    <div class="line-background"></div>
-    <div class="line-background progress-line"></div>
-    <div v-for="(member, index) in members" :key="index">
-      <div :class="index % 2 ? 'member-wrapper' : 'member-wrapper inverted'">
-        <div class="placeHolder"></div>
-        <div class="point"></div>
-        <div class="member placeHolder" data-inviewport="member">
-          <div class="image-wrapper center">
-            <img
-              v-if="memberImages[index]"
-              :src="member.image"
-              :alt="member.name"
-              class="member-image"
-              @error="memberImages[index] = false"
-            />
-            <Icon
-              v-else
-              icon="mingcute:user-2-line"
-              class="member-image"
-              style="width: 80%; height: 80%"
-            />
+  <template v-if="members.length > 2">
+    <div id="scrollArea" data-test="members">
+      <div class="line-background"></div>
+      <div class="line-background progress-line"></div>
+      <div v-for="(member, index) in members" :key="index">
+        <div :class="index % 2 ? 'member-wrapper' : 'member-wrapper inverted'">
+          <div class="placeHolder"></div>
+          <div class="point"></div>
+          <div class="member placeHolder" data-inviewport="member">
+            <div class="image-wrapper center">
+              <img
+                v-if="memberImages[index]"
+                :src="member.image"
+                :alt="member.name"
+                class="member-image"
+                @error="memberImages[index] = false"
+              />
+              <Icon
+                v-else
+                icon="mingcute:user-2-line"
+                class="member-image"
+                style="width: 80%; height: 80%"
+              />
+            </div>
+            <h3 class="member-name">
+              {{ member.name }}
+            </h3>
+            <p>{{ member.position }}</p>
+            <p class="member-description">{{ member.description }}</p>
           </div>
-          <h3 class="member-name">
-            {{ member.name }}
-          </h3>
-          <p>{{ member.position }}</p>
-          <p class="member-description">{{ member.description }}</p>
         </div>
       </div>
+    </div>
+  </template>
+  <div v-else style="display: flex; justify-content: center; align-items: center; height: 100%">
+    <div class="member placeHolder is-row" data-inviewport="member">
+      <div class="image-wrapper center">
+        <img
+          v-if="memberImages[0]"
+          :src="members[0].image"
+          :alt="members[0].name"
+          class="member-image"
+          @error="memberImages[0] = false"
+        />
+        <Icon
+          v-else
+          icon="mingcute:user-2-line"
+          class="member-image"
+          style="width: 80%; height: 80%"
+        />
+      </div>
+      <h4 class="member-name">
+        {{ members[0].name }}
+      </h4>
+      <p>{{ members[0].position }}</p>
+      <p class="member-description">{{ members[0].description }}</p>
+    </div>
+    <div class="member placeHolder is-row" data-inviewport="member">
+      <div class="image-wrapper center">
+        <img
+          v-if="memberImages[1]"
+          :src="members[1].image"
+          :alt="members[1].name"
+          class="member-image"
+          @error="memberImages[1] = false"
+        />
+        <Icon
+          v-else
+          icon="mingcute:user-2-line"
+          class="member-image"
+          style="width: 80%; height: 80%"
+        />
+      </div>
+      <h4 class="member-name">
+        {{ members[1].name }}
+      </h4>
+      <p>{{ members[1].position }}</p>
+      <p class="member-description">{{ members[1].description }}</p>
     </div>
   </div>
 </template>
 
 <style scoped>
 .title {
-  border-bottom: 5px solid var(--highlight-2);
+  border-bottom: 5px solid var(--highlight-1);
   margin-block: 3rem 1px;
   padding-inline: 2rem;
   line-height: 1.2;
@@ -129,7 +178,7 @@ export default {
   margin: 10px;
   overflow: hidden;
   background-color: var(--brand-color);
-  color: var(--text-dark-1);
+  color: var(--text-light-1);
 }
 
 @media only screen and (max-width: 768px) {
@@ -172,15 +221,19 @@ export default {
 .member-wrapper.inverted {
   flex-direction: row-reverse;
 }
-.member-wrapper.is-inViewport {
-  .member {
-    transition:
-      opacity 1s,
-      transform 1s;
-    animation-play-state: running;
-    transform: translateY(-50px);
-    opacity: 1 !important;
-  }
+
+.member-wrapper.is-inViewport .member,
+.is-row {
+  transition:
+    opacity 1s,
+    transform 1s;
+  animation-play-state: running;
+  transform: translateY(-50px);
+  opacity: 1 !important;
+}
+.is-row {
+  transform: translateY(50px);
+  height: 400px;
 }
 
 .member {

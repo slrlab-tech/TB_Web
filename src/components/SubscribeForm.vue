@@ -104,7 +104,7 @@ const sendData = async () => {
 .loading-icon {
   width: 3rem;
   height: 3rem;
-  color: var(--highlight);
+  color: var(--highlight-1);
   animation: spin 1s linear infinite;
 }
 @keyframes spin {
@@ -155,7 +155,7 @@ const sendData = async () => {
   border-radius: 1.5rem;
   padding-inline: 2rem;
   border: none;
-  background-color: var(--highlight);
+  background-color: var(--highlight-1);
   color: var(--white);
   font-size: var(--h4);
   margin-top: 1rem;

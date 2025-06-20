@@ -3,7 +3,6 @@ import LogoAnimation from '@/components/LogoAnimation.vue'
 import LatestProduct from '../components/HomeView/LatestProduct.vue'
 import PartnerList from '@/components/HomeView/PartnerList.vue'
 import TriAnimation from '@/components/HomeView/TriAnimation.vue'
-import { Icon } from '@iconify/vue/dist/iconify.js'
 
 import { useDataStore } from '@/stores/data.ts'
 const { partners, products } = useDataStore()
@@ -29,8 +28,10 @@ const latestProductId = '1'
       <div class="mission-wrapper">
         <TriAnimation />
         <div class="mission">
-          <h4 style="line-height: normal; width: 100%">
-            {{ $t('mission') }}
+          <h4 style="line-height: normal; width: 100%; font-weight: normal">
+            {{ $t('mission-01') }}
+            <span style="font-weight: bold; color: var(--highlight-2)">{{ $t('mission-02') }}</span>
+            {{ $t('mission-03') }}
           </h4>
           <div
             v-for="(icon, index) in [
@@ -41,10 +42,7 @@ const latestProductId = '1'
             class="mission-item"
             :key="index"
           >
-            <div class="mission-icon center">
-              <Icon :icon="icon" style="font-size: 1.5rem" />
-            </div>
-            <p>
+            <p class="dot">
               {{ $t('mission-' + (index + 1)) }}
             </p>
           </div>
@@ -57,6 +55,12 @@ const latestProductId = '1'
 </template>
 
 <style scoped>
+.dot:before {
+  margin-bottom: auto;
+  margin-top: 0.3rem;
+  margin-inline: 1rem;
+  background-color: var(--highlight-2);
+}
 .mission-wrapper {
   display: flex;
   align-items: flex-end;

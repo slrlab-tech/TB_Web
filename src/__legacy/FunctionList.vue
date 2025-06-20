@@ -68,7 +68,7 @@ export default {
 
   .dot::after {
     display: block;
-    background-color: var(--highlight);
+    background-color: var(--highlight-1);
   }
 
   .dot {

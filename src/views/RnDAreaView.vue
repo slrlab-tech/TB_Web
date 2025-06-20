@@ -86,7 +86,7 @@ const updateYear = (newYear: number) => {
 <style scoped>
 .btn {
   height: min-content;
-  background-color: var(--text-dark-1);
+  background-color: var(--text-light-1);
   color: var(--text-light-1);
   border: none;
   padding: 0.5rem 1rem;

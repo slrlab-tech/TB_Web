@@ -201,7 +201,7 @@ const isAnimated =
   0% {
     opacity: 0;
   }
-  50% {
+  35% {
     opacity: 0;
   }
   70% {

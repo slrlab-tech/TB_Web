@@ -63,8 +63,8 @@ export default {
   height: 0;
   width: 0;
 
-  background-color: var(--highlight);
-  outline: 0rem solid rgb(from var(--highlight) r g b / 50%);
+  background-color: var(--highlight-1);
+  outline: 0rem solid rgb(from var(--highlight-1) r g b / 50%);
   border-radius: 100%;
 
   .popup-button {
@@ -87,7 +87,7 @@ export default {
     height: var(--size);
     width: var(--size);
 
-    background-color: var(--highlight);
+    background-color: var(--highlight-1);
     color: var(--text-light-1);
     align-content: center;
 

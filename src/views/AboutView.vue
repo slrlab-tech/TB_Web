@@ -5,36 +5,44 @@ import { useDataStore } from '@/stores/data.ts'
 const { members } = useDataStore()
 </script>
 
+<!-- !!!TODO: clean up -->
 <template>
   <div class="wrapper">
-    <h1 style="width: 100%">{{ $t('About TB') }}</h1>
-    <div class="about-wrapper">
-      <div
-        style="background-image: url('https://picsum.photos/500/500'); background-size: cover"
-        class="about-image"
-      ></div>
-      <div style="width: 100%">
-        {{ $t('about-1') }}
-        <br />
-        <br />
-        {{ $t('about-2') }}
-      </div>
-      <div style="width: 100%">
-        {{ $t('about-3') }}
-        <br />
-        <br />
-        {{ $t('about-4') }}
-      </div>
-      <div
-        style="background-image: url('https://picsum.photos/500/500'); background-size: cover"
-        class="about-image"
-      ></div>
+    <h2 class="title">{{ $t('About TB') }}</h2>
+  </div>
+  <div class="wrapper about-container">
+    <div>
+      <span style="font-weight: bold">{{ $t('about-0') }}</span> {{ $t('about-1') }}
     </div>
+    <div>
+      {{ $t('about-2') }}
+    </div>
+    <div>
+      {{ $t('about-3') }}
+    </div>
+    <div>
+      {{ $t('about-4') }}
+    </div>
+  </div>
+  <div class="wrapper">
     <MembersScroll :members="members" :title="$t('Our Members')" />
   </div>
 </template>
 
 <style scoped>
+.title {
+  border-bottom: 5px solid var(--highlight-1);
+  margin-block: 3rem 1px;
+  padding-inline: 2rem;
+  line-height: 1.2;
+  width: fit-content;
+}
+
+.about-container {
+  box-shadow: 4px 4px 8px var(--indigo);
+  gap: 1rem;
+}
+
 .about-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -28,10 +28,7 @@ onMounted(() => onClicked(0))
 <template>
   <div class="wrapper">
     <div class="timeline">
-      <div
-        class="line"
-        :style="{ backgroundColor: light ? 'var(--text-dark-1)' : 'var(--text-light-1)' }"
-      ></div>
+      <div class="line" style="background-color: var(--text-light-1)"></div>
       <!-- TODO: show missing years -->
       <div
         v-for="(i, index) in years"
@@ -90,16 +87,16 @@ onMounted(() => onClicked(0))
 }
 
 .year.light:after {
-  background-color: var(--text-dark-1);
+  background-color: var(--text-light-1);
 }
 
 .highlighted {
-  color: var(--highlight);
+  color: var(--highlight-1);
   font-size: 1.5rem;
 }
 
 .highlighted:after {
-  background-color: var(--highlight) !important;
+  background-color: var(--highlight-1) !important;
 }
 .year-wrapper {
   flex: 1;

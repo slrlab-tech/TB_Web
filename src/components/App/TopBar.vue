@@ -9,6 +9,7 @@ const isLanguageOpen = ref(false)
 const isMobile = getMobile()
 let menuHeight: number
 
+// !!!TODO: why does not it work on not home page?
 const toggleMenu = (isOpen: boolean) => {
   if (!drawer.value) return
   isMenuOpen.value = isOpen
@@ -41,12 +42,12 @@ export default {
 }
 
 window.onscroll = function () {
-  if (document.documentElement.scrollTop < 24) {
+  if (document.documentElement.scrollTop < 56) {
     document
       .querySelector('header')
       ?.style.setProperty(
         'padding-top',
-        (32 - document.documentElement.scrollTop || 0).toString() + 'px',
+        (64 - document.documentElement.scrollTop || 0).toString() + 'px',
       )
   } else {
     document.querySelector('header')?.style.setProperty('padding-top', '8px')
@@ -70,7 +71,7 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
         src="@/assets/logo.svg"
         alt="Logo"
         class="logo big-logo"
-        :style="{ translate: $route.path !== '/' ? '0' : '0 -25%' }"
+        :style="{ transform: $route.path !== '/' ? 'translateY(0)' : 'translateY(-40%)' }"
       />
     </div>
     <div>
@@ -120,6 +121,7 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
   left: 0;
   pointer-events: none;
   filter: drop-shadow(0rem 0rem 0.1rem var(--white)) drop-shadow(0rem 0rem 0.1rem var(--color-text));
+  translate: calc((v-bind(SafariScale) - 1) * -25%) calc((v-bind(SafariScale) - 1) * -25%);
 }
 
 .logo-text {
@@ -154,7 +156,7 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
 
   .logo {
     width: calc(var(--h4) * v-bind(SafariScale));
-    translate: calc((v-bind(SafariScale) - 2)) calc((v-bind(SafariScale) - 2));
+    translate: calc((v-bind(SafariScale) - 1)) calc((v-bind(SafariScale) - 1));
     scale: calc(1 / v-bind(SafariScale));
   }
 }
@@ -191,10 +193,12 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
   padding: 2rem 0;
   width: 100vw;
   left: 0;
+  top: -100vh;
   z-index: 100;
   transition: top 0.2s;
   padding: 0 1rem;
   pointer-events: all;
+  box-shadow: 0px 2px 4px var(--indigo);
 }
 
 .mask {

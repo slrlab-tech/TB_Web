@@ -6,15 +6,17 @@ let intervalId = -1
 const {
   items,
   auto = true,
-  height,
   onChange,
 } = defineProps<{
-  items: { image: string; alt: string; name: string }[]
-  height: string
+  items: { image: string; alt: string; name: string; link: string }[]
   auto?: boolean
   onChange?: (index: number) => void
 }>()
 const currentIndex = ref(0)
+
+const openImage = (link: string) => {
+  if (link) window.open(link, '_blank')
+}
 
 const prevSlide = () => {
   currentIndex.value = (currentIndex.value - 1 + items.length) % items.length
@@ -42,20 +44,21 @@ onUnmounted(() => clearInterval(intervalId))
 </script>
 
 <template>
-  <div class="image-carousel" :style="{ height }">
+  <div class="image-carousel">
     <div class="carousel-container">
       <img
         class="carousel-slide"
         v-for="(item, index) in items"
+        @click="() => openImage(item.link)"
         :key="index"
         :src="item.image"
         :alt="item.alt ?? item.name ?? 'image'"
         :class="{ active: index === currentIndex }"
       />
-    </div>
-    <div class="carousel-btn" v-if="items.length > 1">
-      <button class="prev" @click="prevSlide">❮</button>
-      <button class="next" @click="nextSlide">❯</button>
+      <div class="carousel-btn" v-if="items.length > 1">
+        <button class="prev" @click="prevSlide">❮</button>
+        <button class="next" @click="nextSlide">❯</button>
+      </div>
     </div>
   </div>
 </template>
@@ -66,6 +69,7 @@ onUnmounted(() => clearInterval(intervalId))
   position: relative;
   width: 100%;
   overflow: hidden;
+  aspect-ratio: 1200/628;
 }
 .carousel-container {
   display: flex;
@@ -73,7 +77,13 @@ onUnmounted(() => clearInterval(intervalId))
   width: 100%;
   height: 100%;
 }
+.carousel-container:hover {
+  .carousel-btn {
+    opacity: 1;
+  }
+}
 .carousel-slide {
+  pointer-events: all;
   width: 0;
   height: 100%;
   background-size: cover;
@@ -87,6 +97,7 @@ onUnmounted(() => clearInterval(intervalId))
   opacity: 1;
 }
 .carousel-btn {
+  pointer-events: none;
   position: absolute;
   top: 0;
   height: 100%;
@@ -99,11 +110,11 @@ onUnmounted(() => clearInterval(intervalId))
   justify-content: space-between;
   align-items: center;
 }
-.carousel-btn:hover {
-  opacity: 1;
-}
 .prev,
 .next {
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: all;
   text-shadow:
     #000 1px 0 2px,
     #000 0 1px 2px,

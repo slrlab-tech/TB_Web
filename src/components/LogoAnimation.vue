@@ -19,7 +19,7 @@ const emissiveIntensity = 2000
 const passStrength = 0.01
 const rem = 20 // Font size of body
 const iconSize = 3.5 * rem // The height of icon in topBar
-const padding = { width: window.innerWidth > rem * 25 ? rem * 4 : rem, height: rem }
+const padding = { width: window.innerWidth > rem * 25 ? rem * 4 : rem, height: rem * 2 }
 
 let scene = null as THREE.Scene | null
 let composer = null as EffectComposer | null
@@ -390,6 +390,7 @@ export default {
       document.body.style.overflow = 'auto'
     },
     animateByStep: function (e: WheelEvent) {
+      e.preventDefault()
       requestAnimationFrame(() => this.animate(e.deltaY))
     },
     touchStartEvent: function (e: TouchEvent) {
@@ -412,8 +413,10 @@ export default {
     this.animateByStep = this.animateByStep.bind(this)
 
     document.body.style.overflow = 'hidden'
+    document.body.style.height = '100dvh'
+
     window.addEventListener('resize', this.updateThree)
-    document.addEventListener('wheel', this.animateByStep)
+    document.addEventListener('wheel', this.animateByStep, { passive: false })
 
     document.addEventListener('touchstart', this.touchStartEvent)
     document.addEventListener('touchmove', this.touchMoveEvent)
