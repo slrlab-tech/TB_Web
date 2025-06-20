@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ImageCarousel from '@/components/ImageCarousel.vue'
-import PopUpButton from '@/components/PopUpButton.vue'
+// import PopUpButton from '@/components/PopUpButton.vue'
 import { ref } from 'vue'
 </script>
 
@@ -33,9 +33,9 @@ const currentIndex = ref(0)
           <p class="dot">{{ $t(func.name) }}</p>
         </div>
       </div>
-      <PopUpButton @click="() => $router.push({ path: '/products/' + product.id })">{{
+      <!-- <PopUpButton @click="() => $router.push({ path: '/products/' + product.id })">{{
         $t('More Information')
-      }}</PopUpButton>
+      }}</PopUpButton> -->
     </div>
   </div>
 </template>

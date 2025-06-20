@@ -86,17 +86,6 @@ const onLogoStart = () => {
     style="object-fit: cover"
     TODO="replace image"
   />
-  <!-- <video
-    class="background"
-    src="./assets/v1.mp4"
-    autoplay
-    loop
-    muted
-    width="100%"
-    height="100%"
-    style="object-fit: cover"
-    TODO="replace video"
-  ></video> -->
   <CurvedBg>
     <RouterView :onLogoEnd="onLogoEnd" :onLogoStart="onLogoStart" />
   </CurvedBg>

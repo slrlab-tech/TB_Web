@@ -54,6 +54,7 @@ onUnmounted(() => clearInterval(intervalId))
         :src="item.image"
         :alt="item.alt ?? item.name ?? 'image'"
         :class="{ active: index === currentIndex }"
+        :style="{ cursor: item.link ? 'pointer' : 'default' }"
       />
       <div class="carousel-btn" v-if="items.length > 1">
         <button class="prev" @click="prevSlide">❮</button>
