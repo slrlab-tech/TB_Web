@@ -9,7 +9,6 @@ const isLanguageOpen = ref(false)
 const isMobile = getMobile()
 let menuHeight: number
 
-// !!!TODO: why does not it work on not home page?
 const toggleMenu = (isOpen: boolean) => {
   if (!drawer.value) return
   isMenuOpen.value = isOpen

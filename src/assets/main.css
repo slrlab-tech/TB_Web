@@ -28,6 +28,14 @@ h4 {
   font-weight: bold;
 }
 
+.heading {
+  border-bottom: 5px solid var(--highlight-1);
+  margin-block: 3rem 1px;
+  padding-inline: 2rem;
+  line-height: 1.2;
+  width: fit-content;
+}
+
 .button-section {
   width: 100%;
   position: relative;

@@ -24,7 +24,7 @@ const latestProductId = '1'
   <LogoAnimation class="logo-animation" :onEnd="onLogoEnd" :onStart="onLogoStart" />
   <main>
     <div class="wrapper" style="margin-bottom: 4rem">
-      <h1>{{ $t('Our Mission') }}</h1>
+      <h1 class="heading">{{ $t('Our Mission') }}</h1>
       <div class="mission-wrapper">
         <TriAnimation />
         <div class="mission">

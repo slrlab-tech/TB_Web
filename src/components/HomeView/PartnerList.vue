@@ -25,7 +25,9 @@ export default {
 
 <template>
   <div>
-    <h1 class="center" style="margin-top: 4rem">{{ $t('Our Partners') }}</h1>
+    <div class="wrapper">
+      <h1 class="heading" style="margin-top: 4rem">{{ $t('Our Partners') }}</h1>
+    </div>
     <div v-if="partners?.length <= 5" class="wrapper partners-wrapper" id="partners">
       <div class="partner-wrapper" v-for="partner in partners" :key="partner.alt">
         <img

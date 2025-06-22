@@ -8,36 +8,24 @@ const { members } = useDataStore()
 <!-- !!!TODO: clean up -->
 <template>
   <div class="wrapper">
-    <h2 class="title">{{ $t('About TB') }}</h2>
+    <h2 class="heading">{{ $t('About TB') }}</h2>
   </div>
   <div class="wrapper about-container">
     <div>
-      <span style="font-weight: bold">{{ $t('about-0') }}</span> {{ $t('about-1') }}
+      <span style="font-weight: bold; white-space: pre-line">{{ $t('about-0') }}</span>
+      {{ $t('about-1') }}
     </div>
-    <div>
-      {{ $t('about-2') }}
-    </div>
-    <div>
-      {{ $t('about-3') }}
-    </div>
-    <div>
-      {{ $t('about-4') }}
+    <div v-for="i in 3" :key="i">
+      {{ $t('about-' + (i + 1)) }}
     </div>
   </div>
   <div class="wrapper">
-    <MembersScroll :members="members" :title="$t('Our Members')" />
+    <h2 class="heading">{{ $t('Our Members') }}</h2>
+    <MembersScroll :members="members" />
   </div>
 </template>
 
 <style scoped>
-.title {
-  border-bottom: 5px solid var(--highlight-1);
-  margin-block: 3rem 1px;
-  padding-inline: 2rem;
-  line-height: 1.2;
-  width: fit-content;
-}
-
 .about-container {
   box-shadow: 4px 4px 8px var(--indigo);
   gap: 1rem;
