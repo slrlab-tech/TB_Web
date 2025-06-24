@@ -25,7 +25,12 @@ export default defineComponent({
     },
     uploadImage: {
       type: Function as PropType<
-        (e: Event, type: 'partners' | 'products' | 'members', index: number) => void
+        (
+          e: Event,
+          type: 'partners' | 'products' | 'members',
+          index: number,
+          subIndex?: number,
+        ) => void
       >,
       required: true,
     },

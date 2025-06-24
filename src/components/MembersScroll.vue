@@ -5,7 +5,7 @@ import { Icon } from '@iconify/vue/dist/iconify.js'
 export default {
   props: {
     members: {
-      type: Array<{ name: string; position: string; description: string; image: string }>,
+      type: Array<{ name: string; position: string; image: string }>,
       required: true,
     },
     title: String,
@@ -90,7 +90,6 @@ export default {
             {{ member.name }}
           </h4>
           <p style="width: max-content">{{ member.position }}</p>
-          <p class="member-description">{{ member.description }}</p>
         </div>
       </div>
     </div>
