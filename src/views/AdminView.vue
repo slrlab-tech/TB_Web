@@ -15,7 +15,6 @@ export default {
     const { partners, products, members } = useDataStore()
     return {
       currentTab: '',
-      data: { partners, products, members },
       newPartners: JSON.parse(JSON.stringify(partners)) as PartnersInfo[],
       newProducts: JSON.parse(JSON.stringify(products)) as ProductsInfo[],
       newMembers: JSON.parse(JSON.stringify(members)) as MemberInfo[],
@@ -50,10 +49,14 @@ export default {
       )
       if (answer) {
         this.currentTab = ''
-        this.newMembers = JSON.parse(JSON.stringify(this.data.members)) as MemberInfo[]
-        this.newPartners = JSON.parse(JSON.stringify(this.data.partners)) as PartnersInfo[]
-        this.newProducts = JSON.parse(JSON.stringify(this.data.products)) as ProductsInfo[]
+        this.refetch()
       }
+    },
+    refetch() {
+      const { partners, products, members } = useDataStore()
+      this.newMembers = JSON.parse(JSON.stringify(members)) as MemberInfo[]
+      this.newPartners = JSON.parse(JSON.stringify(partners)) as PartnersInfo[]
+      this.newProducts = JSON.parse(JSON.stringify(products)) as ProductsInfo[]
     },
     add(type: dataType) {
       if (type === 'partners') {
@@ -86,13 +89,19 @@ export default {
     },
     saveData(type: dataType) {
       console.log('Saving data...', type)
+      const data = useDataStore()
       if (type === 'products') {
         if (this.newProducts.filter((product) => product.featured).length != 1) {
           window.confirm('Error: You have not selected just one featured product.')
           return
         }
+        data.$patch({ products: this.newProducts })
+      } else if (type === 'partners') {
+        data.$patch({ partners: this.newPartners })
+      } else if (type === 'members') {
+        data.$patch({ members: this.newMembers })
       }
-
+      this.refetch()
       // TODO: call aliyun OSS API to save data
       // be careful with the image!
     },
@@ -139,7 +148,12 @@ export default {
       <div class="partners-list">
         <div v-for="(partner, index) in newPartners.slice().reverse()" :key="index" class="item">
           <h4>{{ $t('Item') + (index + 1) }}</h4>
-          <ImageUpload :item="partner" :index="index" type="partners" :uploadImage="uploadImage" />
+          <ImageUpload
+            :item="partner"
+            :index="newPartners.length - 1 - index"
+            type="partners"
+            :uploadImage="uploadImage"
+          />
           <div class="details">
             <div>
               <span>{{ $t('Alt Text') }}: </span>
@@ -189,15 +203,15 @@ export default {
             ></Icon>
           </div>
           <div
-            v-for="(img, imgIdx) in product.images.slice().reverse()"
+            v-for="(img, imgIdx) in product.images?.slice().reverse()"
             :key="imgIdx"
             style="margin-left: 1rem"
           >
             <p style="font-weight: bold">{{ $t('Image') + (imgIdx + 1) }}</p>
             <ImageUpload
               :item="img"
-              :index="index"
-              :subIndex="imgIdx"
+              :index="product.images.length - 1 - index"
+              :subIndex="product.images.length - 1 - imgIdx"
               type="products"
               :uploadImage="uploadImage"
             />
@@ -232,7 +246,7 @@ export default {
         <h4>{{ $t('Item') + (index + 1) }}</h4>
         <ImageUpload
           :item="member"
-          :index="index"
+          :index="newMembers.length - 1 - index"
           type="members"
           :uploadImage="uploadImage"
           rounded

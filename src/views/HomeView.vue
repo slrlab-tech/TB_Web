@@ -48,7 +48,7 @@ export default {
         </div>
       </div>
     </div>
-    <LatestProduct :product="products.find((product) => (product.featured = true))" />
+    <LatestProduct :product="products.find((product) => product.featured == true)" />
     <PartnerList :partners="partners" />
   </main>
 </template>

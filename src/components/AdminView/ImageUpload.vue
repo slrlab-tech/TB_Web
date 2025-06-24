@@ -58,5 +58,6 @@ export default defineComponent({
   width: fit-content;
   aspect-ratio: 1;
   border-radius: 100%;
+  object-fit: cover;
 }
 </style>

@@ -5,7 +5,7 @@ export const useDataStore = defineStore('data', {
     members: [] as MemberInfo[],
     publications: [] as PublicationInfo[],
     contacts: {},
-    partners: [],
+    partners: [] as PartnersInfo[],
     products: [] as ProductsInfo[],
     loaded: false,
   }),
