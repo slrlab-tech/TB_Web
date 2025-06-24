@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LogoAnimation from '@/components/LogoAnimation.vue'
+import LogoAnimation from '@/components/HomeView/LogoAnimation.vue'
 import LatestProduct from '../components/HomeView/LatestProduct.vue'
 import PartnerList from '@/components/HomeView/PartnerList.vue'
 import TriAnimation from '@/components/HomeView/TriAnimation.vue'

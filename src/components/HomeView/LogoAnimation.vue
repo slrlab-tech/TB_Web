@@ -401,6 +401,7 @@ export default {
 
       this.animateByStep({
         deltaY: (this.touchEnd - this.touchStart) / 10,
+        preventDefault: () => {},
       } as WheelEvent)
     },
   },

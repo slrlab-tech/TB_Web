@@ -7,7 +7,7 @@
   </div>
 
   <div class="curve-wrapper">
-    <div class="curve inverse"></div>
+    <div class="curve"></div>
   </div>
 </template>
 
@@ -19,7 +19,7 @@
 
 .curve {
   background-color: var(--white);
-  border-radius: 50% 50% 0 0;
+  border-radius: 50%;
   height: 30vw;
   width: 120vw;
   min-width: 120vw;
@@ -35,9 +35,5 @@
     linear-gradient(to top, var(--white) 0, var(--white) 51%, transparent 51%);
   position: relative;
   z-index: 1;
-}
-
-.inverse {
-  rotate: 180deg;
 }
 </style>

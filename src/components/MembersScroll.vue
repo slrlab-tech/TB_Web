@@ -89,7 +89,7 @@ export default {
           <h4 class="member-name">
             {{ member.name }}
           </h4>
-          <p>{{ member.position }}</p>
+          <p style="width: max-content">{{ member.position }}</p>
           <p class="member-description">{{ member.description }}</p>
         </div>
       </div>
@@ -199,13 +199,14 @@ export default {
   opacity: 1 !important;
   max-width: unset !important;
 }
-.is-row {
-  height: 400px;
-}
 
 .member {
   justify-items: center;
   opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .placeHolder {
@@ -222,5 +223,14 @@ export default {
   height: 10px;
   width: 10px;
   background-color: #f78666;
+}
+@media only screen and (max-width: 768px) {
+  .member-row {
+    flex-direction: column;
+  }
+  .placeHolder {
+    max-width: 100%;
+    width: 100%;
+  }
 }
 </style>
