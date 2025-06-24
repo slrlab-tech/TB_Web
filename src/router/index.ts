@@ -19,6 +19,11 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue'),
     },
     {
+      path: '/admin',
+      name: 'Admin Area',
+      component: () => import('../views/AdminView.vue'),
+    },
+    {
       path: '/RnD',
       name: 'R&D Area',
       component: () => import('../views/RnDAreaView.vue'),
@@ -35,11 +40,6 @@ const router = createRouter({
       path: '/products',
       name: 'Our Products',
       component: () => import('../__legacy/ProductsView.vue'),
-    },
-    {
-      path: '/products/:productId',
-      name: 'Our Product',
-      component: () => import('../views/ProductDetailView.vue'),
     },
   ],
 })

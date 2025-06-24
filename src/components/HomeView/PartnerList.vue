@@ -14,7 +14,7 @@ export default {
     partners: {
       type: Array<{
         image: string
-        alt?: string
+        name?: string
         href?: string
       }>,
       required: true,
@@ -29,10 +29,10 @@ export default {
       <h1 class="heading" style="margin-top: 4rem">{{ $t('Our Partners') }}</h1>
     </div>
     <div v-if="partners?.length <= 5" class="wrapper partners-wrapper" id="partners">
-      <div class="partner-wrapper" v-for="partner in partners" :key="partner.alt">
+      <div class="partner-wrapper" v-for="partner in partners" :key="partner.name">
         <img
           :src="partner.image"
-          :alt="partner.alt ?? 'logo'"
+          :alt="partner.name ?? 'logo'"
           class="partner-image"
           @click="openLink(partner.href)"
         />

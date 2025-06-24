@@ -4,7 +4,7 @@
 export default {
   props: {
     items: {
-      type: Array as () => { image: string; alt?: string }[],
+      type: Array as () => { image: string; alt?: string; name?: string }[],
       required: true,
     },
     reverse: {
@@ -20,7 +20,7 @@ export default {
     <div class="scroller-animation" :class="{ reverse: reverse }">
       <div class="scroller" v-for="i in 2" data-test="scroller" :key="i">
         <div v-for="(item, index) in items" :key="index" class="scroller-item">
-          <img :src="item.image" :alt="item.alt ?? 'logo'" class="scroller-image" />
+          <img :src="item.image" :alt="item.alt ?? item.name ?? 'logo'" class="scroller-image" />
         </div>
       </div>
     </div>

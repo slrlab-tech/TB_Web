@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import LogoAnimation from '@/components/HomeView/LogoAnimation.vue'
-import LatestProduct from '../components/HomeView/LatestProduct.vue'
+import LatestProduct from '../components/HomeView/FeaturedProduct.vue'
 import PartnerList from '@/components/HomeView/PartnerList.vue'
 import TriAnimation from '@/components/HomeView/TriAnimation.vue'
 
@@ -17,7 +17,6 @@ export default {
     next()
   },
 }
-const latestProductId = '1'
 </script>
 
 <template>
@@ -49,7 +48,7 @@ const latestProductId = '1'
         </div>
       </div>
     </div>
-    <LatestProduct :product="products.find((product) => product.id == latestProductId)" />
+    <LatestProduct :product="products.find((product) => (product.featured = true))" />
     <PartnerList :partners="partners" />
   </main>
 </template>

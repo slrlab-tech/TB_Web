@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useDataStore = defineStore('data', {
   state: () => ({
     members: [] as MemberInfo[],
-    publications: [] as PublicationsInfo[],
+    publications: [] as PublicationInfo[],
     contacts: {},
     partners: [],
     products: [] as ProductsInfo[],
@@ -13,10 +13,10 @@ export const useDataStore = defineStore('data', {
     async fetchAll() {
       if (!this.loaded) {
         const [members, publications, products, data] = await Promise.all([
-          fetch('/members.json').then((res) => res.json()),
-          fetch('/publications.json').then((res) => res.json()),
-          fetch('/products.json').then((res) => res.json()),
-          fetch('/data.json').then((res) => res.json()),
+          fetch('/data/members.json').then((res) => res.json()),
+          fetch('/data/publications.json').then((res) => res.json()),
+          fetch('/data/products.json').then((res) => res.json()),
+          fetch('/data/data.json').then((res) => res.json()),
         ])
 
         this.members = members
@@ -31,14 +31,13 @@ export const useDataStore = defineStore('data', {
   },
 })
 
-interface MemberInfo {
+export interface MemberInfo {
   name: string
   position: string
-  description: string
   image: string
 }
 
-interface PublicationsInfo {
+export interface PublicationInfo {
   name: string
   year: string
   description: string
@@ -46,16 +45,15 @@ interface PublicationsInfo {
   functions: { name: string }[]
 }
 
-interface ProductsInfo {
+export interface ProductsInfo {
   id: string
   name: string
-  description: string
-  category: string
-  images: { image: string; alt: string }[]
-  functions: {
-    url: string
-    isVideo: boolean
-    name: string
-    description: string
-  }[]
+  images: { image: string; name?: string; link?: string }[]
+  featured: boolean
+}
+
+export interface PartnersInfo {
+  name: string
+  image: string
+  href?: string
 }

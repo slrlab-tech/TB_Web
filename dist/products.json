@@ -2,14 +2,14 @@
   {
     "id": "1",
     "name": "Learning and Teaching Expo 2025",
-    "description": "description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1",
     "images": [
       {
         "image": "products/SC01.jpeg",
         "alt": "I-DID",
         "link": "https://ltexpo.org/en/"
       }
-    ]
+    ],
+    "featured": true
   },
   {
     "id": "2",
