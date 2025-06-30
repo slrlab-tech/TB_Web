@@ -29,7 +29,7 @@ onMounted(() => onClicked(0))
   <div class="wrapper">
     <div class="timeline">
       <div class="line" style="background-color: var(--text-light-1)"></div>
-      <!-- TODO: show missing years -->
+      <!-- TODO: show missing years? -->
       <div
         v-for="(i, index) in years"
         :key="i"
