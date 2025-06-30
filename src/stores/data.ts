@@ -32,6 +32,7 @@ export const useDataStore = defineStore('data', {
 })
 
 export interface MemberInfo {
+  id: number
   name: string
   position: string
   image: string

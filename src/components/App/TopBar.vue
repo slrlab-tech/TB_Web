@@ -73,7 +73,7 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
         :style="{ transform: $route.path !== '/' ? 'translateY(0)' : 'translateY(-40%)' }"
       />
     </div>
-    <div>
+    <div style="position: relative">
       <Icon
         @click="toggleLanguage(true)"
         icon="material-symbols:language"
@@ -81,6 +81,25 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
         style="anchor-name: --language"
       />
       <Icon @click="toggleMenu(true)" icon="gg:details-more" class="icon-button shadow" />
+      <div v-show="isLanguageOpen" class="language-switcher">
+        <p @click="$i18n.locale = 'en'" :class="{ blue: $i18n.locale !== 'en', locale: true }">
+          EN
+        </p>
+        |
+        <p
+          @click="$i18n.locale = 'zh-hk'"
+          :class="{ blue: $i18n.locale !== 'zh-hk', locale: true }"
+        >
+          繁
+        </p>
+        |
+        <p
+          @click="$i18n.locale = 'zh-cn'"
+          :class="{ blue: $i18n.locale !== 'zh-cn', locale: true }"
+        >
+          简
+        </p>
+      </div>
     </div>
     <div
       class="mask"
@@ -92,17 +111,6 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
       <slot></slot>
     </div>
     <div class="mask" @click="toggleLanguage(false)" v-show="isLanguageOpen"></div>
-    <div v-show="isLanguageOpen" class="language-switcher">
-      <p @click="$i18n.locale = 'en'" :class="{ blue: $i18n.locale !== 'en', locale: true }">EN</p>
-      |
-      <p @click="$i18n.locale = 'zh-hk'" :class="{ blue: $i18n.locale !== 'zh-hk', locale: true }">
-        繁
-      </p>
-      |
-      <p @click="$i18n.locale = 'zh-cn'" :class="{ blue: $i18n.locale !== 'zh-cn', locale: true }">
-        简
-      </p>
-    </div>
   </header>
 </template>
 
@@ -174,13 +182,12 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
 .language-switcher {
   display: flex;
   gap: 0.2rem;
-
-  top: anchor(--language bottom);
-  right: anchor(--language right);
+  left: 0;
+  translate: -50% 0;
   position: absolute;
   background-color: var(--white);
   box-shadow: 0.1rem 0.1rem 0.2rem var(--color-text);
-  z-index: 100;
+  z-index: 101;
   padding: 0.5rem;
   border-radius: 0.5rem;
   pointer-events: all;
@@ -193,7 +200,7 @@ const SafariScale = getBrowser() == 'Safari' ? 2 : 1
   width: 100vw;
   left: 0;
   top: -100vh;
-  z-index: 100;
+  z-index: 101;
   transition: top 0.2s;
   padding: 0 1rem;
   pointer-events: all;

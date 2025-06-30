@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MembersScroll from '@/components/MembersScroll.vue'
+import MembersScroll from '@/components/AboutView/MembersScroll.vue'
 import { useDataStore } from '@/stores/data.ts'
 
 const { members } = useDataStore()
@@ -8,15 +8,12 @@ const { members } = useDataStore()
 <!-- !!!TODO: clean up -->
 <template>
   <div class="wrapper">
-    <h2 class="heading">{{ $t('About TB') }}</h2>
+    <h2 class="heading">{{ $t('about.title') }}</h2>
   </div>
   <div class="wrapper about-container">
-    <div>
-      <span style="font-weight: bold; white-space: pre-line">{{ $t('about-0') }}</span>
-      {{ $t('about-1') }}
-    </div>
-    <div v-for="i in 3" :key="i">
-      {{ $t('about-' + (i + 1)) }}
+    <div class="newline">
+      <span style="font-weight: bold; white-space: pre-line">{{ $t('about.name') }}</span>
+      {{ $t('about.content') }}
     </div>
   </div>
   <div class="wrapper">

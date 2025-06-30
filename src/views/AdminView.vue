@@ -121,6 +121,7 @@ export default {
 
 <template>
   <!-- TODO: STS authorization -->
+  <!-- TODO: add delete -->
   <div class="wrapper">
     <div class="tab-buttons" v-if="currentTab == ''">
       <button
@@ -243,7 +244,7 @@ export default {
         <Icon icon="mingcute:add-fill" class="icon-btn" @click="add('members')"></Icon>
       </div>
       <div v-for="(member, index) in newMembers.slice().reverse()" :key="index" class="item">
-        <h4>{{ $t('Item') + (index + 1) }}</h4>
+        <h4>{{ $t('ID: ') + member.id }}</h4>
         <ImageUpload
           :item="member"
           :index="newMembers.length - 1 - index"

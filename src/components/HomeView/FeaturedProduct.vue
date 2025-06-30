@@ -20,8 +20,8 @@ const currentIndex = ref(0)
 <template>
   <div class="wrapper-background">
     <div class="wrapper button-section">
-      <h1 class="heading">{{ $t('Highlights of TB') }}</h1>
-      <h2 style="text-align: center">{{ $t(product.name || 'Product Name') }}</h2>
+      <h1 class="heading">{{ $t('highlight.title') }}</h1>
+      <h2 style="text-align: center">{{ $t('highlight.' + (product.name || 'Product Name')) }}</h2>
       <ImageCarousel
         height="20rem"
         :items="product.images"

@@ -5,7 +5,7 @@ import { Icon } from '@iconify/vue/dist/iconify.js'
 export default {
   props: {
     members: {
-      type: Array<{ name: string; position: string; image: string }>,
+      type: Array<{ name: string; position: string; image: string; id: number }>,
       required: true,
     },
     title: String,
@@ -87,9 +87,9 @@ export default {
             />
           </div>
           <h4 class="member-name">
-            {{ member.name }}
+            {{ $t(`members.${member.id}.name`) }}
           </h4>
-          <p style="width: max-content">{{ member.position }}</p>
+          <p style="width: max-content">{{ $t(`members.${member.id}.position`) }}</p>
         </div>
       </div>
     </div>

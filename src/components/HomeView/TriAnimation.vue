@@ -32,7 +32,7 @@ const isAnimated =
   color: var(--text-dark-1);
   font-weight: 700;
   text-align: center;
-  font-size: 1.5vw;
+  font-size: 1.3vw;
 
   &.dark {
     color: var(--text-light-1);
@@ -55,7 +55,7 @@ const isAnimated =
 
 .r-wrapper {
   margin: 50px 0px;
-  --height: 35vw;
+  --height: 30vw;
   --translate: calc(var(--height) / 3);
   position: relative;
   height: var(--height);

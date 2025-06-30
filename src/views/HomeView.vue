@@ -23,14 +23,16 @@ export default {
   <LogoAnimation class="logo-animation" :onEnd="onLogoEnd" :onStart="onLogoStart" />
   <main>
     <div class="wrapper" style="margin-bottom: 4rem">
-      <h1 class="heading">{{ $t('Our Mission') }}</h1>
+      <h1 class="heading">{{ $t('mission.title') }}</h1>
       <div class="mission-wrapper">
         <TriAnimation />
         <div class="mission">
           <h4 style="line-height: normal; width: 100%; font-weight: normal">
-            {{ $t('mission-01') }}
-            <span style="font-weight: bold; color: var(--highlight-2)">{{ $t('mission-02') }}</span>
-            {{ $t('mission-03') }}
+            {{ $t('mission.subtitle-1') }}
+            <span style="font-weight: bold; color: var(--highlight-2)">{{
+              $t('mission.subtitle-2')
+            }}</span>
+            {{ $t('mission.subtitle-3') }}
           </h4>
           <div
             v-for="(icon, index) in [
@@ -42,7 +44,7 @@ export default {
             :key="index"
           >
             <p class="dot">
-              {{ $t('mission-' + (index + 1)) }}
+              {{ $t('mission.content-' + (index + 1)) }}
             </p>
           </div>
         </div>

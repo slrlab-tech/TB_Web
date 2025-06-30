@@ -1,16 +1,41 @@
 {
-  "About TB": "About Tomorrow’s Brain",
-  "about-0": "Tomorrow’s Brain (TB) Limited",
-  "about-1": "is an EdTech company offering personalized and adaptive assessment and training on children’s foundational learning abilities, with a specific focus on reading and writing skills.",
-  "about-2": "Over the past 15 years, Professor Shelley Xiuli Tong and her research team at the Speech, Language and Reading Lab of the University of Hong Kong has synergized cognitive-behavioural, educational neuroscience and machine learning approaches to develop and validate cutting-edge educational products tailored to individuals’ diverse learning needs and preferences.",
-  "about-3": "Our pioneering product, the I-DID (Intelligent Dyslexic Interface Design) is an integrated bilingual assessment and learning system that provides 4-to 12-year-old children with a multifactorial learning profiles in Chinese, English, and Cognitive skills, as well as trainings corresponding to their ability matrix.",
-  "about-4": "By leveraging educational neuroscience, intervention science and AI technology, our mission is to develop the customized educational products that guide children to recognize their unique strengths, explore curiosity, and develop a sustainable and thriving future.",
-  "Our Members": "Our Members",
+  "about": {
+    "title": "About Tomorrow’s Brain",
 
-  "mission-01": "Our mission is to",
-  "mission-02": "transform education",
-  "mission-03": "by:",
-  "mission-1": "Developing personalized and adaptive assessment and training for all children",
-  "mission-2": "Leveraging AI and brain-based tools to optimize the learning of and teaching for children",
-  "mission-3": "Providing accessible and sustainable education for children with different learning needs"
+    "name": "Tomorrow’s Brain (TB) Limited",
+    "content-1": "is an EdTech company offering personalized and adaptive assessment and training on children’s foundational learning abilities, with a specific focus on reading and writing skills.",
+    "content-2": "Over the past 15 years, Professor Shelley Xiuli Tong and her research team at the Speech, Language and Reading Lab of the University of Hong Kong has synergized cognitive-behavioural, educational neuroscience and machine learning approaches to develop and validate cutting-edge educational products tailored to individuals’ diverse learning needs and preferences.",
+    "content-3": "Our pioneering product, the I-DID (Intelligent Dyslexic Interface Design) is an integrated bilingual assessment and learning system that provides 4-to 12-year-old children with a multifactorial learning profiles in Chinese, English, and Cognitive skills, as well as trainings corresponding to their ability matrix.",
+    "content-4": "By leveraging educational neuroscience, intervention science and AI technology, our mission is to develop the customized educational products that guide children to recognize their unique strengths, explore curiosity, and develop a sustainable and thriving future.",
+
+    "content": "@:about.content-1 \n\n @:about.content-2 \n\n @:about.content-3 \n\n @:about.content-4"
+  },
+
+  "members": {
+    "0": {
+      "name": "Professor Shelley Xiuli Tong",
+      "position": "Co-founder and Chairman"
+    },
+    "1": {
+      "name": "Ms. Sochi Liu",
+      "position": "Co-founder and COO"
+    }
+  },
+
+  "mission": {
+    "title": "Our Mission",
+    "subtitle-1": "Our mission is to",
+    "subtitle-2": "transform education",
+    "subtitle-3": "by:",
+    "content-1": "Developing personalized and adaptive assessment and training for all children",
+    "content-2": "Leveraging AI and brain-based tools to optimize the learning of and teaching for children",
+    "content-3": "Providing accessible and sustainable education for children with different learning needs"
+  },
+
+  "highlight": {
+    "title": "Highlights of TB",
+    "Learning and Teaching Expo 2025": "Learning and Teaching Expo 2025"
+  },
+
+  "Our Partners": "Our Partners"
 }
