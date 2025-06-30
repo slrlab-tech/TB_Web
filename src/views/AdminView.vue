@@ -4,6 +4,7 @@ import ImageUpload from '@/components/AdminView/ImageUpload.vue'
 </script>
 
 <script lang="ts">
+import OSS from 'ali-oss'
 import { useDataStore } from '@/stores/data.ts'
 import type { PartnersInfo, ProductsInfo, MemberInfo } from '@/stores/data.ts'
 
@@ -19,6 +20,10 @@ export default {
       newProducts: JSON.parse(JSON.stringify(products)) as ProductsInfo[],
       newMembers: JSON.parse(JSON.stringify(members)) as MemberInfo[],
       previewImage: '' as string,
+      client: null as OSS | null,
+      id: '' as string,
+      secret: '' as string,
+      loggedIn: false as boolean,
     }
   },
   methods: {
@@ -57,6 +62,34 @@ export default {
       this.newMembers = JSON.parse(JSON.stringify(members)) as MemberInfo[]
       this.newPartners = JSON.parse(JSON.stringify(partners)) as PartnersInfo[]
       this.newProducts = JSON.parse(JSON.stringify(products)) as ProductsInfo[]
+    },
+    async login() {
+      if (!this.id || !this.secret) {
+        alert('Please enter AccessKey ID and Secret.')
+        return
+      }
+
+      const client = new OSS({
+        region: 'oss-cn-hongkong',
+        accessKeyId: this.id,
+        accessKeySecret: this.secret,
+        bucket: 'tb-website',
+        secure: true,
+      })
+
+      try {
+        // Test connection
+        await client.get('empty.txt')
+        // If login always fails, please check if there is a file named 'empty.txt' in OSS bucket.
+
+        console.log('Login successful!')
+        this.loggedIn = true
+        this.id = ''
+        this.secret = ''
+      } catch (error) {
+        console.error('Login failed:', error)
+        alert('Login failed. Please check your AccessKey ID and Secret.')
+      }
     },
     add(type: dataType) {
       if (type === 'partners') {
@@ -122,7 +155,19 @@ export default {
 <template>
   <!-- TODO: STS authorization -->
   <!-- TODO: add delete -->
-  <div class="wrapper">
+  <div class="wrapper" v-if="!loggedIn">
+    <h2>{{ $t('Login') }}</h2>
+    <div>
+      <span>{{ $t('AccessKey ID') }}: </span>
+      <input type="text" v-model="id" placeholder="Enter AccessKey ID for log in" />
+    </div>
+    <div>
+      <span>{{ $t('AccessKey Secret') }}: </span>
+      <input type="text" v-model="secret" placeholder="Enter AccessKey Secret for log in" />
+    </div>
+    <button @click="login" class="tab-btn">{{ $t('Log in') }}</button>
+  </div>
+  <div class="wrapper" v-if="loggedIn">
     <div class="tab-buttons" v-if="currentTab == ''">
       <button
         v-for="tab in ['partners', 'products', 'members']"

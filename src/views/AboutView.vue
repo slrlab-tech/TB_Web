@@ -5,7 +5,6 @@ import { useDataStore } from '@/stores/data.ts'
 const { members } = useDataStore()
 </script>
 
-<!-- !!!TODO: clean up -->
 <template>
   <div class="wrapper">
     <h2 class="heading">{{ $t('about.title') }}</h2>
