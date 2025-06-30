@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import Members from '../MembersScroll.vue'
+import Members from '../AboutView/MembersScroll.vue'
 
 describe('Members', () => {
   it('renders empty properly', () => {
@@ -15,17 +15,16 @@ describe('Members', () => {
       props: {
         members: [
           {
+            id: 0,
             image: 'image1',
             name: 'name 1',
             position: 'test position',
-            description:
-              'test description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitaevestibulum vestibulum.',
           },
           {
+            id: 1,
             image: 'https://picsum.photos/100/100',
             name: 'test 2',
             position: 'test position 2',
-            description: 'test description 2',
           },
         ],
       },

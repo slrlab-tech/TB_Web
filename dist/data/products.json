@@ -8,6 +8,10 @@
         "image": "data/products/SC01.jpeg",
         "name": "Learning and Teaching Expo 2025",
         "link": "https://ltexpo.org/en/"
+      },
+      {
+        "image": "data/products/Website Highlights.png",
+        "name": "Expo registration"
       }
     ],
     "featured": true
