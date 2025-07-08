@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue/dist/iconify.js'
+import type { ImageInfo } from '@/stores/data'
 </script>
 <script lang="ts">
 export default {
   props: {
     members: {
-      type: Array<{ name: string; position: string; image: string; id: number }>,
+      type: Array<{ name: string; position: string; image: ImageInfo; id: number }>,
       required: true,
     },
     title: String,
@@ -75,7 +76,7 @@ export default {
           <div class="image-wrapper center">
             <img
               v-if="!!member.image"
-              :src="member.image"
+              :src="member.image.path"
               :alt="member.name"
               class="member-image"
             />

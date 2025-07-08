@@ -1,10 +1,11 @@
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
+import type { ImageInfo } from '@/stores/data.ts'
 
 export default defineComponent({
   props: {
     item: {
-      type: Object as PropType<{ image: string; name?: string }>,
+      type: Object as PropType<ImageInfo>,
       required: true,
     },
     index: {
@@ -24,14 +25,7 @@ export default defineComponent({
       default: false,
     },
     uploadImage: {
-      type: Function as PropType<
-        (
-          e: Event,
-          type: 'partners' | 'products' | 'members',
-          index: number,
-          subIndex?: number,
-        ) => void
-      >,
+      type: Function as PropType<(e: Event, index: number, subIndex?: number) => void>,
       required: true,
     },
   },
@@ -39,18 +33,19 @@ export default defineComponent({
 </script>
 
 <template>
-  <img :src="item.image" class="image" :alt="item.name" :class="{ rounded }" />
+  <img :src="item.path" class="image" :alt="item.name" :class="{ rounded }" />
   <input
     style="padding-block: 1rem"
     type="file"
-    accept="image/jpeg"
-    @change="(e) => uploadImage(e, type, index, subIndex)"
+    accept="image/png, image/jpeg"
+    @change="(e) => uploadImage(e, index, subIndex)"
   />
 </template>
 
 <style scoped>
 .image {
   max-height: 150px;
+  width: 100%;
   object-fit: contain;
   align-self: baseline;
 }

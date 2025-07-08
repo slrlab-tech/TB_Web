@@ -1,10 +1,10 @@
-<script setup lang="ts"></script>
-
 <script lang="ts">
+import type { ImageInfo } from '@/stores/data'
+
 export default {
   props: {
     items: {
-      type: Array as () => { image: string; alt?: string; name?: string }[],
+      type: Array as () => ImageInfo[],
       required: true,
     },
     reverse: {
@@ -20,7 +20,7 @@ export default {
     <div class="scroller-animation" :class="{ reverse: reverse }">
       <div class="scroller" v-for="i in 2" data-test="scroller" :key="i">
         <div v-for="(item, index) in items" :key="index" class="scroller-item">
-          <img :src="item.image" :alt="item.alt ?? item.name ?? 'logo'" class="scroller-image" />
+          <img :src="item.path" :alt="item.name ?? 'logo'" class="scroller-image" />
         </div>
       </div>
     </div>

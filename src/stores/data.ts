@@ -5,8 +5,8 @@ export const useDataStore = defineStore('data', {
     members: [] as MemberInfo[],
     publications: [] as PublicationInfo[],
     contacts: {},
-    partners: [] as PartnersInfo[],
-    products: [] as ProductsInfo[],
+    partners: [] as ImageInfo[],
+    products: [] as ProductInfo[],
     loaded: false,
   }),
   actions: {
@@ -35,26 +35,26 @@ export interface MemberInfo {
   id: number
   name: string
   position: string
-  image: string
+  image: ImageInfo
 }
 
 export interface PublicationInfo {
   name: string
   year: string
   description: string
-  image: string
+  image: ImageInfo
   functions: { name: string }[]
 }
 
-export interface ProductsInfo {
+export interface ProductInfo {
   id: string
   name: string
-  images: { image: string; name?: string; link?: string }[]
+  images: ImageInfo[]
   featured: boolean
 }
 
-export interface PartnersInfo {
+export interface ImageInfo {
+  path: string
   name: string
-  image: string
   href?: string
 }

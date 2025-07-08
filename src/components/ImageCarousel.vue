@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import type { ImageInfo } from '@/stores/data'
 
 let intervalId = -1
 
@@ -8,13 +9,13 @@ const {
   auto = true,
   onChange,
 } = defineProps<{
-  items: { image: string; alt: string; name: string; link: string }[]
+  items: ImageInfo[]
   auto?: boolean
   onChange?: (index: number) => void
 }>()
 const currentIndex = ref(0)
 
-const openImage = (link: string) => {
+const openImage = (link: string | undefined) => {
   if (link) window.open(link, '_blank')
 }
 
@@ -49,12 +50,12 @@ onUnmounted(() => clearInterval(intervalId))
       <img
         class="carousel-slide"
         v-for="(item, index) in items"
-        @click="() => openImage(item.link)"
+        @click="() => openImage(item.href)"
         :key="index"
-        :src="item.image"
-        :alt="item.alt ?? item.name ?? 'image'"
+        :src="item.path"
+        :alt="item.name ?? 'image'"
         :class="{ active: index === currentIndex }"
-        :style="{ cursor: item.link ? 'pointer' : 'default' }"
+        :style="{ cursor: item.href ? 'pointer' : 'default' }"
       />
       <div class="carousel-btn" v-if="items.length > 1">
         <button class="prev" @click="prevSlide">❮</button>

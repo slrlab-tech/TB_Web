@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ImageScroller from '@/components/ImageScroller.vue'
+import type { ImageInfo } from '@/stores/data'
 
 function openLink(href?: string) {
   if (href) {
@@ -12,11 +13,7 @@ function openLink(href?: string) {
 export default {
   props: {
     partners: {
-      type: Array<{
-        image: string
-        name?: string
-        href?: string
-      }>,
+      type: Array<ImageInfo>,
       required: true,
     },
   },
@@ -31,7 +28,7 @@ export default {
     <div v-if="partners?.length <= 5" class="wrapper partners-wrapper" id="partners">
       <div class="partner-wrapper" v-for="partner in partners" :key="partner.name">
         <img
-          :src="partner.image"
+          :src="partner.path"
           :alt="partner.name ?? 'logo'"
           class="partner-image"
           @click="openLink(partner.href)"

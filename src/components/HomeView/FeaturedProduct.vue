@@ -2,13 +2,14 @@
 import ImageCarousel from '@/components/ImageCarousel.vue'
 // import PopUpButton from '@/components/PopUpButton.vue'
 import { ref } from 'vue'
+import type { ImageInfo } from '@/stores/data'
 </script>
 
 <script lang="ts">
 export default {
   props: {
     product: {
-      type: { images: Array<string>, name: String, functions: Array },
+      type: { images: Array<ImageInfo>, name: String, functions: Array },
       required: true,
     },
   },
