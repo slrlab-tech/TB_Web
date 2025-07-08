@@ -55,6 +55,6 @@ export interface ProductInfo {
 
 export interface ImageInfo {
   path: string
-  name: string
+  name?: string
   href?: string
 }

@@ -57,7 +57,7 @@ const updateYear = (newYear: number) => {
           <button class="btn" @click="current -= 1" :disabled="current === 0">❮</button>
           <div style="width: 100%">
             <img
-              :src="sortedPub[year][current].image"
+              :src="sortedPub[year][current].image.path"
               alt="Research Image"
               style="width: 100%; margin-block: 1rem"
             />

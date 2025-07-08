@@ -13,9 +13,9 @@ describe('ImageScroller', () => {
     const wrapper = mount(ImageScroller, {
       props: {
         items: [
-          { image: 'test', alt: 'logo 1' },
-          { image: 'https://picsum.photos/200/100', alt: 'logo 2' },
-          { image: 'no alt' },
+          { path: 'test', name: 'logo 1' },
+          { path: 'https://picsum.photos/200/100', name: 'logo 2' },
+          { path: 'no alt' },
         ],
       },
     })

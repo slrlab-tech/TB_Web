@@ -3,12 +3,12 @@
     "id": 0,
     "name": "Prof. Shelley Xiuli Tong",
     "position": "Co-founder and Chairman",
-    "image": "data/members/shelley.png"
+    "image": { "path": "data/members/shelley.png" }
   },
   {
     "id": 1,
     "name": "Ms. Sochi Liu",
     "position": "Co-founder and CEO",
-    "image": "data/members/sochi.png"
+    "image": { "path": "data/members/sochi.png" }
   }
 ]

@@ -71,7 +71,7 @@ export default {
 
       this.images.forEach((image) => {
         // @ts-expect-error: client is already checked to be not null
-        this.$props.client.put('data/members/' + image.name, image)
+        this.$props.client.put('data/partners/' + image.name, image)
       })
 
       this.newPartners = JSON.parse(JSON.stringify(data.partners)) as ImageInfo[]

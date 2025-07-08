@@ -5,12 +5,12 @@
     "description": "description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1 description 1",
     "images": [
       {
-        "image": "data/products/SC01.jpeg",
+        "path": "data/products/SC01.jpeg",
         "name": "Learning and Teaching Expo 2025",
-        "link": "https://ltexpo.org/en/"
+        "href": "https://ltexpo.org/en/"
       },
       {
-        "image": "data/products/Website Highlights.png",
+        "path": "data/products/Website Highlights.png",
         "name": "Expo registration"
       }
     ],
